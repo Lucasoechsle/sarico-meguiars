@@ -45,9 +45,9 @@ export default function HomePage() {
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed max-w-4xl mx-auto">
               Distribuimos las mejores marcas en{" "}
-              <span className="text-yellow-400 font-semibold">baterías y sistemas energéticos</span>, y ofrecemos{" "}
-              <span className="text-yellow-400 font-semibold">servicios profesionales de car detail</span> con productos
-              Meguiar's.
+              <span className="text-yellow-400 font-semibold">baterías y sistemas energéticos</span>, y somos{" "}
+              <span className="text-yellow-400 font-semibold">distribuidores oficiales de productos </span>
+              Meguiar's. en Argentina
             </p>
           </div>
         </div>
@@ -148,32 +148,32 @@ export default function HomePage() {
                   </div>
                   <div className="space-y-4 text-gray-300">
                     <p className="text-lg leading-relaxed">
-                      Servicios profesionales de{" "}
-                      <span className="text-white font-semibold">car detail y cuidado automotriz</span>
-                      utilizando productos premium Meguiar's para resultados excepcionales.
+                      Distribuimos la línea completa de{" "}
+                      <span className="text-white font-semibold">productos Meguiar's</span>
+                      para el cuidado y detallado automotriz, ideales para profesionales y entusiastas.
                     </p>
                     <ul className="space-y-2 text-base">
                       <li className="flex items-center">
                         <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                        Detailing premium y acabados de lujo
+                        Ceras, limpiadores y pulidores de alta gama
                       </li>
                       <li className="flex items-center">
                         <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                        Lavado especializado y protección de pintura
+                        Productos para interiores, exteriores y motor
                       </li>
                       <li className="flex items-center">
                         <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                        Tratamientos protectores avanzados
+                        Ideal para talleres, detailers y fanáticos
                       </li>
                       <li className="flex items-center">
                         <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                        Productos Meguiar's profesionales
+                        Calidad garantizada Meguiar's
                       </li>
                     </ul>
                   </div>
                 </div>
                 <div className="relative z-10 flex items-center text-yellow-400 group-hover:text-yellow-300 transition-colors font-semibold text-lg">
-                  <span>Conocer Servicios de Car Detail</span>
+                  <span>Ver Productos de Car Detail</span>
                   <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
                 </div>
               </div>
@@ -188,7 +188,7 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">¿Listo para comenzar?</h2>
             <p className="text-xl text-black/80 mb-10 leading-relaxed">
-              Contáctanos para conocer más sobre nuestros productos energéticos o servicios de car detail profesional
+              Contáctanos para conocer más sobre nuestros productos energéticos o la línea profesional Meguiar's para car detail
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -223,8 +223,7 @@ export default function HomePage() {
                 className="h-10 w-auto mb-4"
               />
               <p className="text-gray-400 leading-relaxed">
-                Más de 20 años distribuyendo las mejores marcas en energía y ofreciendo servicios profesionales de car
-                detail.
+                Más de 20 años distribuyendo las mejores marcas en energía y productos de car detail Meguiar's.
               </p>
             </div>
             <div>

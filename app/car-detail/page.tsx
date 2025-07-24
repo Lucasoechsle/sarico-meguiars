@@ -31,15 +31,14 @@ export default function CarDetailPage() {
               <Car className="h-10 w-10 text-white" />
             </div>
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              Servicios de
+              Productos de
               <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
                 {" "}
                 Car Detail
               </span>
             </h1>
             <p className="text-xl text-white/70 mb-12 leading-relaxed">
-              Cuidado profesional y especializado para tu vehículo. Mantenemos tu auto en perfectas condiciones con los
-              mejores productos y técnicas.
+              Distribuimos la línea completa de productos Meguiar's en Argentina para el detallado y cuidado automotriz profesional.
             </p>
           </div>
         </div>
@@ -54,7 +53,7 @@ export default function CarDetailPage() {
                 <Sparkles className="h-6 w-6 text-black" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Detailing Premium</h3>
-              <p className="text-white/70 leading-relaxed">Limpieza profunda y acabados de lujo para tu vehículo.</p>
+              <p className="text-white/70 leading-relaxed">  Productos para limpieza profunda, acabado profesional y brillo excepcional.</p>
             </div>
 
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-yellow-400/50 transition-colors">
@@ -62,7 +61,7 @@ export default function CarDetailPage() {
                 <Droplets className="h-6 w-6 text-black" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Lavado Especializado</h3>
-              <p className="text-white/70 leading-relaxed">Técnicas avanzadas de lavado que protegen la pintura.</p>
+              <p className="text-white/70 leading-relaxed">Shampoo, desengrasantes y soluciones para un lavado seguro y efectivo.</p>
             </div>
 
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-yellow-400/50 transition-colors">
@@ -71,7 +70,7 @@ export default function CarDetailPage() {
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Protección</h3>
               <p className="text-white/70 leading-relaxed">
-                Tratamientos protectores para mantener tu auto como nuevo.
+                Selladores, ceras y recubrimientos para mantener tu auto protegido y reluciente.
               </p>
             </div>
           </div>
@@ -84,7 +83,7 @@ export default function CarDetailPage() {
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-white mb-4">Contacto</h2>
-              <p className="text-white/60">¿Necesitas más información? Escríbenos.</p>
+              <p className="text-white/60">¿Querés conocer más sobre los productos Meguiar's? Escribinos y te asesoramos.</p>
             </div>
 
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
