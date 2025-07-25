@@ -94,7 +94,7 @@ export default function CarDetailPage() {
                       type="text"
                       name="nombre"
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-yellow-400 transition-all"
+                      className="placeholder:text-white w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-yellow-400 transition-all"
                       placeholder="Nombre completo"
                     />
                   </div>
@@ -103,7 +103,7 @@ export default function CarDetailPage() {
                       type="tel"
                       name="telefono"
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-yellow-400 transition-all"
+                      className="placeholder:text-white w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-yellow-400 transition-all"
                       placeholder="Teléfono"
                     />
                   </div>
@@ -113,7 +113,7 @@ export default function CarDetailPage() {
                   type="email"
                   name="email"
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-yellow-400 transition-all"
+                  className="placeholder:text-white w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-yellow-400 transition-all"
                   placeholder="Email"
                 />
 
@@ -121,7 +121,7 @@ export default function CarDetailPage() {
                   <select
                     name="provincia"
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white focus:outline-none focus:border-yellow-400 transition-all"
+                    className="placeholder:text-white w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white focus:outline-none focus:border-yellow-400 transition-all"
                   >
                     <option value="" className="bg-gray-800">
                       Provincia
@@ -200,7 +200,7 @@ export default function CarDetailPage() {
                     type="text"
                     name="ciudad"
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-yellow-400 transition-all"
+                    className="placeholder:text-white w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-yellow-400 transition-all"
                     placeholder="Ciudad"
                   />
                 </div>
@@ -208,7 +208,7 @@ export default function CarDetailPage() {
                 <textarea
                   name="comentarios"
                   rows={3}
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-yellow-400 transition-all resize-none"
+                  className="placeholder:text-white w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-yellow-400 transition-all resize-none"
                   placeholder="Comentarios (opcional)"
                 ></textarea>
 
