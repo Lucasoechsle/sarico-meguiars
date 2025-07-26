@@ -576,31 +576,28 @@ export default function ProductosPage() {
               <div className="flex flex-wrap gap-3">
                 <button
                   onClick={() => handleFilterChange("todos")}
-                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
-                    selectedFilter === "todos"
+                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${selectedFilter === "todos"
                       ? "bg-gradient-to-r from-yellow-500 to-orange-500 text-white shadow-lg"
                       : "bg-white text-gray-700 border-2 border-gray-200 hover:border-yellow-400 hover:text-yellow-600"
-                  }`}
+                    }`}
                 >
                   Todos los Productos ({productos.length})
                 </button>
                 <button
                   onClick={() => handleFilterChange("enerbat")}
-                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
-                    selectedFilter === "enerbat"
+                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${selectedFilter === "enerbat"
                       ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg"
                       : "bg-white text-gray-700 border-2 border-gray-200 hover:border-blue-400 hover:text-blue-600"
-                  }`}
+                    }`}
                 >
                   Enerbat ({productos.filter((p) => p.brand === "enerbat").length})
                 </button>
                 <button
                   onClick={() => handleFilterChange("newmax")}
-                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
-                    selectedFilter === "newmax"
+                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${selectedFilter === "newmax"
                       ? "bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg"
                       : "bg-white text-gray-700 border-2 border-gray-200 hover:border-green-400 hover:text-green-600"
-                  }`}
+                    }`}
                 >
                   Newmax ({productos.filter((p) => p.brand === "newmax").length})
                 </button>
@@ -701,11 +698,10 @@ export default function ProductosPage() {
                   <button
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
-                    className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-                      currentPage === 1
+                    className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${currentPage === 1
                         ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                         : "bg-white text-gray-700 border-2 border-gray-200 hover:border-yellow-400 hover:text-yellow-600"
-                    }`}
+                      }`}
                   >
                     Anterior
                   </button>
@@ -732,11 +728,10 @@ export default function ProductosPage() {
                       <button
                         key={page}
                         onClick={() => handlePageChange(page)}
-                        className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-                          currentPage === page
+                        className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${currentPage === page
                             ? "bg-gradient-to-r from-yellow-500 to-orange-500 text-white shadow-lg"
                             : "bg-white text-gray-700 border-2 border-gray-200 hover:border-yellow-400 hover:text-yellow-600"
-                        }`}
+                          }`}
                       >
                         {page}
                       </button>
@@ -747,11 +742,10 @@ export default function ProductosPage() {
                   <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
-                    className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-                      currentPage === totalPages
+                    className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${currentPage === totalPages
                         ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                         : "bg-white text-gray-700 border-2 border-gray-200 hover:border-yellow-400 hover:text-yellow-600"
-                    }`}
+                      }`}
                   >
                     Siguiente
                   </button>
