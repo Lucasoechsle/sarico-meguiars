@@ -476,13 +476,12 @@ export default function EnergiaPage() {
         </div>
       </section>
       {/* Contact Section */}
-      <section id="contacto" className="py-12 px-4">
+      <section id="contacto" className="py-6 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
               <Phone className="h-8 w-8 text-white" />
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Contacto</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Estamos aquí para ayudarte con todas tus necesidades energéticas. Contáctanos y descubre cómo podemos
               impulsar tu proyecto.
