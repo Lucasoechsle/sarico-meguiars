@@ -83,11 +83,11 @@ export default function EnergiaPage() {
       <section id="inicio" className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-400 via-orange-400 to-yellow-500"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-        <div className="relative z-10 container mx-auto px-4 py-8">
+        <div className="relative z-10 container mx-auto px-4 py-24 md:py-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
             <div className="text-left space-y-8">
               <div className="space-y-6">
-                <h1 className="text-5xl lg:text-7xl font-black text-white leading-tight">
+                <h1 className="text-4xl md:text-7xl font-black text-white leading-tight">
                   La energía del
                   <span className="block bg-gradient-to-r from-white to-yellow-100 bg-clip-text text-transparent">
                     futuro, hoy.

@@ -76,7 +76,7 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-8">
-                <div>
+                <div className="mx-auto text-center">
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
                     <Target className="h-8 w-8 text-white" />
                   </div>
