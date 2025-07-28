@@ -13,6 +13,7 @@ import {
   MapPin,
   Target,
   Heart,
+  SendHorizonal,
 } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
@@ -320,7 +321,6 @@ export default function EnergiaPage() {
               <p className="text-sm text-gray-500 mb-2">Batería FREE con CALCIO</p>
               <p className="text-lg font-bold text-yellow-600">12 x 75</p>
             </div>
-
             {/* Baterías Silver Graphite */}
             <div className="group bg-white rounded-3xl p-6 border-2 border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
               <div className="relative mb-6 rounded-2xl p-4 h-40 flex items-center justify-center overflow-hidden">
@@ -380,8 +380,103 @@ export default function EnergiaPage() {
           </div>
         </div>
       </section>
+      <section id="contacto" className="py-12 px-4">
+        <div className="container mx-auto">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
+                <SendHorizonal className="h-8 w-8 text-white" />
+              </div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Contacto</h2>
+              <p className="text-gray-600 text-lg">
+                ¿Querés conocer más sobre los productos Meguiar's? Escribinos y te asesoramos.
+              </p>
+            </div>
+            <div className="bg-white rounded-3xl p-8 border-2 border-gray-100 shadow-xl">
+              <form className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    name="nombre"
+                    required
+                    placeholder="Nombre completo"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-800 placeholder-gray-400 bg-white focus:outline-none focus:border-yellow-500 transition-all"
+                  />
+                  <input
+                    type="tel"
+                    name="telefono"
+                    required
+                    placeholder="Teléfono"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-800 placeholder-gray-400 bg-white focus:outline-none focus:border-yellow-500 transition-all"
+                  />
+                </div>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="Email"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-800 placeholder-gray-400 bg-white focus:outline-none focus:border-yellow-500 transition-all"
+                />
+                <div className="grid md:grid-cols-2 gap-4">
+                  <select
+                    name="provincia"
+                    required
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-800 bg-white focus:outline-none focus:border-yellow-500 transition-all"
+                  >
+                    <option value="">Provincia</option>
+                    <option value="buenos-aires">Buenos Aires</option>
+                    <option value="catamarca">Catamarca</option>
+                    <option value="chaco">Chaco</option>
+                    <option value="chubut">Chubut</option>
+                    <option value="cordoba">Córdoba</option>
+                    <option value="corrientes">Corrientes</option>
+                    <option value="entre-rios">Entre Ríos</option>
+                    <option value="formosa">Formosa</option>
+                    <option value="jujuy">Jujuy</option>
+                    <option value="la-pampa">La Pampa</option>
+                    <option value="la-rioja">La Rioja</option>
+                    <option value="mendoza">Mendoza</option>
+                    <option value="misiones">Misiones</option>
+                    <option value="neuquen">Neuquén</option>
+                    <option value="rio-negro">Río Negro</option>
+                    <option value="salta">Salta</option>
+                    <option value="san-juan">San Juan</option>
+                    <option value="san-luis">San Luis</option>
+                    <option value="santa-cruz">Santa Cruz</option>
+                    <option value="santa-fe">Santa Fe</option>
+                    <option value="santiago-del-estero">Santiago del Estero</option>
+                    <option value="tierra-del-fuego">Tierra del Fuego</option>
+                    <option value="tucuman">Tucumán</option>
+                  </select>
+                  <input
+                    type="text"
+                    name="ciudad"
+                    required
+                    placeholder="Ciudad"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-800 placeholder-gray-400 bg-white focus:outline-none focus:border-yellow-500 transition-all"
+                  />
+                </div>
+                <textarea
+                  name="comentarios"
+                  rows={4}
+                  placeholder="Comentarios (opcional)"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-800 placeholder-gray-400 bg-white focus:outline-none focus:border-yellow-500 transition-all resize-none"
+                ></textarea>
+                <div className="text-center pt-4">
+                  <Button
+                    type="submit"
+                    className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold px-8 py-3 shadow-lg hover:shadow-xl transition-all"
+                  >
+                    Enviar
+                  </Button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* Contact Section */}
-      <section id="contacto" className="py-12 px-4 bg-gradient-to-b from-gray-50 to-white">
+      <section id="contacto" className="py-12 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
