@@ -1,5 +1,4 @@
 "use client"
-
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
@@ -13,7 +12,6 @@ import {
   Mail,
   MapPin,
   Target,
-  Eye,
   Heart,
 } from "lucide-react"
 import Image from "next/image"
@@ -52,12 +50,6 @@ export default function EnergiaPage() {
                 Marcas
               </button>
               <button
-                onClick={() => scrollToSection("empresa")}
-                className="text-gray-700 hover:text-yellow-600 font-medium transition-colors"
-              >
-                Empresa
-              </button>
-              <button
                 onClick={() => scrollToSection("valores")}
                 className="text-gray-700 hover:text-yellow-600 font-medium transition-colors"
               >
@@ -86,7 +78,6 @@ export default function EnergiaPage() {
           </div>
         </div>
       </nav>
-
       {/* Hero Section */}
       <section id="inicio" className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-400 via-orange-400 to-yellow-500"></div>
@@ -126,7 +117,6 @@ export default function EnergiaPage() {
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
       </section>
-
       {/* Marcas Section */}
       <section id="marcas" className="py-12 px-4 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto">
@@ -167,9 +157,8 @@ export default function EnergiaPage() {
           </div>
         </div>
       </section>
-
       {/* Nuestra Empresa Section */}
-      <section id="empresa" className="py-12 px-4 bg-white">
+      {/* <section id="empresa" className="py-12 px-4 bg-white">
         <div className="container mx-auto">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -232,10 +221,9 @@ export default function EnergiaPage() {
             </div>
           </div>
         </div>
-      </section>
-
+      </section> */}
       {/* Nuestros Valores Section */}
-      <section id="valores" className="py-12 px-4 bg-gradient-to-b from-gray-50 to-white">
+      <section id="valores" className="py-6 px-4 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
@@ -251,7 +239,6 @@ export default function EnergiaPage() {
                 <p className="font-semibold text-gray-900">He aquí los nuestros:</p>
               </div>
             </div>
-
             <div className="grid lg:grid-cols-3 gap-8">
               {[
                 {
@@ -304,9 +291,8 @@ export default function EnergiaPage() {
           </div>
         </div>
       </section>
-
       {/* Productos Principales Section */}
-      <section id="productos" className="py-12 px-4 bg-white">
+      <section id="productos" className="py-6 px-4 bg-white">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
@@ -350,7 +336,6 @@ export default function EnergiaPage() {
               <p className="text-sm text-gray-500 mb-2">Baterías Silver Graphite</p>
               <p className="text-lg font-bold text-yellow-600">12 x 75</p>
             </div>
-
             {/* Baterías para Motos */}
             <div className="group bg-white rounded-3xl p-6 border-2 border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
               <div className="relative mb-6 rounded-2xl p-4 h-40 flex items-center justify-center overflow-hidden">
@@ -366,7 +351,6 @@ export default function EnergiaPage() {
               <p className="text-sm text-gray-500 mb-2">Baterías para Motos</p>
               <p className="text-lg font-bold text-yellow-600">12V</p>
             </div>
-
             {/* Baterías de Ciclado Profundo */}
             <div className="group bg-white rounded-3xl p-6 border-2 border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
               <div className="relative mb-6 rounded-2xl p-4 h-40 flex items-center justify-center overflow-hidden">
@@ -383,7 +367,6 @@ export default function EnergiaPage() {
               <p className="text-lg font-bold text-yellow-600">12V - 120AH</p>
             </div>
           </div>
-
           <div className="text-center">
             <Link href="/productos">
               <Button
@@ -397,7 +380,6 @@ export default function EnergiaPage() {
           </div>
         </div>
       </section>
-
       {/* Contact Section */}
       <section id="contacto" className="py-12 px-4 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto">
@@ -440,7 +422,6 @@ export default function EnergiaPage() {
                 </div>
               </div>
             </div>
-
             {/* Redes Sociales */}
             <div className="bg-white rounded-3xl p-10 shadow-xl border-2 border-gray-100">
               <h3 className="text-3xl font-bold text-gray-900 mb-8">Redes Sociales</h3>
@@ -450,13 +431,13 @@ export default function EnergiaPage() {
               </p>
               <div className="flex space-x-6">
                 <a
-                  href="https://www.instagram.com/saricodistrisa/"
+                  href="https://www.instagram.com/saricodistrisa/" target="_blank"
                   className="group w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl flex items-center justify-center text-white hover:shadow-2xl transition-all duration-300 transform hover:scale-110"
                 >
                   <Instagram className="h-8 w-8 group-hover:scale-110 transition-transform duration-300" />
                 </a>
                 <a
-                  href="https://www.facebook.com/SaricoDistriSA/"
+                  href="https://www.facebook.com/SaricoDistriSA/" target="_blank"
                   className="group w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl flex items-center justify-center text-white hover:shadow-2xl transition-all duration-300 transform hover:scale-110"
                 >
                   <Facebook className="h-8 w-8 group-hover:scale-110 transition-transform duration-300" />
@@ -466,13 +447,22 @@ export default function EnergiaPage() {
           </div>
         </div>
       </section>
-
       {/* Footer */}
       <footer className="py-8 px-4 bg-gradient-to-r from-yellow-400 to-orange-400">
         <div className="container mx-auto text-center">
           <div className="space-y-2 text-white">
             <p className="font-semibold text-lg">© Copyright Sarico Distri S.A. Todos los derechos reservados</p>
-            <p className="text-white/80">Desarrollado por Codeflex S.A.</p>
+            <p className="text-white">
+              Desarrollado por{' '}
+              <a
+                href="https://codeflex.com.ar/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-inherit no-underline"
+              >
+                Codeflex S.A.
+              </a>
+            </p>
           </div>
         </div>
       </footer>
