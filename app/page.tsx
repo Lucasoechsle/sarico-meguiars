@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Zap, Car, Menu, Battery, Sparkles, Phone } from "lucide-react"
+import { ArrowRight, Zap, Car, Phone, Heart, Eye, Target } from "lucide-react"
 import Image from "next/image"
 
 export default function HomePage() {
@@ -11,7 +11,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center space-x-3">
-              <Image src="/sarico-logo.svg" alt="Sarico Distri S.A." width={160} height={45} className="h-10 w-auto" />
+              <Image src="/sarico-logo.svg" alt="Sarico Distri S.A." width={160} height={45} className="h-10 w-auto invert brightness-0" />
             </Link>
             <div className="hidden md:flex items-center space-x-8">
               <Link href="/energia" className="text-white/80 hover:text-yellow-400 transition-colors font-medium">
@@ -24,12 +24,11 @@ export default function HomePage() {
           </div>
         </div>
       </nav>
-
       {/* Hero Section */}
       <section className="pt-28 px-4">
         <div className="container mx-auto text-center">
           <div className="max-w-5xl mx-auto">
-            <div className="mb-8">
+            <div className="mb-2">
               <span className="inline-block bg-gradient-to-r from-yellow-400 to-orange-400 text-black px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wide mb-6">
                 Desde 2001 en Argentina
               </span>
@@ -52,7 +51,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* Stats Section */}
       <section className="py-12 px-4 bg-black/40">
         <div className="container mx-auto">
@@ -72,7 +70,71 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
+      {/* Nuestra Empresa Section */}
+      <section id="empresa" className="py-12 px-4">
+        <div className="container mx-auto">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-8">
+                <div>
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
+                    <Target className="h-8 w-8 text-white" />
+                  </div>
+                  <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">Nuestra Empresa</h2>
+                </div>
+                <div className="space-y-6 text-white text-lg leading-relaxed">
+                  <p>
+                    <span className="font-semibold">Sarico Distri S.A.</span> es una empresa argentina
+                    fundada en <span className="font-semibold text-yellow-600">2001</span>, con el propósito inicial de
+                    comercializar baterías para vehículos, incluyendo motos, autos, camiones y ómnibus. Nuestro amplio
+                    catálogo también incluyó lubricantes, equipamiento para lubricentros, y una destacada línea de
+                    productos de cosmética automotor y car-detailing.
+                  </p>
+                  <p>
+                    En <span className="font-semibold text-yellow-600">2015</span>, ampliamos aún más nuestra oferta al
+                    incorporar la comercialización de baterías y equipamiento para sistemas fotovoltaicos, en apoyo a
+                    las energías alternativas.
+                  </p>
+                  <p>
+                    En Sarico, estamos comprometidos en ofrecer a nuestros clientes el mejor servicio posible. Contamos
+                    con un equipo de profesionales altamente capacitados, listos para asesorarlo en la solución adecuada
+                    a sus necesidades.
+                  </p>
+                </div>
+              </div>
+              <div className="space-y-6">
+                <div className="bg-gradient-to-br from-yellow-400 to-orange-400 rounded-3xl p-8 text-white shadow-2xl transform hover:scale-105 transition-all duration-300">
+                  <div className="flex items-center mb-4">
+                    <Target className="h-8 w-8 mr-3" />
+                    <h3 className="text-2xl font-bold">PROPÓSITO</h3>
+                  </div>
+                  <p className="text-lg leading-relaxed">
+                    Generamos oportunidades de negocios comprometidos con las personas.
+                  </p>
+                </div>
+                <div className="bg-white rounded-3xl p-8 border-2 border-yellow-200 shadow-xl hover:shadow-2xl transition-all duration-300">
+                  <div className="flex items-center mb-4">
+                    <Eye className="h-8 w-8 mr-3 text-yellow-600" />
+                    <h3 className="text-2xl font-bold text-gray-900">MISIÓN</h3>
+                  </div>
+                  <p className="text-gray-600 text-lg leading-relaxed">
+                    Distribuimos marcas líderes para satisfacer la demanda de clientes, proveedores y colaboradores.
+                  </p>
+                </div>
+                <div className="bg-white rounded-3xl p-8 border-2 border-yellow-200 shadow-xl hover:shadow-2xl transition-all duration-300">
+                  <div className="flex items-center mb-4">
+                    <Heart className="h-8 w-8 mr-3 text-yellow-600" />
+                    <h3 className="text-2xl font-bold text-gray-900">VISIÓN</h3>
+                  </div>
+                  <p className="text-gray-600 text-lg leading-relaxed">
+                    Ser la mejor opción en distribución, por valor agregado e innovación tecnológica.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* Main Sections */}
       <section className="py-12 px-4">
         <div className="container mx-auto">
@@ -84,7 +146,6 @@ export default function HomePage() {
               Dos divisiones especializadas para cubrir todas tus necesidades energéticas y de cuidado automotriz
             </p>
           </div>
-
           <div className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
             {/* Energía Section */}
             <Link href="/energia" className="group">
@@ -131,7 +192,6 @@ export default function HomePage() {
                 </div>
               </div>
             </Link>
-
             {/* Car Detail Section */}
             <Link href="/car-detail" className="group">
               <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-800/50 to-black/50 backdrop-blur-sm border-2 border-gray-700 hover:border-yellow-400/50 p-10 h-[500px] flex flex-col justify-between transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
@@ -149,7 +209,7 @@ export default function HomePage() {
                   <div className="space-y-4 text-gray-300">
                     <p className="text-lg leading-relaxed">
                       Distribuimos la línea completa de{" "}
-                      <span className="text-white font-semibold">productos Meguiar's</span>
+                      <span className="text-white font-semibold">productos Meguiar's </span>
                       para el cuidado y detallado automotriz, ideales para profesionales y entusiastas.
                     </p>
                     <ul className="space-y-2 text-base">
@@ -181,7 +241,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* CTA Section */}
       <section className="py-12 px-4 bg-gradient-to-r from-yellow-500 to-orange-500">
         <div className="container mx-auto text-center">
@@ -209,7 +268,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* Footer */}
       <footer className="py-8 px-4 bg-black border-t border-gray-800">
         <div className="container mx-auto">
@@ -220,7 +278,7 @@ export default function HomePage() {
                 alt="Sarico Distri S.A."
                 width={160}
                 height={45}
-                className="h-10 w-auto mb-4"
+                className="h-10 w-auto mb-4 invert brightness-0"
               />
               <p className="text-gray-400 leading-relaxed">
                 Más de 20 años distribuyendo las mejores marcas en energía y productos de car detail Meguiar's.
@@ -258,6 +316,17 @@ export default function HomePage() {
           </div>
           <div className="border-t border-gray-800 pt-8 text-center">
             <p className="text-gray-400">© 2024 Sarico Distri S.A. Todos los derechos reservados.</p>
+            <p className="text-gray-400">
+              Desarrollado por{' '}
+              <a
+                href="https://codeflex.com.ar/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-inherit no-underline"
+              >
+                Codeflex S.A.
+              </a>
+            </p>
           </div>
         </div>
       </footer>
