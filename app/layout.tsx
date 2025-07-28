@@ -5,11 +5,16 @@ import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata: Metadata = {
-  title: "Sarico Distri S.A.",
-  description: "Energía y Car Detail - Soluciones integrales",
-  generator: 'v0.dev'
-}
+export const metadata = {
+  title: 'Sarico Distri',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon.png', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+};
 
 export default function RootLayout({
   children,
