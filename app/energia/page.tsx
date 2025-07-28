@@ -403,7 +403,7 @@ export default function EnergiaPage() {
                     <MapPin className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <p className="text-gray-900 font-semibold text-lg">Dr. Eliseo Cantón 1870 (Esq. Arturo Orgaz)</p>
+                    <p className="text-gray-900 font-semibold text-lg">Dr. Eliseo Cantón 1860 (Esq. Arturo Orgaz)</p>
                     <p className="text-gray-600 text-lg">Córdoba, X5003AHB</p>
                     <p className="text-gray-600 text-lg">Argentina</p>
                   </div>
