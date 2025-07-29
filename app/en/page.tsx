@@ -5,7 +5,7 @@ import { ArrowRight, Zap, Car, Phone, Heart, Eye, Target } from "lucide-react"
 import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 
-export default function HomePage() {
+export default function HomePageEn() {
   const pathname = usePathname()
   const router = useRouter()
   const isEnglish = pathname.startsWith("/en")
@@ -24,14 +24,14 @@ export default function HomePage() {
       <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-700/50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center space-x-3">
+            <Link href="/en" className="flex items-center space-x-3">
               <Image src="/sarico-logo.svg" alt="Sarico Distri S.A." width={160} height={45} className="h-10 w-auto invert brightness-0" />
             </Link>
             <div className="hidden md:flex items-center space-x-8">
-              <Link href="/energia" className="text-white/80 hover:text-yellow-400 transition-colors font-medium">
-                Energía
+              <Link href="/en/energia" className="text-white/80 hover:text-yellow-400 transition-colors font-medium">
+                Energy
               </Link>
-              <Link href="/car-detail" className="text-white/80 hover:text-yellow-400 transition-colors font-medium">
+              <Link href="/en/car-detail" className="text-white/80 hover:text-yellow-400 transition-colors font-medium">
                 Car Detail
               </Link>
               {/* Language Toggle */}
@@ -54,23 +54,23 @@ export default function HomePage() {
           <div className="max-w-5xl mx-auto">
             <div className="mb-2">
               <span className="inline-block bg-gradient-to-r from-yellow-400 to-orange-400 text-black px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wide mb-6">
-                Desde 2001 en Argentina
+                Since 2001 in Argentina
               </span>
             </div>
             <h1 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
-              Energía y
+              Energy and
               <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
                 {" "}
                 Car Detail
               </span>
               <br />
-              <span className="text-4xl md:text-5xl text-gray-300 font-semibold">Soluciones Profesionales</span>
+              <span className="text-4xl md:text-5xl text-gray-300 font-semibold">Professional Solutions</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed max-w-4xl mx-auto">
-              Distribuimos las mejores marcas en{" "}
-              <span className="text-yellow-400 font-semibold">baterías y sistemas energéticos</span>, y somos{" "}
-              <span className="text-yellow-400 font-semibold">distribuidores oficiales de productos </span>
-              Meguiar's. en Argentina
+              We distribute the best brands in
+              <span className="text-yellow-400 font-semibold"> batteries and energy systems</span>, and we are
+              <span className="text-yellow-400 font-semibold">official distributors of Meguiar's products</span>
+              in Argentina.
             </p>
           </div>
         </div>
@@ -81,20 +81,20 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto text-center">
             <div className="space-y-2">
               <div className="text-4xl font-black text-yellow-400">23+</div>
-              <div className="text-gray-300 font-medium">Años de Experiencia</div>
+              <div className="text-gray-300 font-medium">Years of Experience</div>
             </div>
             <div className="space-y-2">
               <div className="text-4xl font-black text-yellow-400">8</div>
-              <div className="text-gray-300 font-medium">Marcas Líderes</div>
+              <div className="text-gray-300 font-medium">Leading Brands</div>
             </div>
             <div className="space-y-2">
               <div className="text-4xl font-black text-yellow-400">54+</div>
-              <div className="text-gray-300 font-medium">Productos Disponibles</div>
+              <div className="text-gray-300 font-medium">Available Products</div>
             </div>
           </div>
         </div>
       </section>
-      {/* Nuestra Empresa Section */}
+      {/* Our Company Section */}
       <section id="empresa" className="py-12 px-4">
         <div className="container mx-auto">
           <div className="max-w-7xl mx-auto">
@@ -104,25 +104,24 @@ export default function HomePage() {
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
                     <Target className="h-8 w-8 text-white" />
                   </div>
-                  <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">Nuestra Empresa</h2>
+                  <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">Our Company</h2>
                 </div>
                 <div className="space-y-6 text-white text-lg leading-relaxed">
                   <p>
-                    <span className="font-semibold">Sarico Distri S.A.</span> es una empresa argentina
-                    fundada en <span className="font-semibold text-yellow-600">2001</span>, con el propósito inicial de
-                    comercializar baterías para vehículos, incluyendo motos, autos, camiones y ómnibus. Nuestro amplio
-                    catálogo también incluyó lubricantes, equipamiento para lubricentros, y una destacada línea de
-                    productos de cosmética automotor y car-detailing.
+                    <span className="font-semibold">Sarico Distri S.A.</span> is an Argentinian company
+                    founded in <span className="font-semibold text-yellow-600">2001</span>, initially focused on
+                    marketing batteries for vehicles, including motorcycles, cars, trucks, and buses. Our extensive
+                    catalog also included lubricants, equipment for lube centers, and a prominent line of
+                    automotive cosmetics and car-detailing products.
                   </p>
                   <p>
-                    En <span className="font-semibold text-yellow-600">2015</span>, ampliamos aún más nuestra oferta al
-                    incorporar la comercialización de baterías y equipamiento para sistemas fotovoltaicos, en apoyo a
-                    las energías alternativas.
+                    In <span className="font-semibold text-yellow-600">2015</span>, we further expanded our offering by
+                    incorporating the marketing of batteries and equipment for photovoltaic systems, supporting
+                    alternative energies.
                   </p>
                   <p>
-                    En Sarico, estamos comprometidos en ofrecer a nuestros clientes el mejor servicio posible. Contamos
-                    con un equipo de profesionales altamente capacitados, listos para asesorarlo en la solución adecuada
-                    a sus necesidades.
+                    At Sarico, we are committed to providing our clients with the best possible service. We have a team
+                    of highly trained professionals, ready to advise you on the right solution for your needs.
                   </p>
                 </div>
               </div>
@@ -130,28 +129,28 @@ export default function HomePage() {
                 <div className="bg-gradient-to-br from-yellow-400 to-orange-400 rounded-3xl p-8 text-white shadow-2xl transform hover:scale-105 transition-all duration-300">
                   <div className="flex items-center mb-4">
                     <Target className="h-8 w-8 mr-3" />
-                    <h3 className="text-2xl font-bold">PROPÓSITO</h3>
+                    <h3 className="text-2xl font-bold">PURPOSE</h3>
                   </div>
                   <p className="text-lg leading-relaxed">
-                    Generamos oportunidades de negocios comprometidos con las personas.
+                    We create business opportunities committed to people.
                   </p>
                 </div>
                 <div className="bg-white rounded-3xl p-8 border-2 border-yellow-200 shadow-xl hover:shadow-2xl transition-all duration-300">
                   <div className="flex items-center mb-4">
                     <Eye className="h-8 w-8 mr-3 text-yellow-600" />
-                    <h3 className="text-2xl font-bold text-gray-900">MISIÓN</h3>
+                    <h3 className="text-2xl font-bold text-gray-900">MISSION</h3>
                   </div>
                   <p className="text-gray-600 text-lg leading-relaxed">
-                    Distribuimos marcas líderes para satisfacer la demanda de clientes, proveedores y colaboradores.
+                    We distribute leading brands to meet the demand of clients, suppliers, and collaborators.
                   </p>
                 </div>
                 <div className="bg-white rounded-3xl p-8 border-2 border-yellow-200 shadow-xl hover:shadow-2xl transition-all duration-300">
                   <div className="flex items-center mb-4">
                     <Heart className="h-8 w-8 mr-3 text-yellow-600" />
-                    <h3 className="text-2xl font-bold text-gray-900">VISIÓN</h3>
+                    <h3 className="text-2xl font-bold text-gray-900">VISION</h3>
                   </div>
                   <p className="text-gray-600 text-lg leading-relaxed">
-                    Ser la mejor opción en distribución, por valor agregado e innovación tecnológica.
+                    To be the best option in distribution, for added value and technological innovation.
                   </p>
                 </div>
               </div>
@@ -164,15 +163,15 @@ export default function HomePage() {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Nuestras <span className="text-yellow-400">Especialidades</span>
+              Our <span className="text-yellow-400">Specialties</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Dos divisiones especializadas para cubrir todas tus necesidades energéticas y de cuidado automotriz
+              Two specialized divisions to cover all your energy and car care needs
             </p>
           </div>
           <div className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
-            {/* Energía Section */}
-            <Link href="/energia" className="group">
+            {/* Energy Section */}
+            <Link href="/en/energia" className="group">
               <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-yellow-500/10 to-orange-500/10 backdrop-blur-sm border-2 border-gray-700 hover:border-yellow-400/50 p-10 h-[500px] flex flex-col justify-between transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-orange-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative z-10">
@@ -181,43 +180,43 @@ export default function HomePage() {
                       <Zap className="h-10 w-10 text-black" />
                     </div>
                     <div>
-                      <h3 className="text-3xl font-bold text-white mb-2">División Energía</h3>
+                      <h3 className="text-3xl font-bold text-white mb-2">Energy Division</h3>
                       <p className="text-yellow-400 font-semibold">Sarico Distri S.A.</p>
                     </div>
                   </div>
                   <div className="space-y-4 text-gray-300">
                     <p className="text-lg leading-relaxed">
-                      Especialistas en <span className="text-white font-semibold">baterías y sistemas energéticos</span>{" "}
-                      desde 2001. Distribuimos marcas líderes como Enerbat, Newmax, Varta, Moura y más.
+                      Specialists in <span className="text-white font-semibold">batteries and energy systems</span>{" "}
+                      since 2001. We distribute leading brands such as Enerbat, Newmax, Varta, Moura, and more.
                     </p>
                     <ul className="space-y-2 text-base">
                       <li className="flex items-center">
                         <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                        Baterías para autos, motos y camiones
+                        Batteries for cars, motorcycles, and trucks
                       </li>
                       <li className="flex items-center">
                         <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                        Sistemas fotovoltaicos y energía solar
+                        Photovoltaic systems and solar energy
                       </li>
                       <li className="flex items-center">
                         <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                        Baterías de ciclado profundo
+                        Deep cycle batteries
                       </li>
                       <li className="flex items-center">
                         <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                        Inversores y reguladores
+                        Inverters and regulators
                       </li>
                     </ul>
                   </div>
                 </div>
                 <div className="relative z-10 flex items-center text-yellow-400 group-hover:text-yellow-300 transition-colors font-semibold text-lg">
-                  <span>Explorar Productos Energéticos</span>
+                  <span>Explore Energy Products</span>
                   <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
                 </div>
               </div>
             </Link>
             {/* Car Detail Section */}
-            <Link href="/car-detail" className="group">
+            <Link href="/en/car-detail" className="group">
               <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-800/50 to-black/50 backdrop-blur-sm border-2 border-gray-700 hover:border-yellow-400/50 p-10 h-[500px] flex flex-col justify-between transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-orange-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative z-10">
@@ -226,38 +225,38 @@ export default function HomePage() {
                       <Car className="h-10 w-10 text-yellow-400" />
                     </div>
                     <div>
-                      <h3 className="text-3xl font-bold text-white mb-2">División Car Detail</h3>
+                      <h3 className="text-3xl font-bold text-white mb-2">Car Detail Division</h3>
                       <p className="text-yellow-400 font-semibold">Powered by Meguiar's</p>
                     </div>
                   </div>
                   <div className="space-y-4 text-gray-300">
                     <p className="text-lg leading-relaxed">
-                      Distribuimos la línea completa de{" "}
-                      <span className="text-white font-semibold">productos Meguiar's </span>
-                      para el cuidado y detallado automotriz, ideales para profesionales y entusiastas.
+                      We distribute the complete line of
+                      <span className="text-white font-semibold"> Meguiar's products </span>
+                      for automotive care and detailing, ideal for professionals and enthusiasts.
                     </p>
                     <ul className="space-y-2 text-base">
                       <li className="flex items-center">
                         <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                        Ceras, limpiadores y pulidores de alta gama
+                        High-end waxes, cleaners, and polishes
                       </li>
                       <li className="flex items-center">
                         <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                        Productos para interiores, exteriores y motor
+                        Products for interiors, exteriors, and engines
                       </li>
                       <li className="flex items-center">
                         <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                        Ideal para talleres, detailers y fanáticos
+                        Ideal for workshops, detailers, and fans
                       </li>
                       <li className="flex items-center">
                         <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                        Calidad garantizada Meguiar's
+                        Meguiar's guaranteed quality
                       </li>
                     </ul>
                   </div>
                 </div>
                 <div className="relative z-10 flex items-center text-yellow-400 group-hover:text-yellow-300 transition-colors font-semibold text-lg">
-                  <span>Ver Productos de Car Detail</span>
+                  <span>See Car Detail Products</span>
                   <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
                 </div>
               </div>
@@ -269,9 +268,9 @@ export default function HomePage() {
       <section className="py-12 px-4 bg-gradient-to-r from-yellow-500 to-orange-500">
         <div className="container mx-auto text-center">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">¿Listo para comenzar?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">Ready to get started?</h2>
             <p className="text-xl text-black/80 mb-10 leading-relaxed">
-              Contáctanos para conocer más sobre nuestros productos energéticos o la línea profesional Meguiar's para car detail
+              Contact us to learn more about our energy products or the professional Meguiar's line for car detail
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -305,31 +304,31 @@ export default function HomePage() {
                 className="h-10 w-auto mb-4 invert brightness-0"
               />
               <p className="text-gray-400 leading-relaxed">
-                Más de 20 años distribuyendo las mejores marcas en energía y productos de car detail Meguiar's.
+                Over 20 years distributing the best brands in energy and Meguiar's car detail products.
               </p>
             </div>
             <div>
-              <h4 className="text-white font-bold mb-4">Nuestras Divisiones</h4>
+              <h4 className="text-white font-bold mb-4">Our Divisions</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>
-                  <Link href="/energia" className="hover:text-yellow-400 transition-colors">
-                    División Energía
+                  <Link href="/en/energia" className="hover:text-yellow-400 transition-colors">
+                    Energy Division
                   </Link>
                 </li>
                 <li>
-                  <Link href="/car-detail" className="hover:text-yellow-400 transition-colors">
-                    División Car Detail
+                  <Link href="/en/car-detail" className="hover:text-yellow-400 transition-colors">
+                    Car Detail Division
                   </Link>
                 </li>
                 <li>
-                  <Link href="/productos" className="hover:text-yellow-400 transition-colors">
-                    Catálogo de Productos
+                  <Link href="/en/productos" className="hover:text-yellow-400 transition-colors">
+                    Product Catalog
                   </Link>
                 </li>
               </ul>
             </div>
             <div>
-              <h4 className="text-white font-bold mb-4">Contacto</h4>
+              <h4 className="text-white font-bold mb-4">Contact</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>Dr. Eliseo Cantón 1860</li>
                 <li>Córdoba, Argentina</li>
@@ -339,9 +338,9 @@ export default function HomePage() {
             </div>
           </div>
           <div className="border-t border-gray-800 pt-8 text-center">
-            <p className="text-gray-400">© 2024 Sarico Distri S.A. Todos los derechos reservados.</p>
+            <p className="text-gray-400">© 2024 Sarico Distri S.A. All rights reserved.</p>
             <p className="text-gray-400">
-              Desarrollado por{' '}
+              Developed by{' '}
               <a
                 href="https://codeflex.com.ar/"
                 target="_blank"
@@ -356,4 +355,4 @@ export default function HomePage() {
       </footer>
     </div>
   )
-}
+} 

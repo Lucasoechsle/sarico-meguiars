@@ -16,10 +16,10 @@ import {
   SendHorizonal,
 } from "lucide-react"
 import Image from "next/image"
-import { useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
+import { useState } from "react"
 
-export default function EnergiaPage() {
+export default function EnergiaPageEn() {
   const [openAccordion, setOpenAccordion] = useState<string | null>(null)
   const pathname = usePathname()
   const router = useRouter()
@@ -46,7 +46,7 @@ export default function EnergiaPage() {
       <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-lg border-b border-yellow-200/50 shadow-lg">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center space-x-3">
+            <Link href="/en" className="flex items-center space-x-3">
               <Image src="/sarico-logo.svg" alt="Sarico Distri S.A." width={160} height={45} className="h-10 w-auto" />
             </Link>
             <div className="hidden md:flex items-center space-x-8">
@@ -54,38 +54,38 @@ export default function EnergiaPage() {
                 onClick={() => scrollToSection("inicio")}
                 className="text-gray-700 hover:text-yellow-600 font-medium transition-colors"
               >
-                Inicio
+                Home
               </button>
               <button
                 onClick={() => scrollToSection("marcas")}
                 className="text-gray-700 hover:text-yellow-600 font-medium transition-colors"
               >
-                Marcas
+                Brands
               </button>
               <button
                 onClick={() => scrollToSection("valores")}
                 className="text-gray-700 hover:text-yellow-600 font-medium transition-colors"
               >
-                Valores
+                Values
               </button>
               <button
                 onClick={() => scrollToSection("productos")}
                 className="text-gray-700 hover:text-yellow-600 font-medium transition-colors"
               >
-                Productos
+                Products
               </button>
               <button
                 onClick={() => scrollToSection("contacto")}
                 className="text-gray-700 hover:text-yellow-600 font-medium transition-colors"
               >
-                Contacto
+                Contact
               </button>
               <Link
-                href="/"
+                href="/en"
                 className="flex items-center text-yellow-600 hover:text-yellow-700 font-medium transition-colors"
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Volver
+                Back
               </Link>
               {/* Language Toggle */}
               <button
@@ -110,16 +110,16 @@ export default function EnergiaPage() {
             <div className="text-left space-y-8">
               <div className="space-y-6">
                 <h1 className="text-4xl md:text-7xl font-black text-white leading-tight">
-                  La energía del
+                  The energy of the
                   <span className="block bg-gradient-to-r from-white to-yellow-100 bg-clip-text text-transparent">
-                    futuro, hoy.
+                    future, today.
                   </span>
                 </h1>
                 <div className="space-y-4">
-                  <p className="text-xl lg:text-2xl text-white/95 font-medium">Sarico Distri es sinónimo de</p>
+                  <p className="text-xl lg:text-2xl text-white/95 font-medium">Sarico Distri is synonymous with</p>
                   <p className="text-2xl lg:text-4xl font-bold text-white drop-shadow-lg">
-                    Generación y Almacenamiento
-                    <span className="block">de Energía.</span>
+                    Generation and Storage
+                    <span className="block">of Energy.</span>
                   </p>
                 </div>
               </div>
@@ -129,7 +129,7 @@ export default function EnergiaPage() {
                 <div className="absolute -inset-4 bg-white/20 rounded-3xl blur-xl"></div>
                 <Image
                   src="/hero-energy.png"
-                  alt="Energía renovable - Paneles solares y turbinas eólicas"
+                  alt="Renewable energy - Solar panels and wind turbines"
                   width={700}
                   height={500}
                   className="relative w-full max-w-2xl h-auto drop-shadow-2xl"
@@ -140,17 +140,16 @@ export default function EnergiaPage() {
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
       </section>
-      {/* Marcas Section */}
+      {/* Brands Section */}
       <section id="marcas" className="py-12 px-4 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
               <Zap className="h-8 w-8 text-white" />
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Nuestras Marcas</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Our Brands</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Trabajamos con las mejores marcas del mercado para ofrecerte soluciones energéticas de calidad superior y
-              tecnología de vanguardia.
+              We work with the best brands on the market to offer you superior quality energy solutions and cutting-edge technology.
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -159,7 +158,7 @@ export default function EnergiaPage() {
               { src: "/brands/newmax.png", alt: "Newmax" },
               { src: "/brands/varta.png", alt: "Varta" },
               { src: "/brands/moura.png", alt: "Moura" },
-              { src: "/brands/enerbat-ca.png", alt: "Enerbat Energía Sin Límites" },
+              { src: "/brands/enerbat-ca.png", alt: "Enerbat Energy Without Limits" },
               { src: "/brands/gcl.png", alt: "GCL" },
               { src: "/brands/schneider-electric.png", alt: "Schneider Electric" },
               { src: "/brands/th100.png", alt: "TH100" },
@@ -180,72 +179,7 @@ export default function EnergiaPage() {
           </div>
         </div>
       </section>
-      {/* Nuestra Empresa Section */}
-      {/* <section id="empresa" className="py-12 px-4 bg-white">
-        <div className="container mx-auto">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="space-y-8">
-                <div>
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
-                    <Target className="h-8 w-8 text-white" />
-                  </div>
-                  <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">Nuestra Empresa</h2>
-                </div>
-                <div className="space-y-6 text-gray-600 text-lg leading-relaxed">
-                  <p>
-                    <span className="font-semibold text-gray-900">Sarico Distri S.A.</span> es una empresa argentina
-                    fundada en <span className="font-semibold text-yellow-600">2001</span>, con el propósito inicial de
-                    comercializar baterías para vehículos, incluyendo motos, autos, camiones y ómnibus. Nuestro amplio
-                    catálogo también incluyó lubricantes, equipamiento para lubricentros, y una destacada línea de
-                    productos de cosmética automotor y car-detailing.
-                  </p>
-                  <p>
-                    En <span className="font-semibold text-yellow-600">2015</span>, ampliamos aún más nuestra oferta al
-                    incorporar la comercialización de baterías y equipamiento para sistemas fotovoltaicos, en apoyo a
-                    las energías alternativas.
-                  </p>
-                  <p>
-                    En Sarico, estamos comprometidos en ofrecer a nuestros clientes el mejor servicio posible. Contamos
-                    con un equipo de profesionales altamente capacitados, listos para asesorarlo en la solución adecuada
-                    a sus necesidades.
-                  </p>
-                </div>
-              </div>
-              <div className="space-y-6">
-                <div className="bg-gradient-to-br from-yellow-400 to-orange-400 rounded-3xl p-8 text-white shadow-2xl transform hover:scale-105 transition-all duration-300">
-                  <div className="flex items-center mb-4">
-                    <Target className="h-8 w-8 mr-3" />
-                    <h3 className="text-2xl font-bold">PROPÓSITO</h3>
-                  </div>
-                  <p className="text-lg leading-relaxed">
-                    Generamos oportunidades de negocios comprometidos con las personas.
-                  </p>
-                </div>
-                <div className="bg-white rounded-3xl p-8 border-2 border-yellow-200 shadow-xl hover:shadow-2xl transition-all duration-300">
-                  <div className="flex items-center mb-4">
-                    <Eye className="h-8 w-8 mr-3 text-yellow-600" />
-                    <h3 className="text-2xl font-bold text-gray-900">MISIÓN</h3>
-                  </div>
-                  <p className="text-gray-600 text-lg leading-relaxed">
-                    Distribuimos marcas líderes para satisfacer la demanda de clientes, proveedores y colaboradores.
-                  </p>
-                </div>
-                <div className="bg-white rounded-3xl p-8 border-2 border-yellow-200 shadow-xl hover:shadow-2xl transition-all duration-300">
-                  <div className="flex items-center mb-4">
-                    <Heart className="h-8 w-8 mr-3 text-yellow-600" />
-                    <h3 className="text-2xl font-bold text-gray-900">VISIÓN</h3>
-                  </div>
-                  <p className="text-gray-600 text-lg leading-relaxed">
-                    Ser la mejor opción en distribución, por valor agregado e innovación tecnológica.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-      {/* Nuestros Valores Section */}
+      {/* Values Section */}
       <section id="valores" className="py-6 px-4 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
@@ -253,38 +187,37 @@ export default function EnergiaPage() {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
                 <Heart className="h-8 w-8 text-white" />
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">Nuestros Valores</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">Our Values</h2>
               <div className="space-y-4 text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
                 <p>
-                  Los valores son un conjunto de principios y creencias que guían el comportamiento de la empresa y sus
-                  colaboradores.
+                  Values are a set of principles and beliefs that guide the behavior of the company and its collaborators.
                 </p>
-                <p className="font-semibold text-gray-900">He aquí los nuestros:</p>
+                <p className="font-semibold text-gray-900">Here are ours:</p>
               </div>
             </div>
             <div className="grid lg:grid-cols-3 gap-8">
               {[
                 {
                   id: "01",
-                  title: "ACTITUD APASIONADA POR EL SERVICIO",
+                  title: "PASSIONATE ATTITUDE FOR SERVICE",
                   content:
-                    "Cuando nos relacionamos con un cliente o proveedor, ya sea interno o externo, lo escuchamos con interés para comprenderlo, respetándolo y, ante todo, tratándolo como Persona. Ponemos nuestra mayor energía, alegría y dedicación para trabajar siempre en equipo al estar orgullosos de pertenecer a la empresa.",
+                    "When we interact with a client or supplier, whether internal or external, we listen with interest to understand them, respecting them and, above all, treating them as a Person. We put our greatest energy, joy, and dedication into always working as a team, being proud to belong to the company.",
                   icon: Heart,
                   gradient: "from-pink-400 to-rose-400",
                 },
                 {
                   id: "02",
-                  title: "CUMPLIR CON INTEGRIDAD",
+                  title: "FULFILL WITH INTEGRITY",
                   content:
-                    "Honramos nuestras obligaciones y compromisos, con entereza y rectitud de conducta, siendo conscientes que de nuestro actuar depende el resultado y valor agregado prometido. También actuamos con integridad de acuerdo a nuestros valores, pensando que la preocupación por los demás, es una fuente inspiradora de actos responsables.",
+                    "We honor our obligations and commitments, with fortitude and upright conduct, being aware that our actions determine the promised result and added value. We also act with integrity according to our values, thinking that concern for others is an inspiring source of responsible acts.",
                   icon: Target,
                   gradient: "from-blue-400 to-indigo-400",
                 },
                 {
                   id: "03",
-                  title: "INICIATIVA PARA MEJORAR E INNOVAR",
+                  title: "INITIATIVE TO IMPROVE AND INNOVATE",
                   content:
-                    "Nos gusta buscar nuevas formas de hacer las cosas y también hacer cosas nuevas, escapando al conformismo para lograr una mayor eficiencia. Tratamos de anticiparnos a lo que pueda ocurrir en el futuro, con audacia o simplemente decidirnos a hacer las cosas cuanto antes.",
+                    "We like to look for new ways of doing things and also to do new things, escaping conformity to achieve greater efficiency. We try to anticipate what may happen in the future, with boldness or simply deciding to do things as soon as possible.",
                   icon: Zap,
                   gradient: "from-yellow-400 to-orange-400",
                 },
@@ -314,25 +247,24 @@ export default function EnergiaPage() {
           </div>
         </div>
       </section>
-      {/* Productos Principales Section */}
+      {/* Main Products Section */}
       <section id="productos" className="py-6 px-4 bg-white">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
               <Battery className="h-8 w-8 text-white" />
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Nuestros Productos</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Our Products</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Descubre nuestra selección de productos energéticos de alta calidad, diseñados para maximizar la
-              eficiencia y sostenibilidad.
+              Discover our selection of high-quality energy products, designed to maximize efficiency and sustainability.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            {/* Batería FREE con CALCIO */}
+            {/* Battery FREE with CALCIUM */}
             <div className="group bg-white rounded-3xl p-6 border-2 border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
               <div className="relative mb-6 rounded-2xl p-4 h-40 flex items-center justify-center overflow-hidden">
                 <Image
-                  src="images/e1275a.jpg"
+                  src="/images/e1275a.jpg"
                   alt="E1275A"
                   width={120}
                   height={120}
@@ -340,14 +272,14 @@ export default function EnergiaPage() {
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">E1275A</h3>
-              <p className="text-sm text-gray-500 mb-2">Batería FREE con CALCIO</p>
+              <p className="text-sm text-gray-500 mb-2">FREE Battery with CALCIUM</p>
               <p className="text-lg font-bold text-yellow-600">12 x 75</p>
             </div>
-            {/* Baterías Silver Graphite */}
+            {/* Silver Graphite Batteries */}
             <div className="group bg-white rounded-3xl p-6 border-2 border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
               <div className="relative mb-6 rounded-2xl p-4 h-40 flex items-center justify-center overflow-hidden">
                 <Image
-                  src="images/esg1275.jpg"
+                  src="/images/esg1275.jpg"
                   alt="ESG1275"
                   width={120}
                   height={120}
@@ -355,14 +287,14 @@ export default function EnergiaPage() {
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">ESG1275</h3>
-              <p className="text-sm text-gray-500 mb-2">Baterías Silver Graphite</p>
+              <p className="text-sm text-gray-500 mb-2">Silver Graphite Batteries</p>
               <p className="text-lg font-bold text-yellow-600">12 x 75</p>
             </div>
-            {/* Baterías para Motos */}
+            {/* Motorcycle Batteries */}
             <div className="group bg-white rounded-3xl p-6 border-2 border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
               <div className="relative mb-6 rounded-2xl p-4 h-40 flex items-center justify-center overflow-hidden">
                 <Image
-                  src="images/etx7l-bs.jpg"
+                  src="/images/etx7l-bs.jpg"
                   alt="ETX7L-BS"
                   width={120}
                   height={120}
@@ -370,14 +302,14 @@ export default function EnergiaPage() {
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">ETX7L-BS</h3>
-              <p className="text-sm text-gray-500 mb-2">Baterías para Motos</p>
+              <p className="text-sm text-gray-500 mb-2">Motorcycle Batteries</p>
               <p className="text-lg font-bold text-yellow-600">12V</p>
             </div>
-            {/* Baterías de Ciclado Profundo */}
+            {/* Deep Cycle Batteries */}
             <div className="group bg-white rounded-3xl p-6 border-2 border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
               <div className="relative mb-6 rounded-2xl p-4 h-40 flex items-center justify-center overflow-hidden">
                 <Image
-                  src="images/epgs12120.jpg"
+                  src="/images/epgs12120.jpg"
                   alt="EPGS12-120"
                   width={120}
                   height={120}
@@ -385,17 +317,17 @@ export default function EnergiaPage() {
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">EPGS12-120</h3>
-              <p className="text-sm text-gray-500 mb-2">Baterías de Ciclado Profundo</p>
+              <p className="text-sm text-gray-500 mb-2">Deep Cycle Batteries</p>
               <p className="text-lg font-bold text-yellow-600">12V - 120AH</p>
             </div>
           </div>
           <div className="text-center">
-            <Link href="/productos">
+            <Link href="/en/productos">
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold px-12 py-4 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
               >
-                Ver Todos Nuestros Productos
+                See All Our Products
                 <ArrowRight className="ml-3 h-6 w-6" />
               </Button>
             </Link>
@@ -409,9 +341,9 @@ export default function EnergiaPage() {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
                 <SendHorizonal className="h-8 w-8 text-white" />
               </div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Contacto</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Contact</h2>
               <p className="text-gray-600 text-lg">
-                ¿Querés conocer más sobre los productos Meguiar's? Escribinos y te asesoramos.
+                Want to know more about energy products? Write to us and we will advise you.
               </p>
             </div>
             <div className="bg-white rounded-3xl p-8 border-2 border-gray-100 shadow-xl">
@@ -421,14 +353,14 @@ export default function EnergiaPage() {
                     type="text"
                     name="nombre"
                     required
-                    placeholder="Nombre completo"
+                    placeholder="Full name"
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-800 placeholder-gray-400 bg-white focus:outline-none focus:border-yellow-500 transition-all"
                   />
                   <input
                     type="tel"
                     name="telefono"
                     required
-                    placeholder="Teléfono"
+                    placeholder="Phone"
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-800 placeholder-gray-400 bg-white focus:outline-none focus:border-yellow-500 transition-all"
                   />
                 </div>
@@ -445,7 +377,7 @@ export default function EnergiaPage() {
                     required
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-800 bg-white focus:outline-none focus:border-yellow-500 transition-all"
                   >
-                    <option value="">Provincia</option>
+                    <option value="">State/Province</option>
                     <option value="buenos-aires">Buenos Aires</option>
                     <option value="catamarca">Catamarca</option>
                     <option value="chaco">Chaco</option>
@@ -474,14 +406,14 @@ export default function EnergiaPage() {
                     type="text"
                     name="ciudad"
                     required
-                    placeholder="Ciudad"
+                    placeholder="City"
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-800 placeholder-gray-400 bg-white focus:outline-none focus:border-yellow-500 transition-all"
                   />
                 </div>
                 <textarea
                   name="comentarios"
                   rows={4}
-                  placeholder="Comentarios (opcional)"
+                  placeholder="Comments (optional)"
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-800 placeholder-gray-400 bg-white focus:outline-none focus:border-yellow-500 transition-all resize-none"
                 ></textarea>
                 <div className="text-center pt-4">
@@ -489,7 +421,7 @@ export default function EnergiaPage() {
                     type="submit"
                     className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold px-8 py-3 shadow-lg hover:shadow-xl transition-all"
                   >
-                    Enviar
+                    Send
                   </Button>
                 </div>
               </form>
@@ -505,12 +437,11 @@ export default function EnergiaPage() {
               <Phone className="h-8 w-8 text-white" />
             </div>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Estamos aquí para ayudarte con todas tus necesidades energéticas. Contáctanos y descubre cómo podemos
-              impulsar tu proyecto.
+              We are here to help you with all your energy needs. Contact us and discover how we can boost your project.
             </p>
           </div>
           <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
-            {/* Información de Contacto */}
+            {/* Contact Information */}
             <div className="bg-white rounded-3xl p-10 shadow-xl border-2 border-gray-100">
               <h3 className="text-3xl font-bold text-gray-900 mb-8">Sarico Distri SA</h3>
               <div className="space-y-6">
@@ -538,12 +469,11 @@ export default function EnergiaPage() {
                 </div>
               </div>
             </div>
-            {/* Redes Sociales */}
+            {/* Social Media */}
             <div className="bg-white rounded-3xl p-10 shadow-xl border-2 border-gray-100">
-              <h3 className="text-3xl font-bold text-gray-900 mb-8">Redes Sociales</h3>
+              <h3 className="text-3xl font-bold text-gray-900 mb-8">Social Media</h3>
               <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                Síguenos en nuestras redes sociales para estar al día con las últimas novedades, productos y consejos
-                sobre energías renovables.
+                Follow us on our social networks to stay up to date with the latest news, products, and tips on renewable energy.
               </p>
               <div className="flex space-x-6">
                 <a
@@ -567,9 +497,9 @@ export default function EnergiaPage() {
       <footer className="py-8 px-4 bg-gradient-to-r from-yellow-400 to-orange-400">
         <div className="container mx-auto text-center">
           <div className="space-y-2 text-white">
-            <p className="font-semibold text-lg">© Copyright Sarico Distri S.A. Todos los derechos reservados</p>
+            <p className="font-semibold text-lg">© Copyright Sarico Distri S.A. All rights reserved</p>
             <p className="text-white">
-              Desarrollado por{' '}
+              Developed by{' '}
               <a
                 href="https://codeflex.com.ar/"
                 target="_blank"
@@ -584,4 +514,4 @@ export default function EnergiaPage() {
       </footer>
     </div>
   )
-}
+} 

@@ -5,7 +5,7 @@ import { ArrowLeft, Car, Sparkles, Shield, Droplets, Heart, Target, Zap } from "
 import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 
-export default function CarDetailPage() {
+export default function CarDetailPageEn() {
   const pathname = usePathname()
   const router = useRouter()
   const isEnglish = pathname.startsWith("/en")
@@ -24,7 +24,7 @@ export default function CarDetailPage() {
       <nav className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-800">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center space-x-3">
+            <Link href="/en" className="flex items-center space-x-3">
               <Image
                 src="/sarico-logo.svg"
                 alt="Sarico Distri S.A."
@@ -34,9 +34,9 @@ export default function CarDetailPage() {
               />
             </Link>
             <div className="flex items-center space-x-4">
-              <Link href="/" className="flex items-center text-yellow-400 hover:text-yellow-300 transition-colors">
+              <Link href="/en" className="flex items-center text-yellow-400 hover:text-yellow-300 transition-colors">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Volver
+                Back
               </Link>
               {/* Language Toggle */}
               <button
@@ -60,14 +60,14 @@ export default function CarDetailPage() {
               <Car className="h-10 w-10 text-white" />
             </div>
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              Productos de
+              Car Detail
               <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
                 {" "}
-                Car Detail
+                Products
               </span>
             </h1>
             <p className="text-xl text-white/70 mb-12 leading-relaxed">
-              Distribuimos la línea completa de productos Meguiar's en Argentina para el detallado y cuidado automotriz profesional.
+              We distribute the complete line of Meguiar's products in Argentina for professional automotive detailing and care.
             </p>
           </div>
         </div>
@@ -80,29 +80,29 @@ export default function CarDetailPage() {
               <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-xl flex items-center justify-center mb-6">
                 <Sparkles className="h-6 w-6 text-black" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Detailing Premium</h3>
-              <p className="text-white/70 leading-relaxed">  Productos para limpieza profunda, acabado profesional y brillo excepcional.</p>
+              <h3 className="text-2xl font-bold text-white mb-4">Premium Detailing</h3>
+              <p className="text-white/70 leading-relaxed">Products for deep cleaning, professional finish, and exceptional shine.</p>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-yellow-400/50 transition-colors">
               <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-6">
                 <Droplets className="h-6 w-6 text-black" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Lavado Especializado</h3>
-              <p className="text-white/70 leading-relaxed">Shampoo, desengrasantes y soluciones para un lavado seguro y efectivo.</p>
+              <h3 className="text-2xl font-bold text-white mb-4">Specialized Washing</h3>
+              <p className="text-white/70 leading-relaxed">Shampoo, degreasers, and solutions for safe and effective washing.</p>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-yellow-400/50 transition-colors">
               <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-400 rounded-xl flex items-center justify-center mb-6">
                 <Shield className="h-6 w-6 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Protección</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">Protection</h3>
               <p className="text-white/70 leading-relaxed">
-                Selladores, ceras y recubrimientos para mantener tu auto protegido y reluciente.
+                Sealants, waxes, and coatings to keep your car protected and shiny.
               </p>
             </div>
           </div>
         </div>
       </section>
-      {/* Nuestros Valores Section */}
+      {/* Our Values Section */}
       <section id="valores" className="py-20 px-4 bg-black/20 backdrop-blur-sm border-t border-white/10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
@@ -110,36 +110,35 @@ export default function CarDetailPage() {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
                 <Heart className="h-8 w-8 text-white" />
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">Nuestros Valores</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">Our Values</h2>
               <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed mb-2">
-                Los valores son un conjunto de principios y creencias que guían el comportamiento de la empresa y sus colaboradores.
+                Values are a set of principles and beliefs that guide the behavior of the company and its collaborators.
               </p>
-              <p className="font-semibold text-white/90 text-lg">He aquí los nuestros:</p>
+              <p className="font-semibold text-white/90 text-lg">Here are ours:</p>
             </div>
-
             <div className="grid lg:grid-cols-3 gap-8">
               {[
                 {
                   id: "01",
-                  title: "ACTITUD APASIONADA POR EL SERVICIO",
+                  title: "PASSIONATE ATTITUDE FOR SERVICE",
                   content:
-                    "Cuando nos relacionamos con un cliente o proveedor, ya sea interno o externo, lo escuchamos con interés para comprenderlo, respetándolo y, ante todo, tratándolo como Persona. Ponemos nuestra mayor energía, alegría y dedicación para trabajar siempre en equipo al estar orgullosos de pertenecer a la empresa.",
+                    "When we interact with a client or supplier, whether internal or external, we listen with interest to understand them, respecting them and, above all, treating them as a Person. We put our greatest energy, joy, and dedication into always working as a team, being proud to belong to the company.",
                   icon: Heart,
                   gradient: "from-pink-400 to-rose-400",
                 },
                 {
                   id: "02",
-                  title: "CUMPLIR CON INTEGRIDAD",
+                  title: "FULFILL WITH INTEGRITY",
                   content:
-                    "Honramos nuestras obligaciones y compromisos, con entereza y rectitud de conducta, siendo conscientes que de nuestro actuar depende el resultado y valor agregado prometido. También actuamos con integridad de acuerdo a nuestros valores, pensando que la preocupación por los demás, es una fuente inspiradora de actos responsables.",
+                    "We honor our obligations and commitments, with fortitude and upright conduct, being aware that our actions determine the promised result and added value. We also act with integrity according to our values, thinking that concern for others is an inspiring source of responsible acts.",
                   icon: Target,
                   gradient: "from-blue-400 to-indigo-400",
                 },
                 {
                   id: "03",
-                  title: "INICIATIVA PARA MEJORAR E INNOVAR",
+                  title: "INITIATIVE TO IMPROVE AND INNOVATE",
                   content:
-                    "Nos gusta buscar nuevas formas de hacer las cosas y también hacer cosas nuevas, escapando al conformismo para lograr una mayor eficiencia. Tratamos de anticiparnos a lo que pueda ocurrir en el futuro, con audacia o simplemente decidirnos a hacer las cosas cuanto antes.",
+                    "We like to look for new ways of doing things and also to do new things, escaping conformity to achieve greater efficiency. We try to anticipate what may happen in the future, with boldness or simply deciding to do things as soon as possible.",
                   icon: Zap,
                   gradient: "from-yellow-400 to-orange-400",
                 },
@@ -169,23 +168,22 @@ export default function CarDetailPage() {
           </div>
         </div>
       </section>
-
-      {/* Marcas Section */}
+      {/* Brands Section */}
       <section id="marcas" className="py-16 px-4 bg-black/20 backdrop-blur-sm border-t border-white/10">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
               <Sparkles className="h-8 w-8 text-white" />
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">Nuestras Marcas</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">Our Brands</h2>
             <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-              Trabajamos con marcas reconocidas para ofrecerte productos de car detail de máxima calidad.
+              We work with recognized brands to offer you the highest quality car detail products.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {[
               { src: "/brands/meguiars-logo.png", alt: "Meguiar's" },
-              // futuras marcas acá
+              // future brands here
             ].map((brand, index) => (
               <div
                 key={index}
@@ -208,8 +206,8 @@ export default function CarDetailPage() {
         <div className="container mx-auto">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-white mb-4">Contacto</h2>
-              <p className="text-white/60">¿Querés conocer más sobre los productos Meguiar's? Escribinos y te asesoramos.</p>
+              <h2 className="text-3xl font-bold text-white mb-4">Contact</h2>
+              <p className="text-white/60">Want to know more about Meguiar's products? Write to us and we will advise you.</p>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
               <form className="space-y-4">
@@ -220,7 +218,7 @@ export default function CarDetailPage() {
                       name="nombre"
                       required
                       className="placeholder:text-white w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-yellow-400 transition-all"
-                      placeholder="Nombre completo"
+                      placeholder="Full name"
                     />
                   </div>
                   <div>
@@ -229,7 +227,7 @@ export default function CarDetailPage() {
                       name="telefono"
                       required
                       className="placeholder:text-white w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-yellow-400 transition-all"
-                      placeholder="Teléfono"
+                      placeholder="Phone"
                     />
                   </div>
                 </div>
@@ -247,7 +245,7 @@ export default function CarDetailPage() {
                     className="placeholder:text-white w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white focus:outline-none focus:border-yellow-400 transition-all"
                   >
                     <option value="" className="bg-gray-800">
-                      Provincia
+                      State/Province
                     </option>
                     <option value="buenos-aires" className="bg-gray-800">
                       Buenos Aires
@@ -324,21 +322,21 @@ export default function CarDetailPage() {
                     name="ciudad"
                     required
                     className="placeholder:text-white w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-yellow-400 transition-all"
-                    placeholder="Ciudad"
+                    placeholder="City"
                   />
                 </div>
                 <textarea
                   name="comentarios"
                   rows={3}
                   className="placeholder:text-white w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-yellow-400 transition-all resize-none"
-                  placeholder="Comentarios (opcional)"
+                  placeholder="Comments (optional)"
                 ></textarea>
                 <div className="text-center pt-4">
                   <Button
                     type="submit"
                     className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-black font-semibold px-8 py-3"
                   >
-                    Enviar
+                    Send
                   </Button>
                 </div>
               </form>
@@ -348,4 +346,4 @@ export default function CarDetailPage() {
       </section>
     </div>
   )
-}
+} 
