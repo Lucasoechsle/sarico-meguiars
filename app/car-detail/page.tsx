@@ -55,20 +55,50 @@ export default function CarDetailPage() {
       {/* Hero Section */}
       <section className="pt-32 px-4">
         <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-3xl flex items-center justify-center mx-auto mb-8">
-              <Car className="h-10 w-10 text-white" />
+          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
+            {/* Text Content */}
+            <div className="text-left space-y-8">
+              <div className="w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-3xl flex items-center justify-center mb-8">
+                <Car className="h-10 w-10 text-white" />
+              </div>
+              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                Distribuidores Oficiales
+                <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                  {" "}
+                  Meguiar's
+                </span>
+                <span className="block text-3xl md:text-4xl text-white/90 font-semibold mt-2">
+                  La marca líder mundial en car detailing
+                </span>
+              </h1>
+              <p className="text-xl text-white/70 mb-12 leading-relaxed">
+                En Sarico Distri representamos con orgullo a <span className="text-yellow-400 font-semibold">Meguiar's</span>, 
+                la marca de productos de estética vehicular más prestigiosa del mundo, con más de 120 años de innovación 
+                y excelencia en el cuidado automotriz profesional.
+              </p>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              Productos de
-              <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                {" "}
-                Car Detail
-              </span>
-            </h1>
-            <p className="text-xl text-white/70 mb-12 leading-relaxed">
-              Distribuimos la línea completa de productos Meguiar's en Argentina para el detallado y cuidado automotriz profesional.
-            </p>
+            
+            {/* Image */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                <div className="relative overflow-hidden rounded-3xl border-2 border-white/20 group-hover:border-yellow-400/50 transition-all duration-300">
+                  <Image
+                    src="/images/ImageCar.jpeg"
+                    alt="Profesional puliendo auto con productos Meguiar's"
+                    width={600}
+                    height={400}
+                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <p className="text-white font-semibold text-lg drop-shadow-lg">
+                      Detallado profesional con productos Meguiar's
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -80,23 +110,30 @@ export default function CarDetailPage() {
               <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-xl flex items-center justify-center mb-6">
                 <Sparkles className="h-6 w-6 text-black" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Detailing Premium</h3>
-              <p className="text-white/70 leading-relaxed">  Productos para limpieza profunda, acabado profesional y brillo excepcional.</p>
+              <h3 className="text-2xl font-bold text-white mb-4">Tecnología de Vanguardia</h3>
+              <p className="text-white/70 leading-relaxed">
+                Acceso exclusivo a las últimas innovaciones de Meguiar's, desarrolladas con más de un siglo de experiencia 
+                en el cuidado automotriz profesional.
+              </p>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-yellow-400/50 transition-colors">
               <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-6">
                 <Droplets className="h-6 w-6 text-black" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Lavado Especializado</h3>
-              <p className="text-white/70 leading-relaxed">Shampoo, desengrasantes y soluciones para un lavado seguro y efectivo.</p>
+              <h3 className="text-2xl font-bold text-white mb-4">Calidad Mundial Garantizada</h3>
+              <p className="text-white/70 leading-relaxed">
+                Como distribuidores oficiales, garantizamos la autenticidad y calidad de cada producto Meguiar's, 
+                respaldados por la confianza de profesionales en todo el mundo.
+              </p>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-yellow-400/50 transition-colors">
               <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-400 rounded-xl flex items-center justify-center mb-6">
                 <Shield className="h-6 w-6 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Protección</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">Soporte Técnico Especializado</h3>
               <p className="text-white/70 leading-relaxed">
-                Selladores, ceras y recubrimientos para mantener tu auto protegido y reluciente.
+                Ofrecemos capacitación, asesoramiento técnico y soporte continuo para talleres, detailers profesionales 
+                y entusiastas del car care de alto nivel.
               </p>
             </div>
           </div>
@@ -177,9 +214,10 @@ export default function CarDetailPage() {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
               <Sparkles className="h-8 w-8 text-white" />
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">Nuestras Marcas</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">La Marca Líder Mundial</h2>
             <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-              Trabajamos con marcas reconocidas para ofrecerte productos de car detail de máxima calidad.
+              Meguiar's es sinónimo de excelencia en el detallado automotriz desde 1901. Ser distribuidores oficiales 
+              nos posiciona como referentes en productos de car care profesional en Argentina.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
@@ -208,8 +246,11 @@ export default function CarDetailPage() {
         <div className="container mx-auto">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-white mb-4">Contacto</h2>
-              <p className="text-white/60">¿Querés conocer más sobre los productos Meguiar's? Escribinos y te asesoramos.</p>
+              <h2 className="text-3xl font-bold text-white mb-4">Contacto Especializado</h2>
+              <p className="text-white/60">
+                ¿Sos un profesional del detailing o querés conocer más sobre los productos Meguiar's? 
+                Como distribuidores oficiales, te brindamos asesoramiento técnico especializado.
+              </p>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
               <form className="space-y-4">

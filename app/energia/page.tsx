@@ -105,11 +105,11 @@ export default function EnergiaPage() {
       <section id="inicio" className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-400 via-orange-400 to-yellow-500"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-        <div className="relative z-10 container mx-auto px-4 py-24 md:py-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
-            <div className="text-left space-y-8">
+        <div className="relative z-10 container mx-auto px-6 lg:px-10 pt-32 pb-16 md:pt-20 md:pb-12">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center min-h-[70vh] max-w-7xl mx-auto">
+            <div className="text-left space-y-8 px-2 lg:px-4">
               <div className="space-y-6">
-                <h1 className="text-4xl md:text-7xl font-black text-white leading-tight">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight">
                   La energía del
                   <span className="block bg-gradient-to-r from-white to-yellow-100 bg-clip-text text-transparent">
                     futuro, hoy.
@@ -117,23 +117,31 @@ export default function EnergiaPage() {
                 </h1>
                 <div className="space-y-4">
                   <p className="text-xl lg:text-2xl text-white/95 font-medium">Sarico Distri es sinónimo de</p>
-                  <p className="text-2xl lg:text-4xl font-bold text-white drop-shadow-lg">
+                  <p className="text-2xl lg:text-3xl xl:text-4xl font-bold text-white drop-shadow-lg">
                     Generación y Almacenamiento
                     <span className="block">de Energía.</span>
                   </p>
                 </div>
               </div>
             </div>
-            <div className="flex justify-center lg:justify-end">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-white/20 rounded-3xl blur-xl"></div>
-                <Image
-                  src="/hero-energy.png"
-                  alt="Energía renovable - Paneles solares y turbinas eólicas"
-                  width={700}
-                  height={500}
-                  className="relative w-full max-w-2xl h-auto drop-shadow-2xl"
-                />
+            <div className="flex justify-center lg:justify-center px-4 lg:px-4">
+              <div className="relative group w-full max-w-md lg:max-w-lg">
+                <div className="absolute -inset-4 bg-white/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                <div className="relative overflow-hidden rounded-3xl border-2 border-white/20 group-hover:border-yellow-300/70 transition-all duration-300">
+                  <Image
+                    src="/images/ImageVarta.jpeg"
+                    alt="Baterías Varta - Energía confiable y duradera"
+                    width={400}
+                    height={300}
+                    className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <p className="text-white font-semibold text-base drop-shadow-lg">
+                      Baterías de alta calidad para todas tus necesidades energéticas
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -72,6 +72,47 @@ export default function HomePage() {
               <span className="text-yellow-400 font-semibold">distribuidores oficiales de productos </span>
               Meguiar's. en Argentina
             </p>
+            
+            {/* Hero Images Section */}
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mt-16">
+              {/* Energía Image */}
+              <div className="relative group">
+                <div className="absolute -inset-2 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 rounded-2xl blur-lg group-hover:blur-xl transition-all duration-300"></div>
+                <div className="relative overflow-hidden rounded-2xl border border-white/20 group-hover:border-yellow-400/50 transition-all duration-300">
+                  <Image
+                    src="/images/ImageVarta.jpeg"
+                    alt="División Energía - Baterías Varta de alta calidad"
+                    width={400}
+                    height={280}
+                    className="w-full h-[280px] object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <h3 className="text-white font-bold text-lg mb-1 drop-shadow-lg">División Energía</h3>
+                    <p className="text-white/90 text-sm drop-shadow-lg">Baterías y sistemas energéticos</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Car Detail Image */}
+              <div className="relative group">
+                <div className="absolute -inset-2 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 rounded-2xl blur-lg group-hover:blur-xl transition-all duration-300"></div>
+                <div className="relative overflow-hidden rounded-2xl border border-white/20 group-hover:border-yellow-400/50 transition-all duration-300">
+                  <Image
+                    src="/images/ImageCar.jpeg"
+                    alt="Distribuidores Oficiales Meguiar's - Car detailing profesional"
+                    width={400}
+                    height={280}
+                    className="w-full h-[280px] object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <h3 className="text-white font-bold text-lg mb-1 drop-shadow-lg">Distribuidores Oficiales Meguiar's</h3>
+                    <p className="text-white/90 text-sm drop-shadow-lg">Car detailing profesional</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -226,32 +267,32 @@ export default function HomePage() {
                       <Car className="h-10 w-10 text-yellow-400" />
                     </div>
                     <div>
-                      <h3 className="text-3xl font-bold text-white mb-2">División Car Detail</h3>
-                      <p className="text-yellow-400 font-semibold">Powered by Meguiar's</p>
+                      <h3 className="text-3xl font-bold text-white mb-2">Distribuidores Oficiales Meguiar's</h3>
+                      <p className="text-yellow-400 font-semibold">La marca líder mundial en car detailing</p>
                     </div>
                   </div>
                   <div className="space-y-4 text-gray-300">
                     <p className="text-lg leading-relaxed">
-                      Distribuimos la línea completa de{" "}
-                      <span className="text-white font-semibold">productos Meguiar's </span>
-                      para el cuidado y detallado automotriz, ideales para profesionales y entusiastas.
+                      Representamos con orgullo a{" "}
+                      <span className="text-white font-semibold">Meguiar's</span>, la marca de estética vehicular 
+                      más prestigiosa del mundo, con más de 120 años de innovación y excelencia profesional.
                     </p>
                     <ul className="space-y-2 text-base">
                       <li className="flex items-center">
                         <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                        Ceras, limpiadores y pulidores de alta gama
+                        Distribución oficial y exclusiva en Argentina
                       </li>
                       <li className="flex items-center">
                         <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                        Productos para interiores, exteriores y motor
+                        Tecnología y calidad mundial garantizada
                       </li>
                       <li className="flex items-center">
                         <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                        Ideal para talleres, detailers y fanáticos
+                        Soporte técnico especializado y capacitación
                       </li>
                       <li className="flex items-center">
                         <div className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
-                        Calidad garantizada Meguiar's
+                        Preferred por detailers profesionales mundialmente
                       </li>
                     </ul>
                   </div>
@@ -271,7 +312,8 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">¿Listo para comenzar?</h2>
             <p className="text-xl text-black/80 mb-10 leading-relaxed">
-              Contáctanos para conocer más sobre nuestros productos energéticos o la línea profesional Meguiar's para car detail
+              Contáctanos para conocer más sobre nuestros productos energéticos o descubrí por qué somos los distribuidores oficiales 
+              de Meguiar's, la marca líder mundial en car detailing profesional
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -305,7 +347,8 @@ export default function HomePage() {
                 className="h-10 w-auto mb-4 invert brightness-0"
               />
               <p className="text-gray-400 leading-relaxed">
-                Más de 20 años distribuyendo las mejores marcas en energía y productos de car detail Meguiar's.
+                Más de 20 años distribuyendo las mejores marcas en energía y representando con orgullo a Meguiar's, 
+                la marca líder mundial en productos de car detailing profesional.
               </p>
             </div>
             <div>
@@ -318,7 +361,7 @@ export default function HomePage() {
                 </li>
                 <li>
                   <Link href="/car-detail" className="hover:text-yellow-400 transition-colors">
-                    División Car Detail
+                    Distribuidores Oficiales Meguiar's
                   </Link>
                 </li>
                 <li>
