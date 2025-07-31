@@ -1,14 +1,67 @@
 "use client"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Zap, Car, Phone, Heart, Eye, Target } from "lucide-react"
+import { ArrowRight, Zap, Car, Phone, Heart, Eye, Target, ChevronLeft, ChevronRight, Calendar, MapPin } from "lucide-react"
 import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
+import { useState, useEffect } from "react"
 
 export default function HomePage() {
   const pathname = usePathname()
   const router = useRouter()
   const isEnglish = pathname.startsWith("/en")
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  const slides = [
+    {
+      id: 1,
+      title: "Caravana Solidaria",
+      subtitle: "Domingo 3 de Agosto - Ferial de Córdoba",
+      description: "Evento gigante con Meguiar's. Conocé los mejores productos de car detailing del mundo.",
+      cta: "Más Información",
+      image: "/images/ImageCar.jpeg"
+    },
+    {
+      id: 2,
+      title: "Endurance Tire Gel",
+      subtitle: "Brillo duradero para neumáticos",
+      description: "Protección y brillo premium que dura semanas. El acabado perfecto para tus neumáticos.",
+      cta: "Ver Producto",
+      image: "/images/Endurance.jpeg"
+    },
+    {
+      id: 3,
+      title: "Hybrid Ceramic Wax",
+      subtitle: "Protección cerámica avanzada",
+      description: "La perfecta combinación de facilidad de aplicación y protección cerámica de larga duración.",
+      cta: "Conocer Más",
+      image: "/images/HybridCeramic.jpeg"
+    },
+    {
+      id: 4,
+      title: "Quick Detailer",
+      subtitle: "Detallado rápido profesional",
+      description: "Limpieza y brillo instantáneo entre lavados. Perfecto para mantenimiento diario.",
+      cta: "Ver Detalles",
+      image: "/images/QuickDetailer.jpeg"
+    }
+  ]
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length)
+    }, 5000) // Cambia cada 5 segundos
+
+    return () => clearInterval(timer)
+  }, [slides.length])
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
+  }
 
   const handleToggle = () => {
     if (isEnglish) {
@@ -48,6 +101,106 @@ export default function HomePage() {
           </div>
         </div>
       </nav>
+      
+      {/* Carrousel Hero Section */}
+      <section className="relative h-[80vh] overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src={slides[currentSlide].image}
+            alt={slides[currentSlide].title}
+            fill
+            className="object-cover transition-all duration-1000"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40"></div>
+        </div>
+        
+        {/* Content Overlay */}
+        <div className="relative z-10 container mx-auto px-8 lg:px-16 h-full flex items-center">
+          <div className="max-w-4xl ml-4 lg:ml-8">
+            <div className="flex items-center space-x-2 text-yellow-400 font-semibold mb-4">
+              {slides[currentSlide].id === 1 && <Calendar className="h-5 w-5" />}
+              {slides[currentSlide].id === 1 && <span>Evento Especial</span>}
+              {slides[currentSlide].id !== 1 && <span>Producto Meguiar's</span>}
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl font-black text-white leading-tight mb-4">
+              {slides[currentSlide].title}
+            </h1>
+            
+            <h2 className="text-2xl md:text-3xl text-yellow-400 font-semibold mb-6">
+              {slides[currentSlide].subtitle}
+            </h2>
+            
+            <p className="text-xl text-white/90 leading-relaxed mb-8 max-w-2xl">
+              {slides[currentSlide].description}
+            </p>
+            
+            {slides[currentSlide].id === 1 && (
+              <div className="flex items-center space-x-2 text-white/80 mb-8">
+                <MapPin className="h-6 w-6" />
+                <span className="text-lg">Ferial de Córdoba - ¡Te esperamos!</span>
+              </div>
+            )}
+            
+            {slides[currentSlide].id !== 1 && (
+              <Button 
+                onClick={() => window.open('https://sarico.osapp.com.ar/', '_blank')}
+                className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-10 py-4 text-xl cursor-pointer"
+              >
+                ¡Comprar Ahora!
+                <ArrowRight className="ml-3 h-6 w-6" />
+              </Button>
+            )}
+            
+            {slides[currentSlide].id === 1 && (
+              <div className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-4 text-xl rounded-lg inline-flex items-center">
+                <Calendar className="mr-3 h-6 w-6" />
+                ¡Nos vemos el 3 de Agosto!
+              </div>
+            )}
+          </div>
+        </div>
+        
+        {/* Navigation Dots */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4 z-50">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                setCurrentSlide(index)
+                console.log('Dot clicked:', index) // Para debug
+              }}
+              aria-label={`Ir al slide ${index + 1}`}
+              className={`w-6 h-6 rounded-full transition-all duration-300 cursor-pointer hover:scale-125 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-black border-2 border-white/30 ${
+                index === currentSlide 
+                  ? 'bg-yellow-400 shadow-lg shadow-yellow-400/50 border-yellow-400' 
+                  : 'bg-white/70 hover:bg-white/90 hover:shadow-lg hover:border-white/60'
+              }`}
+            />
+          ))}
+        </div>
+        
+        {/* Arrow Navigation */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-4 rounded-full transition-all duration-300 hover:scale-110"
+        >
+          <ChevronLeft className="h-7 w-7" />
+        </button>
+        
+        <button
+          onClick={nextSlide}
+          className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-4 rounded-full transition-all duration-300 hover:scale-110"
+        >
+          <ChevronRight className="h-7 w-7" />
+        </button>
+      </section>
+
       {/* Hero Section */}
       <section className="pt-28 px-4">
         <div className="container mx-auto text-center">
