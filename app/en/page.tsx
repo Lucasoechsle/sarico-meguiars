@@ -25,7 +25,7 @@ export default function HomePageEn() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link href="/en" className="flex items-center space-x-3">
-              <Image src="/sarico-logo.svg" alt="Sarico Distri S.A." width={160} height={45} className="h-10 w-auto invert brightness-0" />
+              <Image src="/sarico-logo.svg" alt="Sarico Distri S.A." width={160} height={45} className="h-8 md:h-12 lg:h-10 w-auto invert brightness-0" />
             </Link>
             <div className="hidden md:flex items-center space-x-8">
               <Link href="/en/energia" className="text-white/80 hover:text-yellow-400 transition-colors font-medium">
@@ -49,7 +49,7 @@ export default function HomePageEn() {
         </div>
       </nav>
       {/* Hero Section */}
-      <section className="pt-28 px-4">
+      <section id="inicio" className="pt-28 px-4">
         <div className="container mx-auto text-center">
           <div className="max-w-5xl mx-auto">
             <div className="mb-2">
@@ -301,7 +301,7 @@ export default function HomePageEn() {
                 alt="Sarico Distri S.A."
                 width={160}
                 height={45}
-                className="h-10 w-auto mb-4 invert brightness-0"
+                className="h-8 md:h-12 lg:h-10 w-auto mb-4 invert brightness-0"
               />
               <p className="text-gray-400 leading-relaxed">
                 Over 20 years distributing the best brands in energy and Meguiar's car detail products.

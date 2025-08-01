@@ -1,16 +1,22 @@
 "use client"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, ArrowRight, Car, Sparkles, Shield, Droplets, Heart, Target, Zap, ChevronLeft, ChevronRight, Calendar, MapPin } from "lucide-react"
+import { ArrowLeft, ArrowRight, Car, Sparkles, Shield, Award, Heart, Target, Zap, ChevronLeft, ChevronRight, Calendar, MapPin, CheckCircle, AlertCircle, Loader2 } from "lucide-react"
 import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 import { useState, useEffect } from "react"
+import { submitForm, type FormData as ContactFormData } from "@/lib/forms"
 
 export default function CarDetailPage() {
   const pathname = usePathname()
   const router = useRouter()
   const isEnglish = pathname.startsWith("/en")
   const [currentSlide, setCurrentSlide] = useState(0)
+  
+  // Form states
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const slides = [
     {
@@ -63,6 +69,61 @@ export default function CarDetailPage() {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
   }
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
+  // Form submission handler
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+    setErrorMessage('')
+
+    const formData = new FormData(e.currentTarget)
+    const data: ContactFormData = {
+      nombre: formData.get('nombre') as string,
+      telefono: formData.get('telefono') as string,
+      email: formData.get('email') as string,
+      provincia: formData.get('provincia') as string,
+      ciudad: formData.get('ciudad') as string,
+      comentarios: formData.get('comentarios') as string || undefined,
+      formType: 'car-detail',
+      language: 'es'
+    }
+
+    try {
+      const result = await submitForm(data)
+      
+      if (result.success) {
+        setSubmitStatus('success')
+        // Reset form safely
+        const form = e.currentTarget
+        if (form && typeof form.reset === 'function') {
+          try {
+            form.reset()
+          } catch (resetError) {
+            console.log("⚠️ No se pudo resetear el formulario")
+          }
+        }
+        // Auto-hide success message after 5 seconds
+        setTimeout(() => setSubmitStatus('idle'), 5000)
+      } else {
+        setSubmitStatus('error')
+        setErrorMessage(result.error || 'Error al enviar el formulario')
+      }
+    } catch (error) {
+      console.error("Error al enviar formulario:", error)
+      setSubmitStatus('error')
+      setErrorMessage('Error de conexión. Intenta nuevamente.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   const handleToggle = () => {
     if (isEnglish) {
       router.push("/car-detail")
@@ -83,10 +144,28 @@ export default function CarDetailPage() {
                 alt="Sarico Distri S.A."
                 width={160}
                 height={45}
-                className="h-10 w-auto invert brightness-0"
+                className="h-8 md:h-12 lg:h-10 w-auto invert brightness-0"
               />
             </Link>
-            <div className="flex items-center space-x-4">
+            <div className="hidden md:flex items-center space-x-8">
+              <button
+                onClick={() => scrollToSection("inicio")}
+                className="text-white/80 hover:text-yellow-400 font-medium transition-colors"
+              >
+                Inicio
+              </button>
+              <button
+                onClick={() => scrollToSection("marcas")}
+                className="text-white/80 hover:text-yellow-400 font-medium transition-colors"
+              >
+                Marcas
+              </button>
+              <button
+                onClick={() => scrollToSection("contacto")}
+                className="text-white/80 hover:text-yellow-400 font-medium transition-colors"
+              >
+                Contacto
+              </button>
               <Link href="/" className="flex items-center text-yellow-400 hover:text-yellow-300 transition-colors">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Volver
@@ -107,7 +186,7 @@ export default function CarDetailPage() {
       </nav>
       
       {/* Carrousel Hero Section */}
-      <section className="relative h-[95vh] overflow-hidden">
+      <section id="inicio" className="relative h-[95vh] overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
@@ -225,8 +304,8 @@ export default function CarDetailPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
             {/* Text Content */}
             <div className="text-left space-y-8">
-              <div className="w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-3xl flex items-center justify-center mb-8">
-                <Car className="h-10 w-10 text-white" />
+              <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center mb-8 border-2 border-yellow-400">
+                <Image src="/brands/meguiars-logo.png" alt="Meguiar's Logo" width={60} height={60} className="object-contain" />
               </div>
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
                 Distribuidores Oficiales
@@ -284,8 +363,8 @@ export default function CarDetailPage() {
               </p>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-yellow-400/50 transition-colors">
-              <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-6">
-                <Droplets className="h-6 w-6 text-black" />
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mb-6">
+                <Award className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Calidad Mundial Garantizada</h3>
               <p className="text-white/70 leading-relaxed">
@@ -378,8 +457,8 @@ export default function CarDetailPage() {
       <section id="marcas" className="py-16 px-4 bg-black/20 backdrop-blur-sm border-t border-white/10">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
-              <Sparkles className="h-8 w-8 text-white" />
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-2xl mb-6 border-2 border-yellow-400">
+              <Image src="/brands/meguiars-logo.png" alt="Meguiar's Logo" width={60} height={60} className="object-contain" />
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">La Marca Líder Mundial</h2>
             <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
@@ -387,29 +466,36 @@ export default function CarDetailPage() {
               nos posiciona como referentes en productos de car care profesional en Argentina.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {[
-              { src: "/brands/meguiars-logo.png", alt: "Meguiar's" },
-              // futuras marcas acá
-            ].map((brand, index) => (
-              <div
-                key={index}
-                className="group bg-white rounded-2xl p-6 h-32 flex items-center justify-center border border-white/10 hover:border-yellow-400/50 transition-all duration-300 transform hover:scale-105"
-              >
+          {/* Presentación elegante del logo principal */}
+          <div className="flex justify-center">
+            <div className="relative group">
+              {/* Efecto de resplandor de fondo */}
+              <div className="absolute -inset-8 bg-gradient-to-r from-yellow-400/20 via-yellow-400/30 to-yellow-400/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
+              
+              {/* Contenedor principal del logo */}
+              <div className="relative bg-white rounded-3xl p-12 border-2 border-yellow-400/50 group-hover:border-yellow-400 transition-all duration-300 transform group-hover:scale-105 shadow-2xl">
                 <Image
-                  src={brand.src}
-                  alt={brand.alt}
-                  width={140}
-                  height={70}
-                  className="max-h-16 w-auto filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                  src="/brands/meguiars-logo.png"
+                  alt="Meguiar's - La marca líder mundial en car detailing"
+                  width={300}
+                  height={150}
+                  className="w-auto h-24 md:h-32 object-contain transition-all duration-300"
+                  priority
                 />
               </div>
-            ))}
+              
+              {/* Texto decorativo */}
+              <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
+                <div className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black px-6 py-2 rounded-full text-sm font-bold tracking-wide shadow-lg">
+                  DESDE 1901
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
       {/* Contact Form Section */}
-      <section className="py-12 px-4 bg-black/20">
+      <section id="contacto" className="py-12 px-4 bg-black/20">
         <div className="container mx-auto">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
@@ -420,7 +506,31 @@ export default function CarDetailPage() {
               </p>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-              <form className="space-y-4">
+              {/* Success Message */}
+              {submitStatus === 'success' && (
+                <div className="mb-6 p-4 bg-green-500/20 border border-green-500/50 rounded-xl">
+                  <div className="flex items-center text-green-400">
+                    <CheckCircle className="h-5 w-5 mr-2" />
+                    <span className="font-semibold">¡Mensaje enviado exitosamente!</span>
+                  </div>
+                  <p className="text-green-300 text-sm mt-1">
+                    Nos pondremos en contacto contigo pronto para brindarte asesoramiento técnico especializado.
+                  </p>
+                </div>
+              )}
+
+              {/* Error Message */}
+              {submitStatus === 'error' && (
+                <div className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-xl">
+                  <div className="flex items-center text-red-400">
+                    <AlertCircle className="h-5 w-5 mr-2" />
+                    <span className="font-semibold">Error al enviar el mensaje</span>
+                  </div>
+                  <p className="text-red-300 text-sm mt-1">{errorMessage}</p>
+                </div>
+              )}
+
+              <form onSubmit={handleFormSubmit} className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <input
@@ -544,9 +654,17 @@ export default function CarDetailPage() {
                 <div className="text-center pt-4">
                   <Button
                     type="submit"
-                    className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-black font-semibold px-8 py-3"
+                    disabled={isSubmitting}
+                    className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-black font-semibold px-8 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Enviar
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                        Enviando...
+                      </>
+                    ) : (
+                      'Enviar'
+                    )}
                   </Button>
                 </div>
               </form>

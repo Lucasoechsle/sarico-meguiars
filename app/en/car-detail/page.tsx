@@ -18,6 +18,13 @@ export default function CarDetailPageEn() {
     }
   }
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
       {/* Navigation */}
@@ -30,10 +37,28 @@ export default function CarDetailPageEn() {
                 alt="Sarico Distri S.A."
                 width={160}
                 height={45}
-                className="h-10 w-auto invert brightness-0"
+                className="h-8 md:h-12 lg:h-10 w-auto invert brightness-0"
               />
             </Link>
-            <div className="flex items-center space-x-4">
+            <div className="hidden md:flex items-center space-x-8">
+              <button
+                onClick={() => scrollToSection("inicio")}
+                className="text-white/80 hover:text-yellow-400 font-medium transition-colors"
+              >
+                Home
+              </button>
+              <button
+                onClick={() => scrollToSection("marcas")}
+                className="text-white/80 hover:text-yellow-400 font-medium transition-colors"
+              >
+                Brands
+              </button>
+              <button
+                onClick={() => scrollToSection("contacto")}
+                className="text-white/80 hover:text-yellow-400 font-medium transition-colors"
+              >
+                Contact
+              </button>
               <Link href="/en" className="flex items-center text-yellow-400 hover:text-yellow-300 transition-colors">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back
@@ -53,7 +78,7 @@ export default function CarDetailPageEn() {
         </div>
       </nav>
       {/* Hero Section */}
-      <section className="pt-32 px-4">
+      <section id="inicio" className="pt-32 px-4">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
             <div className="w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-3xl flex items-center justify-center mx-auto mb-8">
@@ -202,7 +227,7 @@ export default function CarDetailPageEn() {
         </div>
       </section>
       {/* Contact Form Section */}
-      <section className="py-12 px-4 bg-black/20">
+      <section id="contacto" className="py-12 px-4 bg-black/20">
         <div className="container mx-auto">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">

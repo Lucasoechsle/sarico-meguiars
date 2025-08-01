@@ -47,7 +47,7 @@ export default function EnergiaPageEn() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link href="/en" className="flex items-center space-x-3">
-              <Image src="/sarico-logo.svg" alt="Sarico Distri S.A." width={160} height={45} className="h-10 w-auto" />
+              <Image src="/sarico-logo.svg" alt="Sarico Distri S.A." width={160} height={45} className="h-8 md:h-12 lg:h-10 w-auto" />
             </Link>
             <div className="hidden md:flex items-center space-x-8">
               <button
@@ -61,12 +61,6 @@ export default function EnergiaPageEn() {
                 className="text-gray-700 hover:text-yellow-600 font-medium transition-colors"
               >
                 Brands
-              </button>
-              <button
-                onClick={() => scrollToSection("valores")}
-                className="text-gray-700 hover:text-yellow-600 font-medium transition-colors"
-              >
-                Values
               </button>
               <button
                 onClick={() => scrollToSection("productos")}

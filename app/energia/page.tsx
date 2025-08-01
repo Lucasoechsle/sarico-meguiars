@@ -14,16 +14,25 @@ import {
   Target,
   Heart,
   SendHorizonal,
+  CheckCircle,
+  AlertCircle,
+  Loader2,
 } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
+import { submitForm, type FormData as ContactFormData } from "@/lib/forms"
 
 export default function EnergiaPage() {
   const [openAccordion, setOpenAccordion] = useState<string | null>(null)
   const pathname = usePathname()
   const router = useRouter()
   const isEnglish = pathname.startsWith("/en")
+  
+  // Form states
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -40,6 +49,54 @@ export default function EnergiaPage() {
     }
   }
 
+  // Form submission handler
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+    setErrorMessage('')
+
+    const formData = new FormData(e.currentTarget)
+    const data: ContactFormData = {
+      nombre: formData.get('nombre') as string,
+      telefono: formData.get('telefono') as string,
+      email: formData.get('email') as string,
+      provincia: formData.get('provincia') as string,
+      ciudad: formData.get('ciudad') as string,
+      comentarios: formData.get('comentarios') as string || undefined,
+      formType: 'energia',
+      language: 'es'
+    }
+
+    try {
+      const result = await submitForm(data)
+      
+      if (result.success) {
+        setSubmitStatus('success')
+        // Reset form safely
+        const form = e.currentTarget
+        if (form && typeof form.reset === 'function') {
+          try {
+            form.reset()
+          } catch (resetError) {
+            console.log("⚠️ No se pudo resetear el formulario")
+          }
+        }
+        // Auto-hide success message after 5 seconds
+        setTimeout(() => setSubmitStatus('idle'), 5000)
+      } else {
+        setSubmitStatus('error')
+        setErrorMessage(result.error || 'Error al enviar el formulario')
+      }
+    } catch (error) {
+      console.error("Error al enviar formulario:", error)
+      setSubmitStatus('error')
+      setErrorMessage('Error de conexión. Intenta nuevamente.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -47,7 +104,7 @@ export default function EnergiaPage() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center space-x-3">
-              <Image src="/sarico-logo.svg" alt="Sarico Distri S.A." width={160} height={45} className="h-10 w-auto" />
+              <Image src="/sarico-logo.svg" alt="Sarico Distri S.A." width={160} height={45} className="h-8 md:h-12 lg:h-10 w-auto" />
             </Link>
             <div className="hidden md:flex items-center space-x-8">
               <button
@@ -61,12 +118,6 @@ export default function EnergiaPage() {
                 className="text-gray-700 hover:text-yellow-600 font-medium transition-colors"
               >
                 Marcas
-              </button>
-              <button
-                onClick={() => scrollToSection("valores")}
-                className="text-gray-700 hover:text-yellow-600 font-medium transition-colors"
-              >
-                Valores
               </button>
               <button
                 onClick={() => scrollToSection("productos")}
@@ -423,7 +474,31 @@ export default function EnergiaPage() {
               </p>
             </div>
             <div className="bg-white rounded-3xl p-8 border-2 border-gray-100 shadow-xl">
-              <form className="space-y-6">
+              {/* Success Message */}
+              {submitStatus === 'success' && (
+                <div className="mb-6 p-4 bg-green-500/20 border border-green-500/50 rounded-xl">
+                  <div className="flex items-center text-green-600">
+                    <CheckCircle className="h-5 w-5 mr-2" />
+                    <span className="font-semibold">¡Mensaje enviado exitosamente!</span>
+                  </div>
+                  <p className="text-green-700 text-sm mt-1">
+                    Nos pondremos en contacto contigo pronto para brindarte información sobre nuestros productos energéticos.
+                  </p>
+                </div>
+              )}
+
+              {/* Error Message */}
+              {submitStatus === 'error' && (
+                <div className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-xl">
+                  <div className="flex items-center text-red-600">
+                    <AlertCircle className="h-5 w-5 mr-2" />
+                    <span className="font-semibold">Error al enviar el mensaje</span>
+                  </div>
+                  <p className="text-red-700 text-sm mt-1">{errorMessage}</p>
+                </div>
+              )}
+
+              <form onSubmit={handleFormSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <input
                     type="text"
@@ -495,9 +570,17 @@ export default function EnergiaPage() {
                 <div className="text-center pt-4">
                   <Button
                     type="submit"
-                    className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold px-8 py-3 shadow-lg hover:shadow-xl transition-all"
+                    disabled={isSubmitting}
+                    className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold px-8 py-3 shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Enviar
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                        Enviando...
+                      </>
+                    ) : (
+                      'Enviar'
+                    )}
                   </Button>
                 </div>
               </form>

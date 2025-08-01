@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Zap, Car, Phone, Heart, Eye, Target, ChevronLeft, ChevronRight, Calendar, MapPin } from "lucide-react"
+import { ArrowRight, Zap, Car, Phone, Heart, Eye, Target, ChevronLeft, ChevronRight, Calendar, MapPin, Compass } from "lucide-react"
 import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 import { useState, useEffect } from "react"
@@ -71,6 +71,13 @@ export default function HomePage() {
     }
   }
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
       {/* Navigation */}
@@ -78,9 +85,21 @@ export default function HomePage() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center space-x-3">
-              <Image src="/sarico-logo.svg" alt="Sarico Distri S.A." width={160} height={45} className="h-10 w-auto invert brightness-0" />
+              <Image src="/sarico-logo.svg" alt="Sarico Distri S.A." width={160} height={45} className="h-8 md:h-12 lg:h-10 w-auto invert brightness-0" />
             </Link>
             <div className="hidden md:flex items-center space-x-8">
+              <button
+                onClick={() => scrollToSection("inicio")}
+                className="text-white/80 hover:text-yellow-400 transition-colors font-medium"
+              >
+                Inicio
+              </button>
+              <button
+                onClick={() => scrollToSection("empresa")}
+                className="text-white/80 hover:text-yellow-400 transition-colors font-medium"
+              >
+                Valores
+              </button>
               <Link href="/energia" className="text-white/80 hover:text-yellow-400 transition-colors font-medium">
                 Energía
               </Link>
@@ -103,7 +122,7 @@ export default function HomePage() {
       </nav>
       
       {/* Carrousel Hero Section */}
-      <section className="relative h-[95vh] overflow-hidden">
+      <section id="inicio" className="relative h-[95vh] overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
@@ -337,7 +356,7 @@ export default function HomePage() {
               <div className="space-y-6">
                 <div className="bg-gradient-to-br from-yellow-400 to-orange-400 rounded-3xl p-8 text-white shadow-2xl transform hover:scale-105 transition-all duration-300">
                   <div className="flex items-center mb-4">
-                    <Target className="h-8 w-8 mr-3" />
+                    <Heart className="h-8 w-8 mr-3" />
                     <h3 className="text-2xl font-bold">PROPÓSITO</h3>
                   </div>
                   <p className="text-lg leading-relaxed">
@@ -346,7 +365,7 @@ export default function HomePage() {
                 </div>
                 <div className="bg-white rounded-3xl p-8 border-2 border-yellow-200 shadow-xl hover:shadow-2xl transition-all duration-300">
                   <div className="flex items-center mb-4">
-                    <Eye className="h-8 w-8 mr-3 text-yellow-600" />
+                    <Compass className="h-8 w-8 mr-3 text-yellow-600" />
                     <h3 className="text-2xl font-bold text-gray-900">MISIÓN</h3>
                   </div>
                   <p className="text-gray-600 text-lg leading-relaxed">
@@ -355,7 +374,7 @@ export default function HomePage() {
                 </div>
                 <div className="bg-white rounded-3xl p-8 border-2 border-yellow-200 shadow-xl hover:shadow-2xl transition-all duration-300">
                   <div className="flex items-center mb-4">
-                    <Heart className="h-8 w-8 mr-3 text-yellow-600" />
+                    <Eye className="h-8 w-8 mr-3 text-yellow-600" />
                     <h3 className="text-2xl font-bold text-gray-900">VISIÓN</h3>
                   </div>
                   <p className="text-gray-600 text-lg leading-relaxed">
@@ -430,8 +449,8 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-orange-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative z-10">
                   <div className="flex items-center mb-6">
-                    <div className="w-20 h-20 bg-gradient-to-br from-gray-700 to-gray-900 border-2 border-yellow-400 rounded-3xl flex items-center justify-center mr-6">
-                      <Car className="h-10 w-10 text-yellow-400" />
+                    <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center mr-6 border-2 border-yellow-400">
+                      <Image src="/brands/meguiars-logo.png" alt="Meguiar's Logo" width={60} height={60} className="object-contain" />
                     </div>
                     <div>
                       <h3 className="text-3xl font-bold text-white mb-2">Distribuidores Oficiales Meguiar's</h3>
@@ -511,7 +530,7 @@ export default function HomePage() {
                 alt="Sarico Distri S.A."
                 width={160}
                 height={45}
-                className="h-10 w-auto mb-4 invert brightness-0"
+                className="h-8 md:h-12 lg:h-10 w-auto mb-4 invert brightness-0"
               />
               <p className="text-gray-400 leading-relaxed">
                 Más de 20 años distribuyendo las mejores marcas en energía y representando con orgullo a Meguiar's, 
