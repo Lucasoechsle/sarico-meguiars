@@ -24,24 +24,24 @@ export default function CarDetailPage() {
     {
       id: 2,
       title: "Endurance Tire Gel",
-      subtitle: "Brillo duradero para neumáticos",
-      description: "Protección y brillo premium que dura semanas. El acabado perfecto para tus neumáticos.",
+      subtitle: "Brillo profundo y protección duradera para neumáticos",
+      description: "El favorito de los entusiastas por su acabado y resistencia",
       cta: "Ver Detalles",
-      image: "/images/Endurance.jpeg"
+      image: "/images/EnduranceTres.jpg"
     },
     {
       id: 3,
-      title: "Hybrid Ceramic Wax",
-      subtitle: "Protección cerámica avanzada",
-      description: "La perfecta combinación de facilidad de aplicación y protección cerámica de larga duración.",
+      title: "Hybrid Ceramic Wash & Wax",
+      subtitle: "Limpieza profunda + protección cerámica real",
+      description: "La perfecta combinación de facilidad de aplicación y protección cerámica de larga duración. Lavado con SiO₂ para mantener el efecto cerámico.",
       cta: "Conocer Producto",
-      image: "/images/HybridCeramic.jpeg"
+      image: "/images/HybridCeramicMant.jpeg"
     },
     {
       id: 4,
-      title: "Quick Detailer",
-      subtitle: "Detallado rápido profesional",
-      description: "Limpieza y brillo instantáneo entre lavados. Perfecto para mantenimiento diario.",
+      title: "Hybrid Ceramic Detailer",
+      subtitle: "Refuerzo cerámico instantáneo entre lavados",
+      description: "Mantenimiento rápido con protección de alto rendimiento. Especialmente formulado para autos con tratamiento cerámico. Este detallador remueve polvo y suciedad leve sin rayar, mientras renueva la capa hidrofóbica gracias a su infusión con SiO₂ real.",
       cta: "Ver Producto",
       image: "/images/QuickDetailer.jpeg"
     }
@@ -50,7 +50,7 @@ export default function CarDetailPage() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 5000)
+    }, 6000) // Cambia cada 6 segundos
 
     return () => clearInterval(timer)
   }, [slides.length])
@@ -116,6 +116,8 @@ export default function CarDetailPage() {
             fill
             className="object-cover transition-all duration-1000 brightness-110"
             priority
+            quality={95}
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-black/40"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent"></div>
