@@ -107,18 +107,18 @@ export default function CarDetailPage() {
       </nav>
       
       {/* Carrousel Hero Section */}
-      <section className="relative h-[80vh] overflow-hidden">
+      <section className="relative h-[95vh] overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
             src={slides[currentSlide].image}
             alt={slides[currentSlide].title}
             fill
-            className="object-cover transition-all duration-1000"
+            className="object-cover transition-all duration-1000 brightness-110"
             priority
           />
-          <div className="absolute inset-0 bg-black/60"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40"></div>
+          <div className="absolute inset-0 bg-black/40"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent"></div>
         </div>
         
         {/* Content Overlay */}
@@ -191,15 +191,27 @@ export default function CarDetailPage() {
         
         {/* Arrow Navigation */}
         <button
-          onClick={prevSlide}
-          className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-4 rounded-full transition-all duration-300 hover:scale-110"
+          onClick={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            prevSlide()
+            console.log('Previous arrow clicked') // Para debug
+          }}
+          aria-label="Slide anterior"
+          className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-4 rounded-full transition-all duration-300 hover:scale-110 z-50 cursor-pointer border-2 border-white/20 hover:border-white/40"
         >
           <ChevronLeft className="h-7 w-7" />
         </button>
         
         <button
-          onClick={nextSlide}
-          className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-4 rounded-full transition-all duration-300 hover:scale-110"
+          onClick={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            nextSlide()
+            console.log('Next arrow clicked') // Para debug
+          }}
+          aria-label="Slide siguiente"
+          className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-4 rounded-full transition-all duration-300 hover:scale-110 z-50 cursor-pointer border-2 border-white/20 hover:border-white/40"
         >
           <ChevronRight className="h-7 w-7" />
         </button>
