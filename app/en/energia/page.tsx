@@ -11,7 +11,7 @@ import {
   Phone,
   Mail,
   MapPin,
-  Target,
+  Shield,
   Heart,
   SendHorizonal,
 } from "lucide-react"
@@ -204,7 +204,7 @@ export default function EnergiaPageEn() {
                   title: "FULFILL WITH INTEGRITY",
                   content:
                     "We honor our obligations and commitments, with fortitude and upright conduct, being aware that our actions determine the promised result and added value. We also act with integrity according to our values, thinking that concern for others is an inspiring source of responsible acts.",
-                  icon: Target,
+                  icon: Shield,
                   gradient: "from-blue-400 to-indigo-400",
                 },
                 {
@@ -222,14 +222,11 @@ export default function EnergiaPageEn() {
                 >
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br opacity-5 rounded-full transform translate-x-8 -translate-y-8"></div>
                   <div className="relative z-10">
-                    <div className="flex items-center mb-6">
+                    <div className="flex justify-center mb-6">
                       <div
-                        className={`w-16 h-16 bg-gradient-to-br ${valor.gradient} rounded-2xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300`}
+                        className={`w-16 h-16 bg-gradient-to-br ${valor.gradient} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
                       >
                         <valor.icon className="h-8 w-8 text-white" />
-                      </div>
-                      <div className="text-4xl font-black text-gray-200 group-hover:text-yellow-200 transition-colors duration-300">
-                        {valor.id}
                       </div>
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight">{valor.title}</h3>

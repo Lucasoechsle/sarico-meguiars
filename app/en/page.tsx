@@ -18,6 +18,13 @@ export default function HomePageEn() {
     }
   }
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
       {/* Navigation */}
@@ -28,6 +35,18 @@ export default function HomePageEn() {
               <Image src="/sarico-logo.svg" alt="Sarico Distri S.A." width={160} height={45} className="h-8 md:h-12 lg:h-10 w-auto invert brightness-0" />
             </Link>
             <div className="hidden md:flex items-center space-x-8">
+              <button
+                onClick={() => scrollToSection("inicio")}
+                className="text-white/80 hover:text-yellow-400 transition-colors font-medium"
+              >
+                Home
+              </button>
+              <button
+                onClick={() => scrollToSection("empresa")}
+                className="text-white/80 hover:text-yellow-400 transition-colors font-medium"
+              >
+                Values
+              </button>
               <Link href="/en/energia" className="text-white/80 hover:text-yellow-400 transition-colors font-medium">
                 Energy
               </Link>

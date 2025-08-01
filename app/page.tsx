@@ -104,7 +104,7 @@ export default function HomePage() {
                 Energía
               </Link>
               <Link href="/car-detail" className="text-white/80 hover:text-yellow-400 transition-colors font-medium">
-                Car Detail
+                Estetica Vehicular
               </Link>
               {/* Language Toggle */}
               <button

@@ -11,7 +11,7 @@ import {
   Phone,
   Mail,
   MapPin,
-  Target,
+  Shield,
   Heart,
   SendHorizonal,
   CheckCircle,
@@ -336,7 +336,7 @@ export default function EnergiaPage() {
                   title: "CUMPLIR CON INTEGRIDAD",
                   content:
                     "Honramos nuestras obligaciones y compromisos, con entereza y rectitud de conducta, siendo conscientes que de nuestro actuar depende el resultado y valor agregado prometido. También actuamos con integridad de acuerdo a nuestros valores, pensando que la preocupación por los demás, es una fuente inspiradora de actos responsables.",
-                  icon: Target,
+                  icon: Shield,
                   gradient: "from-blue-400 to-indigo-400",
                 },
                 {
@@ -354,14 +354,11 @@ export default function EnergiaPage() {
                 >
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br opacity-5 rounded-full transform translate-x-8 -translate-y-8"></div>
                   <div className="relative z-10">
-                    <div className="flex items-center mb-6">
+                    <div className="flex justify-center mb-6">
                       <div
-                        className={`w-16 h-16 bg-gradient-to-br ${valor.gradient} rounded-2xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300`}
+                        className={`w-16 h-16 bg-gradient-to-br ${valor.gradient} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
                       >
                         <valor.icon className="h-8 w-8 text-white" />
-                      </div>
-                      <div className="text-4xl font-black text-gray-200 group-hover:text-yellow-200 transition-colors duration-300">
-                        {valor.id}
                       </div>
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight">{valor.title}</h3>
