@@ -232,7 +232,7 @@ export default function CarDetailPage() {
             
             {slides[currentSlide].id !== 1 && (
               <Button 
-                onClick={() => window.open('https://sarico.osapp.com.ar/', '_blank')}
+                onClick={() => window.open('https://tienda.saricodistri.com.ar/', '_blank')}
                 className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-10 py-4 text-xl cursor-pointer"
               >
                 ¡Comprar Ahora!
