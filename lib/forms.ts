@@ -14,21 +14,17 @@ export interface FormData {
 
 export const submitForm = async (formData: FormData): Promise<{ success: boolean; error?: string }> => {
   try {
-    // Check if we're on client side and db is available
     if (typeof window === 'undefined' || !db) {
       return { 
         success: false, 
         error: "Firebase no está disponible en el servidor" 
       };
-    }
-    
-    // Add the form data to the 'forms' collection
+    }    
     const docRef = await addDoc(collection(db, "forms"), {
       ...formData,
       timestamp: Timestamp.now(),
       createdAt: new Date().toISOString(),
     });
-
     console.log("✅ Formulario enviado exitosamente. ID:", docRef.id);
     return { success: true };
   } catch (error) {

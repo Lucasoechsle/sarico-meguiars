@@ -2,7 +2,6 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
-  ArrowLeft,
   Zap,
   Battery,
   ArrowRight,
@@ -11,33 +10,22 @@ import {
   Phone,
   Mail,
   MapPin,
-  Shield,
   Heart,
-  SendHorizonal,
-  CheckCircle,
-  AlertCircle,
-  Loader2,
 } from "lucide-react"
 import Image from "next/image"
-import { useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
-import { submitForm, type FormData as ContactFormData } from "@/lib/forms"
 
 export default function EnergiaPage() {
-  const [openAccordion, setOpenAccordion] = useState<string | null>(null)
   const pathname = usePathname()
   const router = useRouter()
   const isEnglish = pathname.startsWith("/en")
-  
-  // Form states
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
-  const [errorMessage, setErrorMessage] = useState('')
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
+    } else if (sectionId === "empresa") {
+      router.push("/")
     }
   }
 
@@ -49,99 +37,30 @@ export default function EnergiaPage() {
     }
   }
 
-  // Form submission handler
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus('idle')
-    setErrorMessage('')
-
-    const formData = new FormData(e.currentTarget)
-    const data: ContactFormData = {
-      nombre: formData.get('nombre') as string,
-      telefono: formData.get('telefono') as string,
-      email: formData.get('email') as string,
-      provincia: formData.get('provincia') as string,
-      ciudad: formData.get('ciudad') as string,
-      comentarios: formData.get('comentarios') as string || undefined,
-      formType: 'energia',
-      language: 'es'
-    }
-
-    try {
-      const result = await submitForm(data)
-      
-      if (result.success) {
-        setSubmitStatus('success')
-        // Reset form safely
-        const form = e.currentTarget
-        if (form && typeof form.reset === 'function') {
-          try {
-            form.reset()
-          } catch (resetError) {
-            console.log("⚠️ No se pudo resetear el formulario")
-          }
-        }
-        // Auto-hide success message after 5 seconds
-        setTimeout(() => setSubmitStatus('idle'), 5000)
-      } else {
-        setSubmitStatus('error')
-        setErrorMessage(result.error || 'Error al enviar el formulario')
-      }
-    } catch (error) {
-      console.error("Error al enviar formulario:", error)
-      setSubmitStatus('error')
-      setErrorMessage('Error de conexión. Intenta nuevamente.')
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-lg border-b border-yellow-200/50 shadow-lg">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+      <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-700/50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center space-x-3">
-              <Image src="/sarico-logo.svg" alt="Sarico Distri S.A." width={160} height={45} className="h-8 md:h-12 lg:h-10 w-auto" />
+              <Image src="/sarico-logo.svg" alt="Sarico Distri S.A." width={160} height={45} className="h-8 md:h-12 lg:h-10 w-auto invert brightness-0" />
             </Link>
             <div className="hidden md:flex items-center space-x-8">
-              <button
-                onClick={() => scrollToSection("inicio")}
-                className="text-gray-700 hover:text-yellow-600 font-medium transition-colors"
-              >
+              <Link href="/" className="text-white/80 hover:text-yellow-400 transition-colors font-medium">
                 Inicio
-              </button>
-              <button
-                onClick={() => scrollToSection("marcas")}
-                className="text-gray-700 hover:text-yellow-600 font-medium transition-colors"
-              >
-                Marcas
-              </button>
-              <button
-                onClick={() => scrollToSection("productos")}
-                className="text-gray-700 hover:text-yellow-600 font-medium transition-colors"
-              >
-                Productos
-              </button>
-              <button
-                onClick={() => scrollToSection("contacto")}
-                className="text-gray-700 hover:text-yellow-600 font-medium transition-colors"
-              >
-                Contacto
-              </button>
-              <Link
-                href="/"
-                className="flex items-center text-yellow-600 hover:text-yellow-700 font-medium transition-colors"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Volver
               </Link>
-              {/* Language Toggle */}
+              <Link href="/#empresa" className="text-white/80 hover:text-yellow-400 transition-colors font-medium">
+                Nosotros
+              </Link>
+              <Link href="/energia" className="text-white/80 hover:text-yellow-400 transition-colors font-medium">
+                Energía
+              </Link>
+              <Link href="/car-detail" className="text-white/80 hover:text-yellow-400 transition-colors font-medium">
+                Estetica Vehicular
+              </Link>
               <button
                 onClick={handleToggle}
-                className="ml-6 flex items-center bg-gray-100 border border-yellow-300 rounded-full px-4 py-1 text-sm text-gray-800 hover:bg-yellow-400 hover:text-black transition-colors"
+                className="ml-6 flex items-center bg-gray-800 border border-gray-700 rounded-full px-4 py-1 text-sm text-white hover:bg-yellow-400 hover:text-black transition-colors"
                 aria-label="Switch language"
               >
                 <span className={isEnglish ? "font-bold" : "opacity-60"}>EN</span>
@@ -152,11 +71,10 @@ export default function EnergiaPage() {
           </div>
         </div>
       </nav>
-      {/* Hero Section */}
-      <section id="inicio" className="relative overflow-hidden">
+      <section id="inicio" className="relative overflow-hidden pt-28">
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-400 via-orange-400 to-yellow-500"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-        <div className="relative z-10 container mx-auto px-6 lg:px-10 pt-32 pb-16 md:pt-20 md:pb-12">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+        <div className="relative z-10 container mx-auto px-6 lg:px-10 pt-16 pb-16 md:pt-20 md:pb-12">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center min-h-[70vh] max-w-7xl mx-auto">
             <div className="text-left space-y-8 px-2 lg:px-4">
               <div className="space-y-6">
@@ -180,7 +98,7 @@ export default function EnergiaPage() {
                 <div className="absolute -inset-4 bg-white/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
                 <div className="relative overflow-hidden rounded-3xl border-2 border-white/20 group-hover:border-yellow-300/70 transition-all duration-300">
                   <Image
-                    src="/images/ImageVarta.jpeg"
+                    src="/Image 12.jpeg"
                     alt="Baterías Varta - Energía confiable y duradera"
                     width={400}
                     height={300}
@@ -197,17 +115,17 @@ export default function EnergiaPage() {
             </div>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent"></div>
       </section>
       {/* Marcas Section */}
-      <section id="marcas" className="py-12 px-4 bg-gradient-to-b from-white to-gray-50">
+      <section id="marcas" className="py-12 px-4 bg-black/40">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
               <Zap className="h-8 w-8 text-white" />
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Nuestras Marcas</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">Nuestras Marcas</h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Trabajamos con las mejores marcas del mercado para ofrecerte soluciones energéticas de calidad superior y
               tecnología de vanguardia.
             </p>
@@ -225,7 +143,7 @@ export default function EnergiaPage() {
             ].map((brand, index) => (
               <div
                 key={index}
-                className="group bg-white rounded-2xl p-8 h-32 flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-100"
+                className="group bg-white/10 backdrop-blur-sm rounded-2xl p-8 h-32 flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-white/20"
               >
                 <Image
                   src={brand.src || "/placeholder.svg"}
@@ -239,7 +157,6 @@ export default function EnergiaPage() {
           </div>
         </div>
       </section>
-      {/* Nuestra Empresa Section */}
       {/* <section id="empresa" className="py-12 px-4 bg-white">
         <div className="container mx-auto">
           <div className="max-w-7xl mx-auto">
@@ -305,20 +222,20 @@ export default function EnergiaPage() {
         </div>
       </section> */}
       {/* Nuestros Valores Section */}
-      <section id="valores" className="py-6 px-4 bg-gradient-to-b from-gray-50 to-white">
+      {/*       <section id="valores" className="py-6 px-4">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
                 <Heart className="h-8 w-8 text-white" />
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">Nuestros Valores</h2>
-              <div className="space-y-4 text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
+              <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">Nuestros Valores</h2>
+              <div className="space-y-4 text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
                 <p>
                   Los valores son un conjunto de principios y creencias que guían el comportamiento de la empresa y sus
                   colaboradores.
                 </p>
-                <p className="font-semibold text-gray-900">He aquí los nuestros:</p>
+                <p className="font-semibold text-white">He aquí los nuestros:</p>
               </div>
             </div>
             <div className="grid lg:grid-cols-3 gap-8">
@@ -350,7 +267,7 @@ export default function EnergiaPage() {
               ].map((valor, index) => (
                 <div
                   key={valor.id}
-                  className="group bg-white rounded-3xl p-8 shadow-xl border-2 border-gray-100 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 relative overflow-hidden"
+                  className="group bg-white/10 backdrop-blur-sm rounded-3xl p-8 shadow-xl border-2 border-white/20 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 relative overflow-hidden"
                 >
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br opacity-5 rounded-full transform translate-x-8 -translate-y-8"></div>
                   <div className="relative z-10">
@@ -361,31 +278,29 @@ export default function EnergiaPage() {
                         <valor.icon className="h-8 w-8 text-white" />
                       </div>
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight">{valor.title}</h3>
-                    <p className="text-gray-600 leading-relaxed text-sm">{valor.content}</p>
+                    <h3 className="text-xl font-bold text-white mb-4 leading-tight">{valor.title}</h3>
+                    <p className="text-gray-300 leading-relaxed text-sm">{valor.content}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
         </div>
-      </section>
-      {/* Productos Principales Section */}
-      <section id="productos" className="py-6 px-4 bg-white">
+      </section> */}
+      <section id="productos" className="py-6 pb-16 px-4 bg-black/40">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
               <Battery className="h-8 w-8 text-white" />
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Nuestros Productos</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">Nuestros Productos</h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Descubre nuestra selección de productos energéticos de alta calidad, diseñados para maximizar la
               eficiencia y sostenibilidad.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            {/* Batería FREE con CALCIO */}
-            <div className="group bg-white rounded-3xl p-6 border-2 border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+            <div className="group bg-white/10 backdrop-blur-sm rounded-3xl p-6 border-2 border-white/20 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
               <div className="relative mb-6 rounded-2xl p-4 h-40 flex items-center justify-center overflow-hidden">
                 <Image
                   src="images/e1275a.jpg"
@@ -395,12 +310,11 @@ export default function EnergiaPage() {
                   className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">E1275A</h3>
-              <p className="text-sm text-gray-500 mb-2">Batería FREE con CALCIO</p>
-              <p className="text-lg font-bold text-yellow-600">12 x 75</p>
+              <h3 className="text-xl font-bold text-white mb-2">E1275A</h3>
+              <p className="text-sm text-gray-300 mb-2">Batería FREE con CALCIO</p>
+              <p className="text-lg font-bold text-yellow-400">12 x 75</p>
             </div>
-            {/* Baterías Silver Graphite */}
-            <div className="group bg-white rounded-3xl p-6 border-2 border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+            <div className="group bg-white/10 backdrop-blur-sm rounded-3xl p-6 border-2 border-white/20 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
               <div className="relative mb-6 rounded-2xl p-4 h-40 flex items-center justify-center overflow-hidden">
                 <Image
                   src="images/esg1275.jpg"
@@ -410,12 +324,11 @@ export default function EnergiaPage() {
                   className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">ESG1275</h3>
-              <p className="text-sm text-gray-500 mb-2">Baterías Silver Graphite</p>
-              <p className="text-lg font-bold text-yellow-600">12 x 75</p>
+              <h3 className="text-xl font-bold text-white mb-2">ESG1275</h3>
+              <p className="text-sm text-gray-300 mb-2">Baterías Silver Graphite</p>
+              <p className="text-lg font-bold text-yellow-400">12 x 75</p>
             </div>
-            {/* Baterías para Motos */}
-            <div className="group bg-white rounded-3xl p-6 border-2 border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+            <div className="group bg-white/10 backdrop-blur-sm rounded-3xl p-6 border-2 border-white/20 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
               <div className="relative mb-6 rounded-2xl p-4 h-40 flex items-center justify-center overflow-hidden">
                 <Image
                   src="images/etx7l-bs.jpg"
@@ -425,12 +338,11 @@ export default function EnergiaPage() {
                   className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">ETX7L-BS</h3>
-              <p className="text-sm text-gray-500 mb-2">Baterías para Motos</p>
-              <p className="text-lg font-bold text-yellow-600">12V</p>
+              <h3 className="text-xl font-bold text-white mb-2">ETX7L-BS</h3>
+              <p className="text-sm text-gray-300 mb-2">Baterías para Motos</p>
+              <p className="text-lg font-bold text-yellow-400">12V</p>
             </div>
-            {/* Baterías de Ciclado Profundo */}
-            <div className="group bg-white rounded-3xl p-6 border-2 border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+            <div className="group bg-white/10 backdrop-blur-sm rounded-3xl p-6 border-2 border-white/20 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
               <div className="relative mb-6 rounded-2xl p-4 h-40 flex items-center justify-center overflow-hidden">
                 <Image
                   src="images/epgs12120.jpg"
@@ -440,9 +352,9 @@ export default function EnergiaPage() {
                   className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">EPGS12-120</h3>
-              <p className="text-sm text-gray-500 mb-2">Baterías de Ciclado Profundo</p>
-              <p className="text-lg font-bold text-yellow-600">12V - 120AH</p>
+              <h3 className="text-xl font-bold text-white mb-2">EPGS12-120</h3>
+              <p className="text-sm text-gray-300 mb-2">Baterías de Ciclado Profundo</p>
+              <p className="text-lg font-bold text-yellow-400">12V - 120AH</p>
             </div>
           </div>
           <div className="text-center">
@@ -458,20 +370,19 @@ export default function EnergiaPage() {
           </div>
         </div>
       </section>
-      <section id="contacto" className="py-12 px-4">
+      {/*       <section id="contacto" className="py-12 px-4">
         <div className="container mx-auto">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
                 <SendHorizonal className="h-8 w-8 text-white" />
               </div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Contacto</h2>
-              <p className="text-gray-600 text-lg">
-                ¿Querés conocer más sobre los productos Meguiar's? Escribinos y te asesoramos.
+              <h2 className="text-4xl font-bold text-white mb-4">Contacto</h2>
+              <p className="text-gray-300 text-lg">
+                ¿Querés conocer más sobre nuestros productos energéticos? Escribinos y te asesoramos.
               </p>
             </div>
-            <div className="bg-white rounded-3xl p-8 border-2 border-gray-100 shadow-xl">
-              {/* Success Message */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border-2 border-white/20 shadow-xl">
               {submitStatus === 'success' && (
                 <div className="mb-6 p-4 bg-green-500/20 border border-green-500/50 rounded-xl">
                   <div className="flex items-center text-green-600">
@@ -483,8 +394,6 @@ export default function EnergiaPage() {
                   </p>
                 </div>
               )}
-
-              {/* Error Message */}
               {submitStatus === 'error' && (
                 <div className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-xl">
                   <div className="flex items-center text-red-600">
@@ -494,7 +403,6 @@ export default function EnergiaPage() {
                   <p className="text-red-700 text-sm mt-1">{errorMessage}</p>
                 </div>
               )}
-
               <form onSubmit={handleFormSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <input
@@ -502,14 +410,14 @@ export default function EnergiaPage() {
                     name="nombre"
                     required
                     placeholder="Nombre completo"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-800 placeholder-gray-400 bg-white focus:outline-none focus:border-yellow-500 transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-white/20 text-white placeholder-gray-300 bg-white/10 backdrop-blur-sm focus:outline-none focus:border-yellow-400 transition-all"
                   />
                   <input
                     type="tel"
                     name="telefono"
                     required
                     placeholder="Teléfono"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-800 placeholder-gray-400 bg-white focus:outline-none focus:border-yellow-500 transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-white/20 text-white placeholder-gray-300 bg-white/10 backdrop-blur-sm focus:outline-none focus:border-yellow-400 transition-all"
                   />
                 </div>
                 <input
@@ -517,52 +425,52 @@ export default function EnergiaPage() {
                   name="email"
                   required
                   placeholder="Email"
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-800 placeholder-gray-400 bg-white focus:outline-none focus:border-yellow-500 transition-all"
+                  className="w-full px-4 py-3 rounded-xl border border-white/20 text-white placeholder-gray-300 bg-white/10 backdrop-blur-sm focus:outline-none focus:border-yellow-400 transition-all"
                 />
                 <div className="grid md:grid-cols-2 gap-4">
                   <select
                     name="provincia"
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-800 bg-white focus:outline-none focus:border-yellow-500 transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-white/20 text-white bg-white/10 backdrop-blur-sm focus:outline-none focus:border-yellow-400 transition-all"
                   >
-                    <option value="">Provincia</option>
-                    <option value="buenos-aires">Buenos Aires</option>
-                    <option value="catamarca">Catamarca</option>
-                    <option value="chaco">Chaco</option>
-                    <option value="chubut">Chubut</option>
-                    <option value="cordoba">Córdoba</option>
-                    <option value="corrientes">Corrientes</option>
-                    <option value="entre-rios">Entre Ríos</option>
-                    <option value="formosa">Formosa</option>
-                    <option value="jujuy">Jujuy</option>
-                    <option value="la-pampa">La Pampa</option>
-                    <option value="la-rioja">La Rioja</option>
-                    <option value="mendoza">Mendoza</option>
-                    <option value="misiones">Misiones</option>
-                    <option value="neuquen">Neuquén</option>
-                    <option value="rio-negro">Río Negro</option>
-                    <option value="salta">Salta</option>
-                    <option value="san-juan">San Juan</option>
-                    <option value="san-luis">San Luis</option>
-                    <option value="santa-cruz">Santa Cruz</option>
-                    <option value="santa-fe">Santa Fe</option>
-                    <option value="santiago-del-estero">Santiago del Estero</option>
-                    <option value="tierra-del-fuego">Tierra del Fuego</option>
-                    <option value="tucuman">Tucumán</option>
+                    <option value="" className="bg-gray-800 text-white">Provincia</option>
+                    <option value="buenos-aires" className="bg-gray-800 text-white">Buenos Aires</option>
+                    <option value="catamarca" className="bg-gray-800 text-white">Catamarca</option>
+                    <option value="chaco" className="bg-gray-800 text-white">Chaco</option>
+                    <option value="chubut" className="bg-gray-800 text-white">Chubut</option>
+                    <option value="cordoba" className="bg-gray-800 text-white">Córdoba</option>
+                    <option value="corrientes" className="bg-gray-800 text-white">Corrientes</option>
+                    <option value="entre-rios" className="bg-gray-800 text-white">Entre Ríos</option>
+                    <option value="formosa" className="bg-gray-800 text-white">Formosa</option>
+                    <option value="jujuy" className="bg-gray-800 text-white">Jujuy</option>
+                    <option value="la-pampa" className="bg-gray-800 text-white">La Pampa</option>
+                    <option value="la-rioja" className="bg-gray-800 text-white">La Rioja</option>
+                    <option value="mendoza" className="bg-gray-800 text-white">Mendoza</option>
+                    <option value="misiones" className="bg-gray-800 text-white">Misiones</option>
+                    <option value="neuquen" className="bg-gray-800 text-white">Neuquén</option>
+                    <option value="rio-negro" className="bg-gray-800 text-white">Río Negro</option>
+                    <option value="salta" className="bg-gray-800 text-white">Salta</option>
+                    <option value="san-juan" className="bg-gray-800 text-white">San Juan</option>
+                    <option value="san-luis" className="bg-gray-800 text-white">San Luis</option>
+                    <option value="santa-cruz" className="bg-gray-800 text-white">Santa Cruz</option>
+                    <option value="santa-fe" className="bg-gray-800 text-white">Santa Fe</option>
+                    <option value="santiago-del-estero" className="bg-gray-800 text-white">Santiago del Estero</option>
+                    <option value="tierra-del-fuego" className="bg-gray-800 text-white">Tierra del Fuego</option>
+                    <option value="tucuman" className="bg-gray-800 text-white">Tucumán</option>
                   </select>
                   <input
                     type="text"
                     name="ciudad"
                     required
                     placeholder="Ciudad"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-800 placeholder-gray-400 bg-white focus:outline-none focus:border-yellow-500 transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-white/20 text-white placeholder-gray-300 bg-white/10 backdrop-blur-sm focus:outline-none focus:border-yellow-400 transition-all"
                   />
                 </div>
                 <textarea
                   name="comentarios"
                   rows={4}
                   placeholder="Comentarios (opcional)"
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-800 placeholder-gray-400 bg-white focus:outline-none focus:border-yellow-500 transition-all resize-none"
+                  className="w-full px-4 py-3 rounded-xl border border-white/20 text-white placeholder-gray-300 bg-white/10 backdrop-blur-sm focus:outline-none focus:border-yellow-400 transition-all resize-none"
                 ></textarea>
                 <div className="text-center pt-4">
                   <Button
@@ -584,52 +492,49 @@ export default function EnergiaPage() {
             </div>
           </div>
         </div>
-      </section>
-      {/* Contact Section */}
-      <section id="contacto" className="py-6 px-4">
+      </section> */}
+      {/* <section id="contacto" className="py-6 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-2xl mb-6">
               <Phone className="h-8 w-8 text-white" />
             </div>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Estamos aquí para ayudarte con todas tus necesidades energéticas. Contáctanos y descubre cómo podemos
               impulsar tu proyecto.
             </p>
           </div>
           <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
-            {/* Información de Contacto */}
-            <div className="bg-white rounded-3xl p-10 shadow-xl border-2 border-gray-100">
-              <h3 className="text-3xl font-bold text-gray-900 mb-8">Sarico Distri SA</h3>
+            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-10 shadow-xl border-2 border-white/20">
+              <h3 className="text-3xl font-bold text-white mb-8">Sarico Distri SA</h3>
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-xl flex items-center justify-center flex-shrink-0">
                     <MapPin className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <p className="text-gray-900 font-semibold text-lg">Dr. Eliseo Cantón 1860 (Esq. Arturo Orgaz)</p>
-                    <p className="text-gray-600 text-lg">Córdoba, X5003AHB</p>
-                    <p className="text-gray-600 text-lg">Argentina</p>
+                    <p className="text-white font-semibold text-lg">Dr. Eliseo Cantón 1860 (Esq. Arturo Orgaz)</p>
+                    <p className="text-gray-300 text-lg">Córdoba, X5003AHB</p>
+                    <p className="text-gray-300 text-lg">Argentina</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-xl flex items-center justify-center flex-shrink-0">
                     <Phone className="h-6 w-6 text-white" />
                   </div>
-                  <p className="text-gray-900 font-semibold text-lg">+54 0351 489 1900</p>
+                  <p className="text-white font-semibold text-lg">+54 0351 489 1900</p>
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-xl flex items-center justify-center flex-shrink-0">
                     <Mail className="h-6 w-6 text-white" />
                   </div>
-                  <p className="text-gray-900 font-semibold text-lg">info@saricodistri.com.ar</p>
+                  <p className="text-white font-semibold text-lg">info@saricodistri.com.ar</p>
                 </div>
               </div>
             </div>
-            {/* Redes Sociales */}
-            <div className="bg-white rounded-3xl p-10 shadow-xl border-2 border-gray-100">
-              <h3 className="text-3xl font-bold text-gray-900 mb-8">Redes Sociales</h3>
-              <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-10 shadow-xl border-2 border-white/20">
+              <h3 className="text-3xl font-bold text-white mb-8">Redes Sociales</h3>
+              <p className="text-gray-300 text-lg mb-8 leading-relaxed">
                 Síguenos en nuestras redes sociales para estar al día con las últimas novedades, productos y consejos
                 sobre energías renovables.
               </p>
@@ -650,13 +555,92 @@ export default function EnergiaPage() {
             </div>
           </div>
         </div>
-      </section>
-      {/* Footer */}
-      <footer className="py-8 px-4 bg-gradient-to-r from-yellow-400 to-orange-400">
-        <div className="container mx-auto text-center">
-          <div className="space-y-2 text-white">
-            <p className="font-semibold text-lg">© Copyright Sarico Distri S.A. Todos los derechos reservados</p>
-            <p className="text-white">
+      </section> */}
+      <footer className="py-8 px-4 bg-black border-t border-gray-800">
+        <div className="container mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <Image
+                src="/sarico-logo.svg"
+                alt="Sarico Distri S.A."
+                width={160}
+                height={45}
+                className="h-6 md:h-8 lg:h-7 w-auto mb-4 invert brightness-0"
+              />
+              <p className="text-gray-400 leading-relaxed">
+                Más de 20 años distribuyendo las mejores marcas en energía y representando con orgullo a Meguiar's,
+                la marca líder mundial en productos de car detailing profesional.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-white font-bold mb-4">Nuestras Divisiones</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>
+                  <Link href="/energia" className="hover:text-yellow-400 transition-colors">
+                    División Energía
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/car-detail" className="hover:text-yellow-400 transition-colors">
+                    Distribuidores Oficiales Meguiar's
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/productos" className="hover:text-yellow-400 transition-colors">
+                    Catálogo de Productos
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-white font-bold mb-4">Contacto</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>
+                  <a
+                    href="https://www.google.com/maps/search/Dr.+Eliseo+Cantón+1860,+Córdoba,+Argentina"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-yellow-400 transition-colors cursor-pointer"
+                  >
+                    Córdoba, Argentina
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.google.com/maps/search/Dr.+Eliseo+Cantón+1860,+Córdoba,+Argentina"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-yellow-400 transition-colors cursor-pointer"
+                  >
+                    Dr. Eliseo Cantón 1860
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://wa.me/5493514891900"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-yellow-300 transition-colors cursor-pointer"
+                  >
+                    +54 0351 489 1900
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=info@saricodistri.com.ar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-yellow-300 transition-colors cursor-pointer"
+                  >
+                    info@saricodistri.com.ar
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 pt-8 text-center">
+            <p className="text-gray-400">© 2024 Sarico Distri S.A. Todos los derechos reservados.</p>
+            <p className="text-gray-400">
               Desarrollado por{' '}
               <a
                 href="https://codeflex.com.ar/"

@@ -1,32 +1,26 @@
 "use client"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, ArrowRight, Car, Sparkles, Shield, Award, Heart, Zap, ChevronLeft, ChevronRight, Calendar, MapPin, CheckCircle, AlertCircle, Loader2 } from "lucide-react"
+import { ArrowLeft, ArrowRight, Sparkles, Shield, Award, Heart, Zap, ChevronLeft, ChevronRight, Calendar, MapPin } from "lucide-react"
 import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 import { useState, useEffect } from "react"
-import { submitForm, type FormData as ContactFormData } from "@/lib/forms"
 
 export default function CarDetailPage() {
   const pathname = usePathname()
   const router = useRouter()
   const isEnglish = pathname.startsWith("/en")
   const [currentSlide, setCurrentSlide] = useState(0)
-  
-  // Form states
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
-  const [errorMessage, setErrorMessage] = useState('')
 
   const slides = [
-    {
-      id: 1,
-      title: "Caravana Solidaria",
-      subtitle: "Domingo 3 de Agosto - Ferial de Córdoba",
-      description: "Evento gigante con Meguiar's. Vení a conocer toda la línea de productos profesionales.",
-      cta: "Información del Evento",
-      image: "/images/ImageCar.jpeg"
-    },
+    /*     {
+          id: 1,
+          title: "Caravana Solidaria",
+          subtitle: "Domingo 3 de Agosto - Ferial de Córdoba",
+          description: "Evento gigante con Meguiar's. Vení a conocer toda la línea de productos profesionales.",
+          cta: "Información del Evento",
+          image: "/images/ImageCar.jpeg"
+        }, */
     {
       id: 2,
       title: "Endurance Tire Gel",
@@ -56,8 +50,7 @@ export default function CarDetailPage() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 6000) // Cambia cada 6 segundos
-
+    }, 6000)
     return () => clearInterval(timer)
   }, [slides.length])
 
@@ -76,53 +69,6 @@ export default function CarDetailPage() {
     }
   }
 
-  // Form submission handler
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus('idle')
-    setErrorMessage('')
-
-    const formData = new FormData(e.currentTarget)
-    const data: ContactFormData = {
-      nombre: formData.get('nombre') as string,
-      telefono: formData.get('telefono') as string,
-      email: formData.get('email') as string,
-      provincia: formData.get('provincia') as string,
-      ciudad: formData.get('ciudad') as string,
-      comentarios: formData.get('comentarios') as string || undefined,
-      formType: 'car-detail',
-      language: 'es'
-    }
-
-    try {
-      const result = await submitForm(data)
-      
-      if (result.success) {
-        setSubmitStatus('success')
-        // Reset form safely
-        const form = e.currentTarget
-        if (form && typeof form.reset === 'function') {
-          try {
-            form.reset()
-          } catch (resetError) {
-            console.log("⚠️ No se pudo resetear el formulario")
-          }
-        }
-        // Auto-hide success message after 5 seconds
-        setTimeout(() => setSubmitStatus('idle'), 5000)
-      } else {
-        setSubmitStatus('error')
-        setErrorMessage(result.error || 'Error al enviar el formulario')
-      }
-    } catch (error) {
-      console.error("Error al enviar formulario:", error)
-      setSubmitStatus('error')
-      setErrorMessage('Error de conexión. Intenta nuevamente.')
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
 
   const handleToggle = () => {
     if (isEnglish) {
@@ -134,7 +80,6 @@ export default function CarDetailPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
-      {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-800">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -160,17 +105,10 @@ export default function CarDetailPage() {
               >
                 Marcas
               </button>
-              <button
-                onClick={() => scrollToSection("contacto")}
-                className="text-white/80 hover:text-yellow-400 font-medium transition-colors"
-              >
-                Contacto
-              </button>
               <Link href="/" className="flex items-center text-yellow-400 hover:text-yellow-300 transition-colors">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Volver
               </Link>
-              {/* Language Toggle */}
               <button
                 onClick={handleToggle}
                 className="ml-6 flex items-center bg-gray-800 border border-gray-700 rounded-full px-4 py-1 text-sm text-white hover:bg-yellow-400 hover:text-black transition-colors"
@@ -184,10 +122,7 @@ export default function CarDetailPage() {
           </div>
         </div>
       </nav>
-      
-      {/* Carrousel Hero Section */}
       <section id="inicio" className="relative h-[95vh] overflow-hidden">
-        {/* Background Image */}
         <div className="absolute inset-0">
           <Image
             src={slides[currentSlide].image}
@@ -201,8 +136,6 @@ export default function CarDetailPage() {
           <div className="absolute inset-0 bg-black/40"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent"></div>
         </div>
-        
-        {/* Content Overlay */}
         <div className="relative z-10 container mx-auto px-8 lg:px-16 h-full flex items-center">
           <div className="max-w-4xl ml-4 lg:ml-8">
             <div className="flex items-center space-x-2 text-yellow-400 font-semibold mb-4">
@@ -210,28 +143,23 @@ export default function CarDetailPage() {
               {slides[currentSlide].id === 1 && <span>Evento Especial</span>}
               {slides[currentSlide].id !== 1 && <span>Producto Meguiar's</span>}
             </div>
-            
             <h1 className="text-5xl md:text-7xl font-black text-white leading-tight mb-4">
               {slides[currentSlide].title}
             </h1>
-            
             <h2 className="text-2xl md:text-3xl text-yellow-400 font-semibold mb-6">
               {slides[currentSlide].subtitle}
             </h2>
-            
             <p className="text-xl text-white/90 leading-relaxed mb-8 max-w-2xl">
               {slides[currentSlide].description}
             </p>
-            
             {slides[currentSlide].id === 1 && (
               <div className="flex items-center space-x-2 text-white/80 mb-8">
                 <MapPin className="h-6 w-6" />
                 <span className="text-lg">Ferial de Córdoba - ¡Te esperamos!</span>
               </div>
             )}
-            
             {slides[currentSlide].id !== 1 && (
-              <Button 
+              <Button
                 onClick={() => window.open('https://tienda.saricodistri.com.ar/', '_blank')}
                 className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-10 py-4 text-xl cursor-pointer"
               >
@@ -239,7 +167,6 @@ export default function CarDetailPage() {
                 <ArrowRight className="ml-3 h-6 w-6" />
               </Button>
             )}
-            
             {slides[currentSlide].id === 1 && (
               <div className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-4 text-xl rounded-lg inline-flex items-center">
                 <Calendar className="mr-3 h-6 w-6" />
@@ -248,8 +175,6 @@ export default function CarDetailPage() {
             )}
           </div>
         </div>
-        
-        {/* Navigation Dots */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4 z-50">
           {slides.map((_, index) => (
             <button
@@ -258,38 +183,34 @@ export default function CarDetailPage() {
                 e.preventDefault()
                 e.stopPropagation()
                 setCurrentSlide(index)
-                console.log('Dot clicked:', index) // Para debug
+                console.log('Dot clicked:', index)
               }}
               aria-label={`Ir al slide ${index + 1}`}
-              className={`w-6 h-6 rounded-full transition-all duration-300 cursor-pointer hover:scale-125 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-black border-2 border-white/30 ${
-                index === currentSlide 
-                  ? 'bg-yellow-400 shadow-lg shadow-yellow-400/50 border-yellow-400' 
+              className={`w-6 h-6 rounded-full transition-all duration-300 cursor-pointer hover:scale-125 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-black border-2 border-white/30 ${index === currentSlide
+                  ? 'bg-yellow-400 shadow-lg shadow-yellow-400/50 border-yellow-400'
                   : 'bg-white/70 hover:bg-white/90 hover:shadow-lg hover:border-white/60'
-              }`}
+                }`}
             />
           ))}
         </div>
-        
-        {/* Arrow Navigation */}
         <button
           onClick={(e) => {
             e.preventDefault()
             e.stopPropagation()
             prevSlide()
-            console.log('Previous arrow clicked') // Para debug
+            console.log('Previous arrow clicked')
           }}
           aria-label="Slide anterior"
           className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-4 rounded-full transition-all duration-300 hover:scale-110 z-50 cursor-pointer border-2 border-white/20 hover:border-white/40"
         >
           <ChevronLeft className="h-7 w-7" />
         </button>
-        
         <button
           onClick={(e) => {
             e.preventDefault()
             e.stopPropagation()
             nextSlide()
-            console.log('Next arrow clicked') // Para debug
+            console.log('Next arrow clicked')
           }}
           aria-label="Slide siguiente"
           className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-4 rounded-full transition-all duration-300 hover:scale-110 z-50 cursor-pointer border-2 border-white/20 hover:border-white/40"
@@ -297,12 +218,9 @@ export default function CarDetailPage() {
           <ChevronRight className="h-7 w-7" />
         </button>
       </section>
-
-      {/* Hero Section */}
       <section className="pt-32 px-4">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
-            {/* Text Content */}
             <div className="text-left space-y-8">
               <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center mb-8 border-2 border-yellow-400">
                 <Image src="/brands/meguiars-logo.png" alt="Meguiar's Logo" width={60} height={60} className="object-contain" />
@@ -318,13 +236,11 @@ export default function CarDetailPage() {
                 </span>
               </h1>
               <p className="text-xl text-white/70 mb-12 leading-relaxed">
-                En Sarico Distri representamos con orgullo a <span className="text-yellow-400 font-semibold">Meguiar's</span>, 
-                la marca de productos de estética vehicular más prestigiosa del mundo, con más de 120 años de innovación 
+                En Sarico Distri representamos con orgullo a <span className="text-yellow-400 font-semibold">Meguiar's</span>,
+                la marca de productos de estética vehicular más prestigiosa del mundo, con más de 120 años de innovación
                 y excelencia en el cuidado automotriz profesional.
               </p>
             </div>
-            
-            {/* Image */}
             <div className="flex justify-center lg:justify-end">
               <div className="relative group">
                 <div className="absolute -inset-4 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
@@ -348,7 +264,6 @@ export default function CarDetailPage() {
           </div>
         </div>
       </section>
-      {/* Content Sections */}
       <section className="py-12 px-4">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -358,7 +273,7 @@ export default function CarDetailPage() {
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Tecnología de Vanguardia</h3>
               <p className="text-white/70 leading-relaxed">
-                Acceso exclusivo a las últimas innovaciones de Meguiar's, desarrolladas con más de un siglo de experiencia 
+                Acceso exclusivo a las últimas innovaciones de Meguiar's, desarrolladas con más de un siglo de experiencia
                 en el cuidado automotriz profesional.
               </p>
             </div>
@@ -368,7 +283,7 @@ export default function CarDetailPage() {
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Calidad Mundial Garantizada</h3>
               <p className="text-white/70 leading-relaxed">
-                Como distribuidores oficiales, garantizamos la autenticidad y calidad de cada producto Meguiar's, 
+                Como distribuidores oficiales, garantizamos la autenticidad y calidad de cada producto Meguiar's,
                 respaldados por la confianza de profesionales en todo el mundo.
               </p>
             </div>
@@ -378,15 +293,14 @@ export default function CarDetailPage() {
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Soporte Técnico Especializado</h3>
               <p className="text-white/70 leading-relaxed">
-                Ofrecemos capacitación, asesoramiento técnico y soporte continuo para talleres, detailers profesionales 
+                Ofrecemos capacitación, asesoramiento técnico y soporte continuo para talleres, detailers profesionales
                 y entusiastas del car care de alto nivel.
               </p>
             </div>
           </div>
         </div>
       </section>
-      {/* Nuestros Valores Section */}
-      <section id="valores" className="py-20 px-4 bg-black/20 backdrop-blur-sm border-t border-white/10">
+      {/* <section id="valores" className="py-20 px-4 bg-black/20 backdrop-blur-sm border-t border-white/10">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
@@ -399,7 +313,6 @@ export default function CarDetailPage() {
               </p>
               <p className="font-semibold text-white/90 text-lg">He aquí los nuestros:</p>
             </div>
-
             <div className="grid lg:grid-cols-3 gap-8">
               {[
                 {
@@ -448,9 +361,7 @@ export default function CarDetailPage() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Marcas Section */}
+      </section> */}
       <section id="marcas" className="py-16 px-4 bg-black/20 backdrop-blur-sm border-t border-white/10">
         <div className="container mx-auto">
           <div className="text-center mb-16">
@@ -459,17 +370,13 @@ export default function CarDetailPage() {
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">La Marca Líder Mundial</h2>
             <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-              Meguiar's es sinónimo de excelencia en el detallado automotriz desde 1901. Ser distribuidores oficiales 
+              Meguiar's es sinónimo de excelencia en el detallado automotriz desde 1901. Ser distribuidores oficiales
               nos posiciona como referentes en productos de car care profesional en Argentina.
             </p>
           </div>
-          {/* Presentación elegante del logo principal */}
           <div className="flex justify-center">
             <div className="relative group">
-              {/* Efecto de resplandor de fondo */}
               <div className="absolute -inset-8 bg-gradient-to-r from-yellow-400/20 via-yellow-400/30 to-yellow-400/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
-              
-              {/* Contenedor principal del logo */}
               <div className="relative bg-white rounded-3xl p-12 border-2 border-yellow-400/50 group-hover:border-yellow-400 transition-all duration-300 transform group-hover:scale-105 shadow-2xl">
                 <Image
                   src="/brands/meguiars-logo.png"
@@ -480,8 +387,6 @@ export default function CarDetailPage() {
                   priority
                 />
               </div>
-              
-              {/* Texto decorativo */}
               <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
                 <div className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black px-6 py-2 rounded-full text-sm font-bold tracking-wide shadow-lg">
                   DESDE 1901
@@ -491,8 +396,7 @@ export default function CarDetailPage() {
           </div>
         </div>
       </section>
-      {/* Contact Form Section */}
-      <section id="contacto" className="py-12 px-4 bg-black/20">
+      {/*  <section id="contacto" className="py-12 px-4 bg-black/20">
         <div className="container mx-auto">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
@@ -503,7 +407,6 @@ export default function CarDetailPage() {
               </p>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-              {/* Success Message */}
               {submitStatus === 'success' && (
                 <div className="mb-6 p-4 bg-green-500/20 border border-green-500/50 rounded-xl">
                   <div className="flex items-center text-green-400">
@@ -515,8 +418,6 @@ export default function CarDetailPage() {
                   </p>
                 </div>
               )}
-
-              {/* Error Message */}
               {submitStatus === 'error' && (
                 <div className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-xl">
                   <div className="flex items-center text-red-400">
@@ -526,7 +427,6 @@ export default function CarDetailPage() {
                   <p className="text-red-300 text-sm mt-1">{errorMessage}</p>
                 </div>
               )}
-
               <form onSubmit={handleFormSubmit} className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
@@ -668,7 +568,105 @@ export default function CarDetailPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+      <footer className="py-8 px-4 bg-black border-t border-gray-800">
+        <div className="container mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <Image
+                src="/sarico-logo.svg"
+                alt="Sarico Distri S.A."
+                width={160}
+                height={45}
+                className="h-6 md:h-8 lg:h-7 w-auto mb-4 invert brightness-0"
+              />
+              <p className="text-gray-400 leading-relaxed">
+                Más de 20 años distribuyendo las mejores marcas en energía y representando con orgullo a Meguiar's,
+                la marca líder mundial en productos de car detailing profesional.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-white font-bold mb-4">Nuestras Divisiones</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>
+                  <Link href="/energia" className="hover:text-yellow-400 transition-colors">
+                    División Energía
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/car-detail" className="hover:text-yellow-400 transition-colors">
+                    Distribuidores Oficiales Meguiar's
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/productos" className="hover:text-yellow-400 transition-colors">
+                    Catálogo de Productos
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-white font-bold mb-4">Contacto</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>
+                  <a
+                    href="https://www.google.com/maps/search/Dr.+Eliseo+Cantón+1860,+Córdoba,+Argentina"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-yellow-400 transition-colors cursor-pointer"
+                  >
+                    Córdoba, Argentina
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.google.com/maps/search/Dr.+Eliseo+Cantón+1860,+Córdoba,+Argentina"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-yellow-400 transition-colors cursor-pointer"
+                  >
+                    Dr. Eliseo Cantón 1860
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://wa.me/5493514891900"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-yellow-300 transition-colors cursor-pointer"
+                  >
+                    +54 0351 489 1900
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=info@saricodistri.com.ar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-yellow-300 transition-colors cursor-pointer"
+                  >
+                    info@saricodistri.com.ar
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 pt-8 text-center">
+            <p className="text-gray-400">© 2024 Sarico Distri S.A. Todos los derechos reservados.</p>
+            <p className="text-gray-400">
+              Desarrollado por{' '}
+              <a
+                href="https://codeflex.com.ar/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-inherit no-underline"
+              >
+                Codeflex S.A.
+              </a>
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

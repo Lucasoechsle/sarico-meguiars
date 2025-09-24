@@ -465,13 +465,9 @@ export default function ProductosPage() {
 
   const { paginatedProducts, totalPages, totalProducts } = useMemo(() => {
     let filtered = productos
-
-    // Filtrar por marca
     if (selectedFilter !== "todos") {
       filtered = filtered.filter((product) => product.brand === selectedFilter)
     }
-
-    // Filtrar por búsqueda
     if (searchTerm) {
       filtered = filtered.filter(
         (product) =>
@@ -480,12 +476,10 @@ export default function ProductosPage() {
           product.denominación.toLowerCase().includes(searchTerm.toLowerCase()),
       )
     }
-
     const totalProducts = filtered.length
     const totalPages = Math.ceil(totalProducts / productsPerPage)
     const startIndex = (currentPage - 1) * productsPerPage
     const paginatedProducts = filtered.slice(startIndex, startIndex + productsPerPage)
-
     return { paginatedProducts, totalPages, totalProducts }
   }, [selectedFilter, searchTerm, currentPage])
 
@@ -515,8 +509,6 @@ export default function ProductosPage() {
     setCurrentPage(page)
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
-
-  // Resetear página cuando cambien filtros
   const handleFilterChange = (filter: string) => {
     setSelectedFilter(filter)
     setCurrentPage(1)
@@ -541,7 +533,6 @@ export default function ProductosPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-100">
-      {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-lg border-b border-yellow-200/50 shadow-lg">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -556,7 +547,6 @@ export default function ProductosPage() {
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Volver
               </Link>
-              {/* Language Toggle */}
               <button
                 onClick={handleToggle}
                 className="ml-6 flex items-center bg-gray-100 border border-yellow-300 rounded-full px-4 py-1 text-sm text-gray-800 hover:bg-yellow-400 hover:text-black transition-colors"
@@ -570,8 +560,6 @@ export default function ProductosPage() {
           </div>
         </div>
       </nav>
-
-      {/* Hero Section */}
       <section className="pt-32 pb-16 px-4">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
@@ -588,19 +576,16 @@ export default function ProductosPage() {
           </div>
         </div>
       </section>
-
-      {/* Filters and Search */}
       <section className="pb-8 px-4">
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row gap-6 items-center justify-between mb-8">
-              {/* Filter Buttons */}
               <div className="flex flex-wrap gap-3">
                 <button
                   onClick={() => handleFilterChange("todos")}
                   className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${selectedFilter === "todos"
-                      ? "bg-gradient-to-r from-yellow-500 to-orange-500 text-white shadow-lg"
-                      : "bg-white text-gray-700 border-2 border-gray-200 hover:border-yellow-400 hover:text-yellow-600"
+                    ? "bg-gradient-to-r from-yellow-500 to-orange-500 text-white shadow-lg"
+                    : "bg-white text-gray-700 border-2 border-gray-200 hover:border-yellow-400 hover:text-yellow-600"
                     }`}
                 >
                   Todos los Productos ({productos.length})
@@ -608,8 +593,8 @@ export default function ProductosPage() {
                 <button
                   onClick={() => handleFilterChange("enerbat")}
                   className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${selectedFilter === "enerbat"
-                      ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg"
-                      : "bg-white text-gray-700 border-2 border-gray-200 hover:border-blue-400 hover:text-blue-600"
+                    ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg"
+                    : "bg-white text-gray-700 border-2 border-gray-200 hover:border-blue-400 hover:text-blue-600"
                     }`}
                 >
                   Enerbat ({productos.filter((p) => p.brand === "enerbat").length})
@@ -617,15 +602,13 @@ export default function ProductosPage() {
                 <button
                   onClick={() => handleFilterChange("newmax")}
                   className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${selectedFilter === "newmax"
-                      ? "bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg"
-                      : "bg-white text-gray-700 border-2 border-gray-200 hover:border-green-400 hover:text-green-600"
+                    ? "bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg"
+                    : "bg-white text-gray-700 border-2 border-gray-200 hover:border-green-400 hover:text-green-600"
                     }`}
                 >
                   Newmax ({productos.filter((p) => p.brand === "newmax").length})
                 </button>
               </div>
-
-              {/* Search Bar */}
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <input
@@ -640,8 +623,6 @@ export default function ProductosPage() {
           </div>
         </div>
       </section>
-
-      {/* Products Grid */}
       <section className="pb-20 px-4">
         <div className="container mx-auto">
           <div className="max-w-7xl mx-auto">
@@ -652,7 +633,6 @@ export default function ProductosPage() {
                     key={product.id}
                     className="group bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 border-gray-100 hover:border-yellow-200"
                   >
-                    {/* Product Image */}
                     <div className="relative mb-6 bg-gray-50 rounded-2xl p-4 h-48 flex items-center justify-center overflow-hidden">
                       <Image
                         src={product.image ? `/${product.image}` : "/placeholder.svg?height=150&width=150"}
@@ -661,26 +641,21 @@ export default function ProductosPage() {
                         height={150}
                         className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300"
                       />
-                      {/* Brand Badge */}
                       <div
                         className={`absolute top-3 right-3 ${getBrandColor(product.brand)} text-white px-3 py-1 rounded-full text-xs font-bold uppercase`}
                       >
                         {getBrandName(product.brand)}
                       </div>
                     </div>
-
-                    {/* Product Info */}
                     <div className="space-y-3">
                       <h3 className="text-xl font-bold text-gray-900 group-hover:text-yellow-600 transition-colors">
                         {product.name}
                       </h3>
-
                       <div className="space-y-2">
                         <div className="flex items-center justify-between">
                           <span className="text-sm text-gray-500 font-medium">Categoría:</span>
                           <span className="text-sm text-gray-700 font-semibold">{product.category}</span>
                         </div>
-
                         <div className="flex items-center justify-between">
                           <span className="text-sm text-gray-500 font-medium">Denominación:</span>
                           <span className="text-sm font-bold text-yellow-600 bg-yellow-50 px-2 py-1 rounded-lg">
@@ -712,7 +687,6 @@ export default function ProductosPage() {
                 </Button>
               </div>
             )}
-            {/* Pagination */}
             {totalPages > 1 && (
               <div className="mt-16 flex justify-center">
                 <div className="flex items-center space-x-2">
@@ -721,21 +695,16 @@ export default function ProductosPage() {
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
                     className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${currentPage === 1
-                        ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                        : "bg-white text-gray-700 border-2 border-gray-200 hover:border-yellow-400 hover:text-yellow-600"
+                      ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                      : "bg-white text-gray-700 border-2 border-gray-200 hover:border-yellow-400 hover:text-yellow-600"
                       }`}
                   >
                     Anterior
                   </button>
-
-                  {/* Page Numbers */}
                   {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
-                    // Show first page, last page, current page, and pages around current
                     const showPage =
                       page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1)
-
                     if (!showPage) {
-                      // Show ellipsis
                       if (page === currentPage - 2 || page === currentPage + 2) {
                         return (
                           <span key={page} className="px-2 text-gray-400">
@@ -745,28 +714,25 @@ export default function ProductosPage() {
                       }
                       return null
                     }
-
                     return (
                       <button
                         key={page}
                         onClick={() => handlePageChange(page)}
                         className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${currentPage === page
-                            ? "bg-gradient-to-r from-yellow-500 to-orange-500 text-white shadow-lg"
-                            : "bg-white text-gray-700 border-2 border-gray-200 hover:border-yellow-400 hover:text-yellow-600"
+                          ? "bg-gradient-to-r from-yellow-500 to-orange-500 text-white shadow-lg"
+                          : "bg-white text-gray-700 border-2 border-gray-200 hover:border-yellow-400 hover:text-yellow-600"
                           }`}
                       >
                         {page}
                       </button>
                     )
                   })}
-
-                  {/* Next Button */}
                   <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
                     className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${currentPage === totalPages
-                        ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                        : "bg-white text-gray-700 border-2 border-gray-200 hover:border-yellow-400 hover:text-yellow-600"
+                      ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                      : "bg-white text-gray-700 border-2 border-gray-200 hover:border-yellow-400 hover:text-yellow-600"
                       }`}
                   >
                     Siguiente

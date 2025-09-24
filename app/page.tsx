@@ -13,14 +13,14 @@ export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0)
 
   const slides = [
-    {
-      id: 1,
-      title: "Caravana Solidaria",
-      subtitle: "Domingo 3 de Agosto - Ferial de Córdoba",
-      description: "Evento gigante con Meguiar's. Conocé los mejores productos de car detailing del mundo.",
-      cta: "Más Información",
-      image: "/images/ImageCar.jpeg"
-    },
+    /*     {
+          id: 1,
+          title: "Caravana Solidaria",
+          subtitle: "Domingo 3 de Agosto - Ferial de Córdoba",
+          description: "Evento gigante con Meguiar's. Conocé los mejores productos de car detailing del mundo.",
+          cta: "Más Información",
+          image: "/images/ImageCar.jpeg"
+        }, */
     {
       id: 2,
       title: "Endurance Tire Gel",
@@ -50,8 +50,7 @@ export default function HomePage() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
-    }, 6000) // Cambia cada 6 segundos
-
+    }, 6000)
     return () => clearInterval(timer)
   }, [slides.length])
 
@@ -80,7 +79,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
-      {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-700/50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -98,7 +96,7 @@ export default function HomePage() {
                 onClick={() => scrollToSection("empresa")}
                 className="text-white/80 hover:text-yellow-400 transition-colors font-medium"
               >
-                Valores
+                Nosotros
               </button>
               <Link href="/energia" className="text-white/80 hover:text-yellow-400 transition-colors font-medium">
                 Energía
@@ -106,7 +104,6 @@ export default function HomePage() {
               <Link href="/car-detail" className="text-white/80 hover:text-yellow-400 transition-colors font-medium">
                 Estetica Vehicular
               </Link>
-              {/* Language Toggle */}
               <button
                 onClick={handleToggle}
                 className="ml-6 flex items-center bg-gray-800 border border-gray-700 rounded-full px-4 py-1 text-sm text-white hover:bg-yellow-400 hover:text-black transition-colors"
@@ -120,10 +117,7 @@ export default function HomePage() {
           </div>
         </div>
       </nav>
-      
-      {/* Carrousel Hero Section */}
       <section id="inicio" className="relative h-[95vh] overflow-hidden">
-        {/* Background Image */}
         <div className="absolute inset-0">
           <Image
             src={slides[currentSlide].image}
@@ -137,8 +131,6 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-black/40"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent"></div>
         </div>
-        
-        {/* Content Overlay */}
         <div className="relative z-10 container mx-auto px-8 lg:px-16 h-full flex items-center">
           <div className="max-w-4xl ml-4 lg:ml-8">
             <div className="flex items-center space-x-2 text-yellow-400 font-semibold mb-4">
@@ -146,28 +138,23 @@ export default function HomePage() {
               {slides[currentSlide].id === 1 && <span>Evento Especial</span>}
               {slides[currentSlide].id !== 1 && <span>Producto Meguiar's</span>}
             </div>
-            
             <h1 className="text-5xl md:text-7xl font-black text-white leading-tight mb-4">
               {slides[currentSlide].title}
             </h1>
-            
             <h2 className="text-2xl md:text-3xl text-yellow-400 font-semibold mb-6">
               {slides[currentSlide].subtitle}
             </h2>
-            
             <p className="text-xl text-white/90 leading-relaxed mb-8 max-w-2xl">
               {slides[currentSlide].description}
             </p>
-            
             {slides[currentSlide].id === 1 && (
               <div className="flex items-center space-x-2 text-white/80 mb-8">
                 <MapPin className="h-6 w-6" />
                 <span className="text-lg">Ferial de Córdoba - ¡Te esperamos!</span>
               </div>
             )}
-            
             {slides[currentSlide].id !== 1 && (
-              <Button 
+              <Button
                 onClick={() => window.open('https://tienda.saricodistri.com.ar/', '_blank')}
                 className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-10 py-4 text-xl cursor-pointer"
               >
@@ -175,7 +162,6 @@ export default function HomePage() {
                 <ArrowRight className="ml-3 h-6 w-6" />
               </Button>
             )}
-            
             {slides[currentSlide].id === 1 && (
               <div className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-4 text-xl rounded-lg inline-flex items-center">
                 <Calendar className="mr-3 h-6 w-6" />
@@ -184,8 +170,6 @@ export default function HomePage() {
             )}
           </div>
         </div>
-        
-        {/* Navigation Dots */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4 z-50">
           {slides.map((_, index) => (
             <button
@@ -194,38 +178,34 @@ export default function HomePage() {
                 e.preventDefault()
                 e.stopPropagation()
                 setCurrentSlide(index)
-                console.log('Dot clicked:', index) // Para debug
+                console.log('Dot clicked:', index)
               }}
               aria-label={`Ir al slide ${index + 1}`}
-              className={`w-6 h-6 rounded-full transition-all duration-300 cursor-pointer hover:scale-125 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-black border-2 border-white/30 ${
-                index === currentSlide 
-                  ? 'bg-yellow-400 shadow-lg shadow-yellow-400/50 border-yellow-400' 
+              className={`w-6 h-6 rounded-full transition-all duration-300 cursor-pointer hover:scale-125 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-black border-2 border-white/30 ${index === currentSlide
+                  ? 'bg-yellow-400 shadow-lg shadow-yellow-400/50 border-yellow-400'
                   : 'bg-white/70 hover:bg-white/90 hover:shadow-lg hover:border-white/60'
-              }`}
+                }`}
             />
           ))}
         </div>
-        
-        {/* Arrow Navigation */}
         <button
           onClick={(e) => {
             e.preventDefault()
             e.stopPropagation()
             prevSlide()
-            console.log('Previous arrow clicked') // Para debug
+            console.log('Previous arrow clicked')
           }}
           aria-label="Slide anterior"
           className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-4 rounded-full transition-all duration-300 hover:scale-110 z-50 cursor-pointer border-2 border-white/20 hover:border-white/40"
         >
           <ChevronLeft className="h-7 w-7" />
         </button>
-        
         <button
           onClick={(e) => {
             e.preventDefault()
             e.stopPropagation()
             nextSlide()
-            console.log('Next arrow clicked') // Para debug
+            console.log('Next arrow clicked')
           }}
           aria-label="Slide siguiente"
           className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-4 rounded-full transition-all duration-300 hover:scale-110 z-50 cursor-pointer border-2 border-white/20 hover:border-white/40"
@@ -233,8 +213,6 @@ export default function HomePage() {
           <ChevronRight className="h-7 w-7" />
         </button>
       </section>
-
-      {/* Hero Section */}
       <section className="pt-28 px-4">
         <div className="container mx-auto text-center">
           <div className="max-w-5xl mx-auto">
@@ -252,21 +230,18 @@ export default function HomePage() {
               <br />
               <span className="text-4xl md:text-5xl text-gray-300 font-semibold">Soluciones Profesionales</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed max-w-4xl mx-auto">
+            <p className="text-xl md:text-2xl text-gray-300 mb-6 leading-relaxed max-w-4xl mx-auto">
               Distribuimos las mejores marcas en{" "}
               <span className="text-yellow-400 font-semibold">baterías y sistemas energéticos</span>, y somos{" "}
               <span className="text-yellow-400 font-semibold">distribuidores oficiales de productos </span>
               Meguiar's. en Argentina
             </p>
-            
-            {/* Hero Images Section */}
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mt-16">
-              {/* Energía Image */}
-              <div className="relative group">
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto m-8">
+              <Link href="/energia" className="relative group cursor-pointer">
                 <div className="absolute -inset-2 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 rounded-2xl blur-lg group-hover:blur-xl transition-all duration-300"></div>
                 <div className="relative overflow-hidden rounded-2xl border border-white/20 group-hover:border-yellow-400/50 transition-all duration-300">
                   <Image
-                    src="/images/ImageVarta.jpeg"
+                    src="/Image 12.jpeg"
                     alt="División Energía - Baterías Varta de alta calidad"
                     width={400}
                     height={280}
@@ -278,10 +253,8 @@ export default function HomePage() {
                     <p className="text-white/90 text-sm drop-shadow-lg">Baterías y sistemas energéticos</p>
                   </div>
                 </div>
-              </div>
-
-              {/* Car Detail Image */}
-              <div className="relative group">
+              </Link>
+              <Link href="/car-detail" className="relative group cursor-pointer">
                 <div className="absolute -inset-2 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 rounded-2xl blur-lg group-hover:blur-xl transition-all duration-300"></div>
                 <div className="relative overflow-hidden rounded-2xl border border-white/20 group-hover:border-yellow-400/50 transition-all duration-300">
                   <Image
@@ -297,12 +270,11 @@ export default function HomePage() {
                     <p className="text-white/90 text-sm drop-shadow-lg">Car detailing profesional</p>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
       </section>
-      {/* Stats Section */}
       <section className="py-12 px-4 bg-black/40">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto text-center">
@@ -321,7 +293,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* Nuestra Empresa Section */}
       <section id="empresa" className="py-12 px-4">
         <div className="container mx-auto">
           <div className="max-w-7xl mx-auto">
@@ -333,7 +304,7 @@ export default function HomePage() {
                   </div>
                   <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">Nuestra Empresa</h2>
                 </div>
-                <div className="space-y-6 text-white text-lg leading-relaxed">
+                {/*                 <div className="space-y-6 text-white text-lg leading-relaxed">
                   <p>
                     <span className="font-semibold">Sarico Distri S.A.</span> es una empresa argentina
                     fundada en <span className="font-semibold text-yellow-600">2001</span>, con el propósito inicial de
@@ -351,7 +322,7 @@ export default function HomePage() {
                     con un equipo de profesionales altamente capacitados, listos para asesorarlo en la solución adecuada
                     a sus necesidades.
                   </p>
-                </div>
+                </div> */}
               </div>
               <div className="space-y-6">
                 <div className="bg-gradient-to-br from-yellow-400 to-orange-400 rounded-3xl p-8 text-white shadow-2xl transform hover:scale-105 transition-all duration-300">
@@ -387,7 +358,7 @@ export default function HomePage() {
         </div>
       </section>
       {/* Main Sections */}
-      <section className="py-12 px-4">
+      {/* <section className="py-12 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -398,7 +369,6 @@ export default function HomePage() {
             </p>
           </div>
           <div className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
-            {/* Energía Section */}
             <Link href="/energia" className="group">
               <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-yellow-500/10 to-orange-500/10 backdrop-blur-sm border-2 border-gray-700 hover:border-yellow-400/50 p-10 h-[500px] flex flex-col justify-between transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-orange-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -443,7 +413,6 @@ export default function HomePage() {
                 </div>
               </div>
             </Link>
-            {/* Car Detail Section */}
             <Link href="/car-detail" className="group">
               <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-800/50 to-black/50 backdrop-blur-sm border-2 border-gray-700 hover:border-yellow-400/50 p-10 h-[500px] flex flex-col justify-between transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-orange-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -491,20 +460,21 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* CTA Section */}
       <section className="py-12 px-4 bg-gradient-to-r from-yellow-500 to-orange-500">
         <div className="container mx-auto text-center">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">¿Listo para comenzar?</h2>
             <p className="text-xl text-black/80 mb-10 leading-relaxed">
-              Contáctanos para conocer más sobre nuestros productos energéticos o descubrí por qué somos los distribuidores oficiales 
+              Contáctanos para conocer más sobre nuestros productos energéticos o descubrí por qué somos los distribuidores oficiales
               de Meguiar's, la marca líder mundial en car detailing profesional
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-black hover:bg-gray-900 text-white font-bold px-10 py-4 text-lg shadow-xl"
+                onClick={() => window.open('https://wa.me/5493514891900', '_blank')}
+                className="bg-black hover:bg-gray-900 text-white font-bold px-10 py-4 text-lg shadow-xl cursor-pointer"
               >
                 <Phone className="mr-2 h-5 w-5" />
                 +54 0351 489 1900
@@ -512,7 +482,13 @@ export default function HomePage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-black text-black hover:bg-black hover:text-white px-10 py-4 text-lg bg-transparent font-bold"
+                onClick={() =>
+                  window.open(
+                    'https://mail.google.com/mail/?view=cm&fs=1&to=info@saricodistri.com.ar',
+                    '_blank'
+                  )
+                }
+                className="border-2 border-black text-black hover:bg-black hover:text-white px-10 py-4 text-lg bg-transparent font-bold cursor-pointer"
               >
                 info@saricodistri.com.ar
               </Button>
@@ -520,7 +496,22 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* Footer */}
+      <a
+        href="https://wa.me/5493514891900"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full cursor-pointer"
+        aria-label="Contactar por WhatsApp"
+      >
+        <svg
+          className="w-6 h-6"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
+        </svg>
+      </a>
       <footer className="py-8 px-4 bg-black border-t border-gray-800">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
@@ -530,10 +521,10 @@ export default function HomePage() {
                 alt="Sarico Distri S.A."
                 width={160}
                 height={45}
-                className="h-8 md:h-12 lg:h-10 w-auto mb-4 invert brightness-0"
+                className="h-6 md:h-8 lg:h-7 w-auto mb-4 invert brightness-0"
               />
               <p className="text-gray-400 leading-relaxed">
-                Más de 20 años distribuyendo las mejores marcas en energía y representando con orgullo a Meguiar's, 
+                Más de 20 años distribuyendo las mejores marcas en energía y representando con orgullo a Meguiar's,
                 la marca líder mundial en productos de car detailing profesional.
               </p>
             </div>
@@ -560,10 +551,46 @@ export default function HomePage() {
             <div>
               <h4 className="text-white font-bold mb-4">Contacto</h4>
               <ul className="space-y-2 text-gray-400">
-                <li>Dr. Eliseo Cantón 1860</li>
-                <li>Córdoba, Argentina</li>
-                <li className="text-yellow-400">+54 0351 489 1900</li>
-                <li className="text-yellow-400">info@saricodistri.com.ar</li>
+                <li>
+                  <a
+                    href="https://www.google.com/maps/search/Dr.+Eliseo+Cantón+1860,+Córdoba,+Argentina"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-yellow-400 transition-colors cursor-pointer"
+                  >
+                    Córdoba, Argentina
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.google.com/maps/search/Dr.+Eliseo+Cantón+1860,+Córdoba,+Argentina"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-yellow-400 transition-colors cursor-pointer"
+                  >
+                    Dr. Eliseo Cantón 1860
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://wa.me/5493514891900"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-yellow-300 transition-colors cursor-pointer"
+                  >
+                    +54 0351 489 1900
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=info@saricodistri.com.ar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-yellow-300 transition-colors cursor-pointer"
+                  >
+                    info@saricodistri.com.ar
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
