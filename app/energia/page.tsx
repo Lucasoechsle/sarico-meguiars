@@ -5,12 +5,6 @@ import {
   Zap,
   Battery,
   ArrowRight,
-  Facebook,
-  Instagram,
-  Phone,
-  Mail,
-  MapPin,
-  Heart,
 } from "lucide-react"
 import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
