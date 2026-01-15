@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Códigos QR - Certificaciones de Baterías VARTA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            background: rgba(255,255,255,0.2);
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .qr-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .qr-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .qr-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            background: #f8f9fa;
+            padding: 10px;
+        }
+        
+        .qr-info {
+            margin-top: 15px;
+        }
+        
+        .qr-modelo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        
+        .qr-marca {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-bottom: 10px;
+        }
+        
+        .qr-url {
+            font-size: 0.75rem;
+            color: #a0aec0;
+            word-break: break-all;
+            margin-bottom: 15px;
+        }
+        
+        .btn-download {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+        
+        .btn-download:hover {
+            opacity: 0.9;
+        }
+        
+        .download-all {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #48bb78;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(72, 187, 120, 0.4);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .download-all:hover {
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+            
+            .download-all {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔋 Códigos QR - Certificaciones VARTA</h1>
+            <p class="subtitle">SARICO DISTRI S.A. - Certificaciones INTI</p>
+            <div class="stats">
+                <strong>40 Códigos QR Generados</strong>
+            </div>
+        </header>
+        
+        <div class="grid" id="qr-grid">
+            <!-- QR codes will be loaded here -->
+        </div>
+    </div>
+    
+    <a href="#" class="download-all" onclick="downloadAllQRs(); return false;">
+        📦 Descargar Todos los QR
+    </a>
+    
+    <script>
+        const baterias = [
+            { modelo: 'VA150TD', marca: 'VARTA' },
+            { modelo: 'VPA150TD', marca: 'VARTA' },
+            { modelo: 'VA180TD', marca: 'VARTA' },
+            { modelo: 'VPA180TD', marca: 'VARTA' },
+            { modelo: 'VA200TD', marca: 'VARTA' },
+            { modelo: 'VA34JD', marca: 'VARTA' },
+            { modelo: 'VA38JD', marca: 'VARTA' },
+            { modelo: 'VA225TE', marca: 'VARTA' },
+            { modelo: 'VFA180TE', marca: 'VARTA' },
+            { modelo: 'VFA180TD', marca: 'VARTA' },
+            { modelo: 'VA75LE', marca: 'VARTA' },
+            { modelo: 'VA75LD', marca: 'VARTA' },
+            { modelo: 'VA90LD', marca: 'VARTA' },
+            { modelo: 'VA90LE', marca: 'VARTA' },
+            { modelo: 'VPA100LE', marca: 'VARTA' },
+            { modelo: 'VA40FD', marca: 'VARTA' },
+            { modelo: 'VA50GD', marca: 'VARTA' },
+            { modelo: 'VA60HE', marca: 'VARTA' },
+            { modelo: 'VA60HD', marca: 'VARTA' },
+            { modelo: 'VGM60HE', marca: 'VARTA PLUS' },
+            { modelo: 'VGM60HD', marca: 'VARTA PLUS' },
+            { modelo: 'VFB60HD', marca: 'VARTA' },
+            { modelo: 'VFB72PD', marca: 'VARTA' },
+            { modelo: 'VDA75PD', marca: 'VARTA' },
+            { modelo: 'VAF90MD', marca: 'VARTA' },
+            { modelo: 'VDA95MD', marca: 'VARTA PLUS' },
+            { modelo: 'VA45JD', marca: 'VARTA' },
+            { modelo: 'VA45JE', marca: 'VARTA' },
+            { modelo: 'VA45BD', marca: 'VARTA' },
+            { modelo: 'VA45BE', marca: 'VARTA' },
+            { modelo: 'VDA60DE', marca: 'VARTA PLUS' },
+            { modelo: 'VDA60DD', marca: 'VARTA PLUS' },
+            { modelo: 'VA60DD', marca: 'VARTA' },
+            { modelo: 'VA60DE', marca: 'VARTA' },
+            { modelo: 'VDA70ND', marca: 'VARTA PLUS' },
+            { modelo: 'VDA70NE', marca: 'VARTA PLUS' },
+            { modelo: 'VA70ND', marca: 'VARTA' },
+            { modelo: 'VA70NE', marca: 'VARTA' },
+            { modelo: 'VPA180TE', marca: 'VARTA' },
+            { modelo: 'VFB50GD', marca: 'VARTA' }
+        ];
+        
+        const baseUrl = 'https://saricodistri.com.ar/certificaciones/baterias';
+        const grid = document.getElementById('qr-grid');
+        
+        baterias.forEach(bateria => {
+            const url = `${baseUrl}/${bateria.modelo}`;
+            const qrPath = `${bateria.modelo}.png`;
+            
+            const card = document.createElement('div');
+            card.className = 'qr-card';
+            card.innerHTML = `
+                <img src="${qrPath}" alt="QR ${bateria.modelo}" class="qr-image">
+                <div class="qr-info">
+                    <div class="qr-modelo">${bateria.modelo}</div>
+                    <div class="qr-marca">${bateria.marca}</div>
+                    <div class="qr-url">${url}</div>
+                    <a href="${qrPath}" download="${bateria.modelo}_QR.png" class="btn-download">
+                        ⬇️ Descargar QR
+                    </a>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+        
+        function downloadAllQRs() {
+            alert('💡 Tip: Puedes seleccionar todos los archivos .png en la carpeta public/qr-codes/ y comprimirlos en un ZIP manualmente, o puedes descargarlos uno por uno usando los botones de cada tarjeta.');
+        }
+    </script>
+</body>
+</html>
+
+

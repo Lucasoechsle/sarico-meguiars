@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Zap, Car, Phone, Heart, Eye, Target, ChevronLeft, ChevronRight, Calendar, MapPin, Compass } from "lucide-react"
+import { ArrowRight, Zap, Phone, Heart, Eye, Target, ChevronLeft, ChevronRight, Compass } from "lucide-react"
 import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 import { useState, useEffect } from "react"
@@ -13,16 +13,8 @@ export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0)
 
   const slides = [
-    /*     {
-          id: 1,
-          title: "Caravana Solidaria",
-          subtitle: "Domingo 3 de Agosto - Ferial de Córdoba",
-          description: "Evento gigante con Meguiar's. Conocé los mejores productos de car detailing del mundo.",
-          cta: "Más Información",
-          image: "/images/ImageCar.jpeg"
-        }, */
     {
-      id: 2,
+      id: 1,
       title: "Endurance Tire Gel",
       subtitle: "Brillo profundo y protección duradera para neumáticos",
       description: "El favorito de los entusiastas por su acabado y resistencia",
@@ -30,7 +22,7 @@ export default function HomePage() {
       image: "/images/EnduranceTres.jpg"
     },
     {
-      id: 3,
+      id: 2,
       title: "Hybrid Ceramic Wash & Wax",
       subtitle: "Limpieza profunda + protección cerámica real",
       description: "La perfecta combinación de facilidad de aplicación y protección cerámica de larga duración. Lavado con SiO₂ para mantener el efecto cerámico.",
@@ -38,7 +30,7 @@ export default function HomePage() {
       image: "/images/HybridCeramicMant.jpeg"
     },
     {
-      id: 4,
+      id: 3,
       title: "Hybrid Ceramic Detailer",
       subtitle: "Refuerzo cerámico instantáneo entre lavados",
       description: "Mantenimiento rápido con protección de alto rendimiento. Este detallador remueve polvo y suciedad leve sin rayar, mientras renueva la capa hidrofóbica gracias a su infusión con SiO₂ real.",
@@ -137,9 +129,7 @@ export default function HomePage() {
         <div className="relative z-10 container mx-auto px-8 lg:px-16 h-full flex items-center">
           <div className="max-w-4xl ml-4 lg:ml-8">
             <div className="flex items-center space-x-2 text-yellow-400 font-semibold mb-4">
-              {slides[currentSlide].id === 1 && <Calendar className="h-5 w-5" />}
-              {slides[currentSlide].id === 1 && <span>Evento Especial</span>}
-              {slides[currentSlide].id !== 1 && <span>Producto Meguiar's</span>}
+              <span>Producto Meguiar's</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-black text-white leading-tight mb-4">
               {slides[currentSlide].title}
@@ -150,27 +140,13 @@ export default function HomePage() {
             <p className="text-xl text-white/90 leading-relaxed mb-8 max-w-2xl">
               {slides[currentSlide].description}
             </p>
-            {slides[currentSlide].id === 1 && (
-              <div className="flex items-center space-x-2 text-white/80 mb-8">
-                <MapPin className="h-6 w-6" />
-                <span className="text-lg">Ferial de Córdoba - ¡Te esperamos!</span>
-              </div>
-            )}
-            {slides[currentSlide].id !== 1 && (
-              <Button
-                onClick={() => window.open('https://tienda.saricodistri.com.ar/', '_blank')}
-                className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-10 py-4 text-xl cursor-pointer"
-              >
-                ¡Comprar Ahora!
-                <ArrowRight className="ml-3 h-6 w-6" />
-              </Button>
-            )}
-            {slides[currentSlide].id === 1 && (
-              <div className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-4 text-xl rounded-lg inline-flex items-center">
-                <Calendar className="mr-3 h-6 w-6" />
-                ¡Nos vemos el 3 de Agosto!
-              </div>
-            )}
+            <Button
+              onClick={() => window.open('https://tienda.saricodistri.com.ar/', '_blank')}
+              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-10 py-4 text-xl cursor-pointer"
+            >
+              ¡Comprar Ahora!
+              <ArrowRight className="ml-3 h-6 w-6" />
+            </Button>
           </div>
         </div>
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4 z-50">
