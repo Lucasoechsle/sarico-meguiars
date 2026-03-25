@@ -29,7 +29,6 @@ export const submitForm = async (formData: FormData): Promise<{ success: boolean
     return { success: true };
   } catch (error) {
     console.error("❌ Error al enviar formulario:", error);
-    
     return { 
       success: false, 
       error: error instanceof Error ? error.message : "Error desconocido" 

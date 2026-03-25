@@ -1,10 +1,6 @@
 "use client"
 import * as React from "react"
-
-import type {
-  ToastActionElement,
-  ToastProps,
-} from "@/components/ui/toast"
+import type { ToastActionElement, ToastProps } from "@/components/ui/toast"
 
 const TOAST_LIMIT = 1
 const TOAST_REMOVE_DELAY = 1000000
@@ -135,14 +131,12 @@ type Toast = Omit<ToasterToast, "id">
 
 function toast({ ...props }: Toast) {
   const id = genId()
-
   const update = (props: ToasterToast) =>
     dispatch({
       type: "UPDATE_TOAST",
       toast: { ...props, id },
     })
   const dismiss = () => dispatch({ type: "DISMISS_TOAST", toastId: id })
-
   dispatch({
     type: "ADD_TOAST",
     toast: {
@@ -154,7 +148,6 @@ function toast({ ...props }: Toast) {
       },
     },
   })
-
   return {
     id: id,
     dismiss,
@@ -164,7 +157,6 @@ function toast({ ...props }: Toast) {
 
 function useToast() {
   const [state, setState] = React.useState<State>(memoryState)
-
   React.useEffect(() => {
     listeners.push(setState)
     return () => {
@@ -174,7 +166,6 @@ function useToast() {
       }
     }
   }, [state])
-
   return {
     ...state,
     toast,
