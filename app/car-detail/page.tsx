@@ -186,7 +186,6 @@ export default function CarDetailPage() {
                 e.preventDefault()
                 e.stopPropagation()
                 setCurrentSlide(index)
-                console.log('Dot clicked:', index)
               }}
               aria-label={`Ir al slide ${index + 1}`}
               className={`w-6 h-6 rounded-full transition-all duration-300 cursor-pointer hover:scale-125 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-black border-2 border-white/30 ${index === currentSlide
@@ -201,7 +200,6 @@ export default function CarDetailPage() {
             e.preventDefault()
             e.stopPropagation()
             prevSlide()
-            console.log('Previous arrow clicked')
           }}
           aria-label="Slide anterior"
           className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-4 rounded-full transition-all duration-300 hover:scale-110 z-50 cursor-pointer border-2 border-white/20 hover:border-white/40"
@@ -213,7 +211,6 @@ export default function CarDetailPage() {
             e.preventDefault()
             e.stopPropagation()
             nextSlide()
-            console.log('Next arrow clicked')
           }}
           aria-label="Slide siguiente"
           className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/70 hover:bg-black/90 text-white p-4 rounded-full transition-all duration-300 hover:scale-110 z-50 cursor-pointer border-2 border-white/20 hover:border-white/40"

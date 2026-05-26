@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Zap, Battery, ArrowRight } from "lucide-react"
+import { Zap, Battery, ArrowRight, Facebook, Instagram, Phone, Mail, MapPin, Shield, Heart, SendHorizonal } from "lucide-react"
 import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 
