@@ -1,28 +1,24 @@
 import type { ReactNode } from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import "./globals.css"
+import "../globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: 'Sarico Distri',
+  title: "Sarico Distri",
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon.png', type: 'image/png' },
+      { url: "/favicon.ico" },
+      { url: "/favicon.png", type: "image/png" },
     ],
-    apple: '/apple-touch-icon.png',
+    apple: "/apple-touch-icon.png",
   },
-};
+}
 
-export default function RootLayout({
-  children,
-}: {
-  children: ReactNode
-}) {
+export default function EnglishLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body className={inter.className}>{children}</body>
     </html>
   )

@@ -3,27 +3,14 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Zap, Battery, ArrowRight, Facebook, Instagram, Phone, Mail, MapPin, Shield, Heart, SendHorizonal } from "lucide-react"
 import Image from "next/image"
-import { usePathname, useRouter } from "next/navigation"
-import { useState } from "react"
+import { LanguageToggle } from "@/components/language-toggle"
 
 export default function EnergiaPageEn() {
-  const [openAccordion, setOpenAccordion] = useState<string | null>(null)
-  const pathname = usePathname()
-  const router = useRouter()
-  const isEnglish = pathname.startsWith("/en")
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
-    }
-  }
-
-  const handleToggle = () => {
-    if (isEnglish) {
-      router.push("/energia")
-    } else {
-      router.push("/en/energia")
     }
   }
 
@@ -69,15 +56,7 @@ export default function EnergiaPageEn() {
                 Back
               </Link>
               {/* Language Toggle */}
-              <button
-                onClick={handleToggle}
-                className="ml-6 flex items-center bg-gray-100 border border-yellow-300 rounded-full px-4 py-1 text-sm text-gray-800 hover:bg-yellow-400 hover:text-black transition-colors"
-                aria-label="Switch language"
-              >
-                <span className={isEnglish ? "font-bold" : "opacity-60"}>EN</span>
-                <span className="mx-2">|</span>
-                <span className={!isEnglish ? "font-bold" : "opacity-60"}>ES</span>
-              </button>
+              <LanguageToggle spanishHref="/energia" englishHref="/en/energia" className="ml-6 flex items-center bg-gray-100 border border-yellow-300 rounded-full px-4 py-1 text-sm text-gray-800 hover:bg-yellow-400 hover:text-black transition-colors" />
             </div>
           </div>
         </div>
@@ -202,7 +181,7 @@ export default function EnergiaPageEn() {
                   icon: Zap,
                   gradient: "from-yellow-400 to-orange-400",
                 },
-              ].map((valor, index) => (
+              ].map((valor) => (
                 <div
                   key={valor.id}
                   className="group bg-white rounded-3xl p-8 shadow-xl border-2 border-gray-100 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 relative overflow-hidden"
@@ -492,4 +471,4 @@ export default function EnergiaPageEn() {
       </footer>
     </div>
   )
-} 
+}

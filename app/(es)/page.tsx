@@ -1,15 +1,12 @@
 "use client"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Zap, Phone, Heart, Eye, Target, ChevronLeft, ChevronRight, Compass } from "lucide-react"
+import { ArrowRight, Phone, Heart, Eye, Target, ChevronLeft, ChevronRight, Compass } from "lucide-react"
 import Image from "next/image"
-import { usePathname, useRouter } from "next/navigation"
+import { LanguageToggle } from "@/components/language-toggle"
 import { useState, useEffect } from "react"
 
 export default function HomePage() {
-  const pathname = usePathname()
-  const router = useRouter()
-  const isEnglish = pathname.startsWith("/en")
   const [currentSlide, setCurrentSlide] = useState(0)
 
   const slides = [
@@ -54,14 +51,6 @@ export default function HomePage() {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
   }
 
-  const handleToggle = () => {
-    if (isEnglish) {
-      router.push("/")
-    } else {
-      router.push("/en")
-    }
-  }
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -99,15 +88,7 @@ export default function HomePage() {
               <Link href="/blog" className="text-white/80 hover:text-yellow-400 transition-colors font-medium">
                 Blog
               </Link>
-              <button
-                onClick={handleToggle}
-                className="ml-6 flex items-center bg-gray-800 border border-gray-700 rounded-full px-4 py-1 text-sm text-white hover:bg-yellow-400 hover:text-black transition-colors"
-                aria-label="Switch language"
-              >
-                <span className={isEnglish ? "font-bold" : "opacity-60"}>EN</span>
-                <span className="mx-2">|</span>
-                <span className={!isEnglish ? "font-bold" : "opacity-60"}>ES</span>
-              </button>
+              <LanguageToggle spanishHref="/" englishHref="/en" className="ml-6 flex items-center bg-gray-800 border border-gray-700 rounded-full px-4 py-1 text-sm text-white hover:bg-yellow-400 hover:text-black transition-colors" />
             </div>
           </div>
         </div>

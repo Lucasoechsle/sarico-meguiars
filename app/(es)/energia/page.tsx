@@ -1,32 +1,11 @@
 "use client"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Zap, Battery, ArrowRight, Facebook, Instagram, Phone, Mail, MapPin, Shield, Heart, SendHorizonal } from "lucide-react"
+import { Zap, Battery, ArrowRight } from "lucide-react"
 import Image from "next/image"
-import { usePathname, useRouter } from "next/navigation"
+import { LanguageToggle } from "@/components/language-toggle"
 
 export default function EnergiaPage() {
-  const pathname = usePathname()
-  const router = useRouter()
-  const isEnglish = pathname.startsWith("/en")
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    } else if (sectionId === "empresa") {
-      router.push("/")
-    }
-  }
-
-  const handleToggle = () => {
-    if (isEnglish) {
-      router.push("/energia")
-    } else {
-      router.push("/en/energia")
-    }
-  }
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
       <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-700/50">
@@ -51,15 +30,7 @@ export default function EnergiaPage() {
               <Link href="/blog" className="text-white/80 hover:text-yellow-400 transition-colors font-medium">
                 Blog
               </Link>
-              <button
-                onClick={handleToggle}
-                className="ml-6 flex items-center bg-gray-800 border border-gray-700 rounded-full px-4 py-1 text-sm text-white hover:bg-yellow-400 hover:text-black transition-colors"
-                aria-label="Switch language"
-              >
-                <span className={isEnglish ? "font-bold" : "opacity-60"}>EN</span>
-                <span className="mx-2">|</span>
-                <span className={!isEnglish ? "font-bold" : "opacity-60"}>ES</span>
-              </button>
+              <LanguageToggle spanishHref="/energia" englishHref="/en/energia" className="ml-6 flex items-center bg-gray-800 border border-gray-700 rounded-full px-4 py-1 text-sm text-white hover:bg-yellow-400 hover:text-black transition-colors" />
             </div>
           </div>
         </div>

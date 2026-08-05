@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, Search } from "lucide-react"
 import Image from "next/image"
 import { useState, useMemo } from "react"
-import { usePathname, useRouter } from "next/navigation"
+import { LanguageToggle } from "@/components/language-toggle"
 
 const productos: Array<{
   id: number;
@@ -77,10 +77,7 @@ export default function ProductosPageEn() {
   const [searchTerm, setSearchTerm] = useState("")
   const [currentPage, setCurrentPage] = useState(1)
   const productsPerPage = 12
-  const pathname = usePathname()
-  const router = useRouter()
-  const isEnglish = pathname.startsWith("/en")
-  const { paginatedProducts, totalPages, totalProducts } = useMemo(() => {
+  const { paginatedProducts, totalPages } = useMemo(() => {
     let filtered = productos
     if (selectedFilter !== "todos") {
       filtered = filtered.filter((product) => product.brand === selectedFilter)
@@ -97,7 +94,7 @@ export default function ProductosPageEn() {
     const totalPages = Math.ceil(totalProducts / productsPerPage)
     const startIndex = (currentPage - 1) * productsPerPage
     const paginatedProducts = filtered.slice(startIndex, startIndex + productsPerPage)
-    return { paginatedProducts, totalPages, totalProducts }
+    return { paginatedProducts, totalPages }
   }, [selectedFilter, searchTerm, currentPage])
 
   const getBrandColor = (brand: string) => {
@@ -137,14 +134,6 @@ export default function ProductosPageEn() {
     setCurrentPage(1)
   }
 
-  const handleToggle = () => {
-    if (isEnglish) {
-      router.push("/productos")
-    } else {
-      router.push("/en/productos")
-    }
-  }
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-100">
       <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-lg border-b border-yellow-200/50 shadow-lg">
@@ -161,15 +150,7 @@ export default function ProductosPageEn() {
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back
               </Link>
-              <button
-                onClick={handleToggle}
-                className="ml-6 flex items-center bg-gray-100 border border-yellow-300 rounded-full px-4 py-1 text-sm text-gray-800 hover:bg-yellow-400 hover:text-black transition-colors"
-                aria-label="Switch language"
-              >
-                <span className={isEnglish ? "font-bold" : "opacity-60"}>EN</span>
-                <span className="mx-2">|</span>
-                <span className={!isEnglish ? "font-bold" : "opacity-60"}>ES</span>
-              </button>
+              <LanguageToggle spanishHref="/productos" englishHref="/en/productos" className="ml-6 flex items-center bg-gray-100 border border-yellow-300 rounded-full px-4 py-1 text-sm text-gray-800 hover:bg-yellow-400 hover:text-black transition-colors" />
             </div>
           </div>
         </div>
@@ -359,4 +340,4 @@ export default function ProductosPageEn() {
       </section>
     </div>
   )
-} 
+}

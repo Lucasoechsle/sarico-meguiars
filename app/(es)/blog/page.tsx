@@ -1,10 +1,8 @@
 "use client"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Calendar, MapPin, ChevronLeft, ChevronRight } from "lucide-react"
+import { Calendar, MapPin } from "lucide-react"
 import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
-import { useState, useEffect } from "react"
 
 export default function BlogPage() {
     const pathname = usePathname()

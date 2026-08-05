@@ -3,21 +3,9 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Car, Sparkles, Shield, Droplets, Heart, Zap } from "lucide-react"
 import Image from "next/image"
-import { usePathname, useRouter } from "next/navigation"
+import { LanguageToggle } from "@/components/language-toggle"
 
 export default function CarDetailPageEn() {
-  const pathname = usePathname()
-  const router = useRouter()
-  const isEnglish = pathname.startsWith("/en")
-
-  const handleToggle = () => {
-    if (isEnglish) {
-      router.push("/car-detail")
-    } else {
-      router.push("/en/car-detail")
-    }
-  }
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -64,15 +52,7 @@ export default function CarDetailPageEn() {
                 Back
               </Link>
               {/* Language Toggle */}
-              <button
-                onClick={handleToggle}
-                className="ml-6 flex items-center bg-gray-800 border border-gray-700 rounded-full px-4 py-1 text-sm text-white hover:bg-yellow-400 hover:text-black transition-colors"
-                aria-label="Switch language"
-              >
-                <span className={isEnglish ? "font-bold" : "opacity-60"}>EN</span>
-                <span className="mx-2">|</span>
-                <span className={!isEnglish ? "font-bold" : "opacity-60"}>ES</span>
-              </button>
+              <LanguageToggle spanishHref="/car-detail" englishHref="/en/car-detail" className="ml-6 flex items-center bg-gray-800 border border-gray-700 rounded-full px-4 py-1 text-sm text-white hover:bg-yellow-400 hover:text-black transition-colors" />
             </div>
           </div>
         </div>
@@ -367,4 +347,4 @@ export default function CarDetailPageEn() {
       </section>
     </div>
   )
-} 
+}

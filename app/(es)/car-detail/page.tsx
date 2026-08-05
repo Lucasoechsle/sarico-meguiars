@@ -1,15 +1,12 @@
 "use client"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, ArrowRight, Sparkles, Shield, Award, Heart, Zap, ChevronLeft, ChevronRight, Calendar, MapPin } from "lucide-react"
+import { ArrowLeft, ArrowRight, Sparkles, Shield, Award, ChevronLeft, ChevronRight, Calendar, MapPin } from "lucide-react"
 import Image from "next/image"
-import { usePathname, useRouter } from "next/navigation"
+import { LanguageToggle } from "@/components/language-toggle"
 import { useState, useEffect } from "react"
 
 export default function CarDetailPage() {
-  const pathname = usePathname()
-  const router = useRouter()
-  const isEnglish = pathname.startsWith("/en")
   const [currentSlide, setCurrentSlide] = useState(0)
 
   const slides = [
@@ -70,14 +67,6 @@ export default function CarDetailPage() {
   }
 
 
-  const handleToggle = () => {
-    if (isEnglish) {
-      router.push("/car-detail")
-    } else {
-      router.push("/en/car-detail")
-    }
-  }
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
       <nav className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-800">
@@ -112,15 +101,7 @@ export default function CarDetailPage() {
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Volver
               </Link>
-              <button
-                onClick={handleToggle}
-                className="ml-6 flex items-center bg-gray-800 border border-gray-700 rounded-full px-4 py-1 text-sm text-white hover:bg-yellow-400 hover:text-black transition-colors"
-                aria-label="Switch language"
-              >
-                <span className={isEnglish ? "font-bold" : "opacity-60"}>EN</span>
-                <span className="mx-2">|</span>
-                <span className={!isEnglish ? "font-bold" : "opacity-60"}>ES</span>
-              </button>
+              <LanguageToggle spanishHref="/car-detail" englishHref="/en/car-detail" className="ml-6 flex items-center bg-gray-800 border border-gray-700 rounded-full px-4 py-1 text-sm text-white hover:bg-yellow-400 hover:text-black transition-colors" />
             </div>
           </div>
         </div>
